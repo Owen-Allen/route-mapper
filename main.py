@@ -11,6 +11,10 @@ class Node:
         self.outgoing_edges = {}
         self.dist = math.inf
         self.prev = None
+        self.path = []
+
+    def set_path(self, path):
+        self.path = path
 
     def add_edge(self, node, weight):
         self.outgoing_edges[node] = weight
@@ -72,6 +76,8 @@ def find_shortest_path(source, target):
 def construct_graph():
     g = Graph()
     nodeA = Node('A')
+    nodeA.set_path(['A', 'B', 'C', 'E'])
+    # nodeA.set_path(['A', 'D', 'E'])
     nodeB = Node('B')
     nodeC = Node('C')
     nodeD = Node('D')
@@ -93,7 +99,12 @@ def construct_graph():
     g.nodes.append(nodeD)
     g.nodes.append(nodeE)
     shortest_path(g, nodeA, nodeE)
-    print(find_shortest_path(nodeA, nodeE))
+    new_path = find_shortest_path(nodeA, nodeE)
+    if new_path == nodeA.path:
+        print("nodeA is on shortest path thus this driver satisfies equilibrium")
+    else:
+        print("nodeA is not on shortest path thus this driver does not satisfy equilibrium")
+
 
 
 if __name__ == '__main__':
