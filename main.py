@@ -10,7 +10,7 @@ class Node:
         # node, weight of edge
         self.outgoing_edges = {}
         self.dist = math.inf
-        self.prev = ''
+        self.prev = None
 
     def add_edge(self, node, weight):
         self.outgoing_edges[node] = weight
@@ -54,23 +54,20 @@ def shortest_path(graph, source, target):
         for edge_node_v in u.outgoing_edges:
             if u.dist + u.outgoing_edges[edge_node_v] < edge_node_v.dist:
                 edge_node_v.dist = u.dist + u.outgoing_edges[edge_node_v]
-                edge_node_v.prev = u.name
+                edge_node_v.prev = u
             if edge_node_v == target:
                 return
 
 
-# def find_shortest_path(graph, source, target):
-#     path = []
-#     if target.dist < math.inf:
-#         path.append(target.name)
-#         current_node_name = target.prev
-#         while current_node_name != source.name:
-#             path.append(current_node_name)
-#             curr_node = graph.find_node_by_name(current_node_name)
-#             print(curr_node.name)
-#             current_node_name = curr_node.prev
-#         path.append(source.name)
-#     return path
+def find_shortest_path(source, target):
+    path = []
+    if target.dist < math.inf:
+        current_node = target
+        while current_node.name != source.name:
+            path.append(current_node.name)
+            current_node = current_node.prev
+        path.append(current_node.name)
+    return path[::-1]
 
 def construct_graph():
     g = Graph()
@@ -96,7 +93,7 @@ def construct_graph():
     g.nodes.append(nodeD)
     g.nodes.append(nodeE)
     shortest_path(g, nodeA, nodeE)
-    # print(find_shortest_path(g, nodeA, nodeE))
+    print(find_shortest_path(nodeA, nodeE))
 
 
 if __name__ == '__main__':
