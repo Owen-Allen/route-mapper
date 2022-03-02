@@ -90,7 +90,7 @@ def display_new_cost_graph(graph, busses):
         y2.append(new_cost)
         names.append(bus.name)
 
-    width = 0.35
+    width = 0.40
 
     figure, plot = plt.subplots()
 
