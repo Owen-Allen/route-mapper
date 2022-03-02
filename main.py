@@ -76,8 +76,6 @@ def display_graph(graph):
     plt.show()
 
 
-
-
 def display_new_cost_graph(graph, busses):
     x = np.arange(len(busses))
     y1 = []
@@ -97,8 +95,8 @@ def display_new_cost_graph(graph, busses):
     figure, plot = plt.subplots()
 
     # plot data in grouped manner of bar type
-    current_plot = plot.bar(x - width/2, y1, width, label='Current path')
-    shortest_plot = plot.bar(x + width/2, y2, width, label='Shortest path')
+    current_plot = plot.bar(x - width / 2, y1, width, label='Current path')
+    shortest_plot = plot.bar(x + width / 2, y2, width, label='Shortest path')
 
     plot.set_ylabel('Cost')
     plot.set_xlabel('Busses')
