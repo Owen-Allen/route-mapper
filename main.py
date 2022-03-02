@@ -56,6 +56,7 @@ def construct_graph():
     graph.add_node(nodeE)
     busses.append(bus1)
     busses.append(bus2)
+
     return graph, busses
 
 
@@ -84,7 +85,7 @@ def display_new_cost_graph(graph, busses):
     for bus in busses:
         current_cost = calculate_cost_of_path(bus.path)
         bus.set_total_travel_time(current_cost)
-        new_path = find_shortest_path(graph, bus)
+        new_path = find_shortest_path_from_bus(graph, bus)
         new_cost = calculate_cost_of_path(new_path)
         y1.append(current_cost)
         y2.append(new_cost)

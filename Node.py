@@ -18,6 +18,9 @@ class Node:
     def add_edge(self, node, weight):
         self.outgoing_edges[node] = weight
 
+    def add_edge_with_congestion(self, node, func):
+        self.outgoing_edges[node] = func
+
     def print_edge_nodes(self):
         print("outgoing edges for node " + self.name)
         for node in self.outgoing_edges:
