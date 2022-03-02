@@ -1,10 +1,6 @@
 import math
-
-# to see if bus has an alternate route we need to run a shortest path (dijkstra) algorithm to see if its on the
-# shortest path or not (Nash Equilibrium)
 import networkx as nx
 from matplotlib import pyplot as plt
-
 
 class Bus:
     def __init__(self, name):
@@ -76,6 +72,8 @@ def find_minimum_dist(nodes):
     return lowest_dist_node
 
 
+# to see if bus has an alternate route we need to run a shortest path (dijkstra) algorithm to see if its on the
+# shortest path or not (Nash Equilibrium)
 def shortest_path(graph, source, target):
     for node in graph.nodes:
         node.dist = math.inf
@@ -148,9 +146,9 @@ def construct_graph():
     bus1.set_path([nodeA, nodeB, nodeC, nodeE])
 
     nodeA.add_edge(nodeB, 10)
-    nodeA.add_edge(nodeD, 9)
+    nodeA.add_edge(nodeD, 7)
 
-    nodeD.add_edge(nodeE, 9)
+    nodeD.add_edge(nodeE, 7)
 
     nodeB.add_edge(nodeC, 10)
 
@@ -176,7 +174,7 @@ def construct_graph():
 
 
 def display_graph():
-    graph_display = nx.Graph()
+    graph_display = nx.DiGraph()
     edges = []
     graph = construct_graph()
     for node in graph.get_nodes():
@@ -184,8 +182,14 @@ def display_graph():
             edge_to_add = [node.name, edge_node.name, node.outgoing_edges[edge_node]]
             edges.append(edge_to_add)
     graph_display.add_weighted_edges_from(edges)
-    nx.draw_networkx(graph_display)
+    # nx.draw_networkx(graph_display)
+    pos = nx.spring_layout(graph_display)
+    nx.draw(graph_display, pos, with_labels=True, font_weight='bold')
+    edge_weight = nx.get_edge_attributes(graph_display, 'weight')
+    nx.draw_networkx_edge_labels(graph_display, pos, edge_labels=edge_weight)
     plt.show()
+
+
 
 
 if __name__ == '__main__':
