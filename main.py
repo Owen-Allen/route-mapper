@@ -1,135 +1,29 @@
 import math
 import networkx as nx
 from matplotlib import pyplot as plt
+from Bus import Bus
+from Node import Node
+from Graph import Graph
+from Shortest_path import *
 
 
-class Bus:
-    def __init__(self, name):
-        self.name = name
-        self.path = []
-        self.total_travel_time = 0
-
-    def set_path(self, path):
-        self.path = path
-
-    def set_total_travel_time(self, total_travel_time):
-        self.total_travel_time = total_travel_time
-
-    # def calculate_cost_of_path(self):
-    #     self.total_travel_time = self.path[0].outgoing_edges
+def calculate_cost_of_path(path):
+    total_travel_time = 0
+    if len(path) > 0:
+        for i in range(len(path) - 1):
+            current_node = path[i]
+            next_node = path[i + 1]
+            weight_to_add = current_node.get_weight_to_node(next_node.name)
+            total_travel_time += weight_to_add
+    return total_travel_time
 
 
-class Node:
+def print_path(path):
+    path_to_print = []
+    for node in path:
+        path_to_print.append(node.name)
+    print(path_to_print)
 
-    def __init__(self, name):
-        self.name = name
-        # node, weight of edge
-        self.outgoing_edges = {}
-
-        # for shortest path
-        self.dist = math.inf
-        self.prev = None
-
-    def add_edge(self, node, weight):
-        self.outgoing_edges[node] = weight
-
-    def print_edge_nodes(self):
-        print("outgoing edges for node " + self.name)
-        for node in self.outgoing_edges:
-            print(node.name)
-
-
-class Graph:
-
-    def __init__(self):
-        self.nodes = []
-
-    def add_node(self, node):
-        self.nodes.append(node)
-
-    def get_nodes(self):
-        return self.nodes
-
-    def set_nodes(self, nodes):
-        self.nodes = nodes
-
-    def print_nodes(self):
-        for node in self.nodes:
-            print(node.name)
-
-    def find_node_by_name(self, name):
-        for node in self.nodes:
-            if node.name == name:
-                return node
-
-
-def find_minimum_dist(nodes):
-    lowest_dist = math.inf
-    lowest_dist_node = None
-    for node in nodes:
-        if node.dist < lowest_dist:
-            lowest_dist_node = node
-    return lowest_dist_node
-
-
-# to see if bus has an alternate route we need to run a shortest path (dijkstra) algorithm to see if its on the
-# shortest path or not (Nash Equilibrium)
-def dijkstra_shortest_path(graph, source, target):
-    for node in graph.nodes:
-        node.dist = math.inf
-        node.prev = None
-    source.dist = 0
-    Q = list(graph.get_nodes())
-    while Q:
-        u = find_minimum_dist(Q)
-        Q.remove(u)
-        for edge_node_v in u.outgoing_edges:
-            if u.dist + u.outgoing_edges[edge_node_v] < edge_node_v.dist:
-                edge_node_v.dist = u.dist + u.outgoing_edges[edge_node_v]
-                edge_node_v.prev = u
-            if edge_node_v == target:
-                return
-
-
-def dijkstra_shortest_path(graph, bus):
-    source = bus.path[0]
-    target = bus.path[-1]
-    for node in graph.nodes:
-        node.dist = math.inf
-        node.prev = None
-    source.dist = 0
-    Q = list(graph.get_nodes())
-    while Q:
-        u = find_minimum_dist(Q)
-        Q.remove(u)
-        for edge_node_v in u.outgoing_edges:
-            if u.dist + u.outgoing_edges[edge_node_v] < edge_node_v.dist:
-                edge_node_v.dist = u.dist + u.outgoing_edges[edge_node_v]
-                edge_node_v.prev = u
-            if edge_node_v == target:
-                return
-
-
-def find_shortest_path(bus):
-    source = bus.path[0]
-    target = bus.path[-1]
-    shortest_path = []
-    if target.dist < math.inf:
-        current_node = target
-        while current_node.name != source.name:
-            shortest_path.append(current_node.name)
-            current_node = current_node.prev
-        shortest_path.append(current_node.name)
-    return shortest_path[::-1]
-
-
-def get_all_graph_edges_with_weight(graph):
-    edges = []
-    for node in graph.nodes:
-        for edge_node in node.outgoing_edges:
-            edge_to_add = [node.name, edge_node.name, node.outgoing_edges[edge_node]]
-            edges.append(edge_to_add)
-    return edges
 
 def construct_graph():
     graph = Graph()
@@ -141,6 +35,7 @@ def construct_graph():
 
     bus1 = Bus("first")
     bus1.set_path([nodeA, nodeB, nodeC, nodeE])
+    # bus1.set_path([nodeA, nodeD, nodeE])
 
     nodeA.add_edge(nodeB, 10)
     nodeA.add_edge(nodeD, 7)
@@ -156,22 +51,26 @@ def construct_graph():
     graph.add_node(nodeC)
     graph.add_node(nodeD)
     graph.add_node(nodeE)
-    dijkstra_shortest_path(graph, bus1)
-    new_path = find_shortest_path(bus1)
+    new_path = find_shortest_path(graph, bus1)
+
+    bus1.set_total_travel_time(calculate_cost_of_path(bus1.path))
 
     if new_path == bus1.path:
         print("bus1 is on shortest path thus this bus satisfies Nash Equilibrium")
     else:
         print("bus1 is not on shortest path thus this bus does not satisfy Nash Equilibrium")
         print("Alternate route is: ")
-        print(new_path)
+        print_path(new_path)
+        new_cost = calculate_cost_of_path(new_path)
+        print("The new cost is " + str(new_cost) + " which is smaller than the original " + str(
+            bus1.get_total_travel_time()))
     return graph
 
 
 def display_graph():
     graph_display = nx.DiGraph()
     graph = construct_graph()
-    edges = get_all_graph_edges_with_weight(graph)
+    edges = graph.get_all_graph_edges_with_weight()
 
     # add edges to graph
     graph_display.add_weighted_edges_from(edges)
