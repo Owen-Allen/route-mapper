@@ -61,6 +61,7 @@ def find_shortest_path_from_bus(graph, bus):
         shortest_path.append(current_node)
     return shortest_path[::-1]
 
+
 def find_shortest_path_from_source_to_target(graph, source, target):
     dijkstra_shortest_path_from_source_to_target(graph, source, target)
     shortest_path = []
@@ -73,9 +74,11 @@ def find_shortest_path_from_source_to_target(graph, source, target):
     return shortest_path[::-1]
 
 
-
 def find_shortest_path_from_source_to_middle_to_target(graph, source, middle, target):
-    shortest_path = find_shortest_path_from_source_to_target(graph, source, middle) + find_shortest_path_from_source_to_target(graph, middle, target)
+    path_to_middle = find_shortest_path_from_source_to_target(graph, source, middle)
+    path_to_target = find_shortest_path_from_source_to_target(graph, middle, target)
+    shortest_path =  path_to_middle + path_to_target[1:]
+
     # remove duplicate nodes from path
-    shortest_path = list(dict.fromkeys(shortest_path))
+    # shortest_path = list(dict.fromkeys(shortest_path))
     return shortest_path
