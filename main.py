@@ -57,7 +57,9 @@ def construct_graph():
     busses.append(bus1)
     busses.append(bus2)
 
-    # test_path = find_shortest_path_from_source_to_middle_to_target(graph, nodeA, nodeC, nodeE)
+    # test_path = find_shortest_path_from_source_to_middle_to_target(graph, nodeA, nodeC, nodeD)
+    # print_path(test_path)
+    # test_path = find_shortest_path_from_source_to_middle_nodes_to_target(graph, nodeA, [nodeB,nodeC], nodeD)
     # print_path(test_path)
     return graph, busses
 
