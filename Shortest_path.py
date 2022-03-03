@@ -34,8 +34,9 @@ def dijkstra_shortest_path_from_source_to_target(graph, source, target):
             return
         Q.remove(u)
         for edge_node_v in u.outgoing_edges:
-            if u.dist + u.outgoing_edges[edge_node_v] < edge_node_v.dist:
-                edge_node_v.dist = u.dist + u.outgoing_edges[edge_node_v]
+            weight = u.get_weight_to_node(edge_node_v.name)
+            if u.dist + weight < edge_node_v.dist:
+                edge_node_v.dist = u.dist + weight
                 edge_node_v.prev = u
             if edge_node_v == target:
                 return
@@ -58,8 +59,9 @@ def dijkstra_shortest_path_from_bus(graph, bus):
         u = find_minimum_dist(Q)
         Q.remove(u)
         for edge_node_v in u.outgoing_edges:
-            if u.dist + u.outgoing_edges[edge_node_v] < edge_node_v.dist:
-                edge_node_v.dist = u.dist + u.outgoing_edges[edge_node_v]
+            weight = u.get_weight_to_node(edge_node_v.name)
+            if u.dist + weight < edge_node_v.dist:
+                edge_node_v.dist = u.dist + weight
                 edge_node_v.prev = u
             if edge_node_v == target:
                 return

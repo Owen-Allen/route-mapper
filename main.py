@@ -40,14 +40,14 @@ def construct_graph():
     bus2 = Bus("Bus 2")
     bus2.set_path([nodeA, nodeD, nodeE])
 
-    nodeA.add_edge(nodeB, 10)
-    nodeA.add_edge(nodeD, 7)
+    nodeA.add_edge_with_constant_weight(nodeB, [10, 0])
+    nodeA.add_edge_with_constant_weight(nodeD, [7, 0])
 
-    nodeD.add_edge(nodeE, 7)
+    nodeD.add_edge_with_constant_weight(nodeE, [7, 0])
 
-    nodeB.add_edge(nodeC, 10)
+    nodeB.add_edge_with_constant_weight(nodeC, [10, 0])
 
-    nodeC.add_edge(nodeE, 10)
+    nodeC.add_edge_with_congestion_weight(nodeE, [lambda x: x / 100, 0])
 
     graph.add_node(nodeA)
     graph.add_node(nodeB)

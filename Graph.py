@@ -25,6 +25,7 @@ class Graph:
         edges = []
         for node in self.nodes:
             for edge_node in node.outgoing_edges:
-                edge_to_add = [node.name, edge_node.name, node.outgoing_edges[edge_node]]
+                weight = node.get_weight_to_node(edge_node.name)
+                edge_to_add = [node.name, edge_node.name, weight]
                 edges.append(edge_to_add)
         return edges
