@@ -2,6 +2,7 @@ class Graph:
 
     def __init__(self):
         self.nodes = []
+        self.passengers = []
 
     def add_node(self, node):
         self.nodes.append(node)
@@ -26,6 +27,7 @@ class Graph:
         for node in self.nodes:
             for edge_node in node.outgoing_edges:
                 weight = node.get_weight_to_node(edge_node.name)
+                # node_name = node.name + ' (' + str(node.get_passenger_amount()) + ')'
                 edge_to_add = [node.name, edge_node.name, weight]
                 edges.append(edge_to_add)
         return edges

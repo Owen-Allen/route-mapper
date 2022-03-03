@@ -3,10 +3,11 @@ import math
 
 class Node:
 
-    def __init__(self, name):
+    def __init__(self, name=''):
         self.name = name
         # node, [weight of edge, amount of drivers on edge]
         self.outgoing_edges = {}
+        self.passengers_waiting = []
 
         # for shortest path
         self.dist = math.inf
@@ -27,6 +28,12 @@ class Node:
         print("outgoing edges for node " + self.name)
         for node in self.outgoing_edges:
             print(node.name)
+
+    def add_passenger(self, passenger):
+        self.passengers_waiting.append(passenger)
+
+    def get_passenger_amount(self):
+        return len(self.passengers_waiting)
 
     def get_weight_to_node(self, name):
         for edge_node in self.outgoing_edges:

@@ -1,9 +1,12 @@
+from random import randrange, choice
+
 import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
 from Bus import Bus
 from Node import Node
 from Graph import Graph
+from Passenger import Passenger
 from Shortest_path import *
 
 
@@ -25,21 +28,58 @@ def print_path(path):
     print(path_to_print)
 
 
+
 def construct_graph():
+
     graph = Graph()
     busses = []
+    nodes = []
+
+
+    # generate nodes
     nodeA = Node('A')
     nodeB = Node('B')
     nodeC = Node('C')
     nodeD = Node('D')
     nodeE = Node('E')
 
+
+    nodes.append(nodeA)
+    nodes.append(nodeB)
+    nodes.append(nodeC)
+    nodes.append(nodeD)
+    nodes.append(nodeE)
+
+
+    # generate passengers
+    passengers = []
+    for i in range(1000):
+        p = Passenger()
+        # random destination for each passenger
+        destination_number = randrange(start=0, stop=5)
+        p.destination = nodes[destination_number]
+        if destination_number == 0:
+            node_to_wait_at = nodes[1]
+        else:
+            node_to_wait_at = nodes[randrange(start=0, stop=destination_number)]
+
+        node_to_wait_at.add_passenger(p)
+        passengers.append(p)
+    graph.passengers = passengers
+
+    # print passengers
+    for node in nodes:
+        print(node.name + ': ' + str(node.get_passenger_amount()))
+
+    # generate busses
     bus1 = Bus("Bus 1")
     bus1.set_path([nodeA, nodeB, nodeC, nodeE])
 
     bus2 = Bus("Bus 2")
     bus2.set_path([nodeA, nodeD, nodeE])
 
+
+    # generate graph
     nodeA.add_edge(nodeB, [10, 0])
     nodeA.add_edge(nodeD, [7, 0])
 
@@ -74,16 +114,15 @@ def display_graph(graph):
     graph_display.add_weighted_edges_from(edges)
 
     # node layout
-    # pos = nx.spring_layout(graph_display)
     pos = nx.planar_layout(graph_display)
 
-    nx.draw(graph_display, pos, with_labels=True, font_weight='bold')
+    nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=3000)
     edge_weight = nx.get_edge_attributes(graph_display, 'weight')
     nx.draw_networkx_edge_labels(graph_display, pos, edge_labels=edge_weight)
     plt.show()
 
 
-def display_new_cost_graph(graph, busses):
+def display_new_travel_cost_graph(graph, busses):
     x = np.arange(len(busses))
     y1 = []
     y2 = []
@@ -120,4 +159,4 @@ def display_new_cost_graph(graph, busses):
 if __name__ == '__main__':
     graph, busses = construct_graph()
     display_graph(graph)
-    display_new_cost_graph(graph, busses)
+    display_new_travel_cost_graph(graph, busses)
