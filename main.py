@@ -40,14 +40,14 @@ def construct_graph():
     bus2 = Bus("Bus 2")
     bus2.set_path([nodeA, nodeD, nodeE])
 
-    nodeA.add_edge_with_constant_weight(nodeB, [10, 0])
-    nodeA.add_edge_with_constant_weight(nodeD, [7, 0])
+    nodeA.add_edge(nodeB, [10, 0])
+    nodeA.add_edge(nodeD, [7, 0])
 
-    nodeD.add_edge_with_constant_weight(nodeE, [7, 0])
+    nodeD.add_edge(nodeE, [7, 0])
 
-    nodeB.add_edge_with_constant_weight(nodeC, [10, 0])
+    nodeB.add_edge(nodeC, [10, 0])
 
-    nodeC.add_edge_with_congestion_weight(nodeE, [lambda x: x / 100, 0])
+    nodeC.add_edge(nodeE, [lambda x: x / 100, 0])
 
     graph.add_node(nodeA)
     graph.add_node(nodeB)
@@ -61,6 +61,8 @@ def construct_graph():
     # print_path(test_path)
     # test_path = find_shortest_path_from_source_to_middle_nodes_to_target(graph, nodeA, [nodeB,nodeC], nodeD)
     # print_path(test_path)
+    test_path = find_shortest_path_from_source_to_nodes(graph, [nodeA, nodeB, nodeC, nodeE])
+    print_path(test_path)
     return graph, busses
 
 

@@ -151,3 +151,31 @@ def find_shortest_path_from_source_to_middle_nodes_to_target(graph, source, midd
             shortest_path = shortest_path + path_to_next_node[1:]
 
     return shortest_path
+
+
+def find_shortest_path_from_source_to_nodes(graph, nodes):
+    """Find the shortest path from the source node by going through all the middle nodes and reaching the target node
+        :param graph: graph of the road network
+        :param nodes: list of nodes it must travel through
+        :returns: shortest path if it exists or empty array otherwise
+    """
+    if len(nodes) > 0:
+        shortest_path = []
+        for i in range(len(nodes)):
+            current_node = nodes[i]
+            if current_node == nodes[-1]:
+                path_to_target = find_shortest_path_from_source_to_target(graph, current_node, nodes[-1])
+                if len(path_to_target) == 0:
+                    return []
+                shortest_path = shortest_path + path_to_target[1:]
+                break
+            next_node = nodes[i + 1]
+            path_to_next_node = find_shortest_path_from_source_to_target(graph, current_node, next_node)
+            if len(path_to_next_node) == 0:
+                return []
+            if i > 0:
+                shortest_path = shortest_path + path_to_next_node[1:]
+            else:
+                shortest_path = shortest_path + path_to_next_node
+
+    return shortest_path
