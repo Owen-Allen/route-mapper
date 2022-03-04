@@ -1,5 +1,4 @@
-from random import randrange, choice
-
+from random import randrange
 import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
