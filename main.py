@@ -28,13 +28,10 @@ def print_path(path):
     print(path_to_print)
 
 
-
 def construct_graph():
-
     graph = Graph()
     busses = []
     nodes = []
-
 
     # generate nodes
     nodeA = Node('A')
@@ -43,13 +40,11 @@ def construct_graph():
     nodeD = Node('D')
     nodeE = Node('E')
 
-
     nodes.append(nodeA)
     nodes.append(nodeB)
     nodes.append(nodeC)
     nodes.append(nodeD)
     nodes.append(nodeE)
-
 
     # generate passengers
     passengers = []
@@ -77,7 +72,6 @@ def construct_graph():
 
     bus2 = Bus("Bus 2")
     bus2.set_path([nodeA, nodeD, nodeE])
-
 
     # generate graph
     nodeA.add_edge(nodeB, [10, 0])
