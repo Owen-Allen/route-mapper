@@ -13,10 +13,17 @@ class Node:
         self.dist = math.inf
         self.prev = None
 
-    def set_drivers_on_edge_with_node(self, name, x):
+    def set_drivers_on_edge_with_node(self, edge_node, x):
+        if edge_node in self.outgoing_edges.keys():
+            self.outgoing_edges[edge_node][1] = x
+
+    def add_drivers_on_edge_with_node(self, edge_node, x):
+        if edge_node in self.outgoing_edges.keys():
+            self.outgoing_edges[edge_node][1] += x
+
+    def reset_drivers_on_edges(self):
         for edge_node in self.outgoing_edges:
-            if edge_node.name == name:
-                self.outgoing_edges[edge_node][1] = x
+            self.outgoing_edges[edge_node][1] = 0
 
     def get_edges(self):
         return self.outgoing_edges
@@ -44,3 +51,11 @@ class Node:
                 else:
                     drivers_on_path = self.outgoing_edges[edge_node][1]
                     return weight(drivers_on_path)
+
+    def remove_passenger_by_id(self, passenger_id):
+        for passenger in self.passengers_waiting:
+            if passenger.passenger_id == passenger_id:
+                self.passengers_waiting.remove(passenger)
+
+    def remove_passenger(self, passenger_to_remove):
+        self.passengers_waiting.remove(passenger_to_remove)

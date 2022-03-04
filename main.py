@@ -149,6 +149,29 @@ def display_new_travel_cost_graph(graph, busses):
     plt.show()
 
 
+def update_path_costs(graph, busses):
+    nodes = graph.get_nodes()
+    for node in nodes:
+        node.reset_drivers_on_edges()
+        for edge_node in node.outgoing_edges:
+            for bus in busses:
+                if bus.has_edge(node, edge_node):
+                    node.add_drivers_on_edge_with_node(edge_node, 1)
+
+
+def display_company_priority_travel_cost(graph, bus_list):
+    passengers = graph.passengers
+    nodes = graph.get_nodes()
+    update_path_costs(graph, bus_list)
+    for bus in bus_list:
+        for path_node in bus.path:
+            # TODO: finish this graph
+            bus.drop_off_passengers_at_node(path_node)
+            bus.pickup_passengers_at_node(path_node)
+
+
+
+
 if __name__ == '__main__':
     graph, busses = construct_test_graph()
     display_graph(graph)
