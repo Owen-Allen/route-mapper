@@ -27,7 +27,7 @@ def print_path(path):
     print(path_to_print)
 
 
-def construct_graph():
+def construct_test_graph():
     graph = Graph()
     busses = []
     nodes = []
@@ -150,6 +150,6 @@ def display_new_travel_cost_graph(graph, busses):
 
 
 if __name__ == '__main__':
-    graph, busses = construct_graph()
+    graph, busses = construct_test_graph()
     display_graph(graph)
     display_new_travel_cost_graph(graph, busses)
