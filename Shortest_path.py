@@ -3,8 +3,8 @@ import math
 
 def find_minimum_dist(nodes):
     """Find the node with the lowest distance in the graph
-                    :param nodes: nodes in the graph
-                    :returns: the node with the lowest distance
+        :param nodes: nodes in the graph
+        :returns: the node with the lowest distance
     """
     lowest_dist = math.inf
     lowest_dist_node = None
@@ -18,10 +18,10 @@ def find_minimum_dist(nodes):
 # shortest path or not (Nash Equilibrium)
 def dijkstra_shortest_path_from_source_to_target(graph, source, target):
     """Find the dijkstra shortest path distances from the source node to the target node
-                :param graph: graph of the road network
-                :param source: starting node
-                :param target: destination node
-                :returns: shortest path from the source to the target
+        :param graph: graph of the road network
+        :param source: starting node
+        :param target: destination node
+        :returns: shortest path from the source to the target
     """
     for node in graph.nodes:
         node.dist = math.inf
@@ -44,9 +44,9 @@ def dijkstra_shortest_path_from_source_to_target(graph, source, target):
 
 def dijkstra_shortest_path_from_bus(graph, bus):
     """Find the dijkstra shortest path distances from the source node to the target node
-            :param graph: graph of the road network
-            :param bus: the bus that we will be going from the first node in the path to the klast node in the path
-            :returns: shortest path for the bus to reach its last node in its path if it exists or do nothing otherwise
+        :param graph: graph of the road network
+        :param bus: the bus that we will be going from the first node in the path to the klast node in the path
+        :returns: shortest path for the bus to reach its last node in its path if it exists or do nothing otherwise
     """
     source = bus.path[0]
     target = bus.path[-1]
