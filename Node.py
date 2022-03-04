@@ -7,11 +7,19 @@ class Node:
         self.name = name
         # node, [weight of edge, amount of drivers on edge]
         self.outgoing_edges = {}
+
+        self.original_passengers = []
         self.passengers_waiting = []
 
         # for shortest path
         self.dist = math.inf
         self.prev = None
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
 
     def set_drivers_on_edge_with_node(self, edge_node, x):
         if edge_node in self.outgoing_edges.keys():
@@ -38,9 +46,13 @@ class Node:
 
     def add_passenger(self, passenger):
         self.passengers_waiting.append(passenger)
+        self.original_passengers.append(passenger)
 
     def get_passenger_amount(self):
         return len(self.passengers_waiting)
+
+    def reset_passengers(self):
+        self.passengers_waiting = self.original_passengers
 
     def get_weight_to_node(self, name):
         for edge_node in self.outgoing_edges:
