@@ -112,7 +112,7 @@ def display_network(graph):
     plt.show()
 
 
-def display_new_travel_cost_graph(graph, busses):
+def display_shortest_path_travel_cost_graph(graph, busses):
     x = np.arange(len(busses))
     y1 = []
     y2 = []
