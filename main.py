@@ -168,6 +168,7 @@ def display_company_priority_travel_cost(graph, bus_list):
 
     for node in graph.nodes:
         node.reset_passengers()
+        node.reset_drivers_on_edges()
 
     # modified bus route
     for bus in bus_list:
