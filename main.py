@@ -64,6 +64,7 @@ def construct_test_graph():
     graph.passengers = passengers
 
     # print passengers
+    print("Passenger count: ")
     for node in nodes:
         print(node.name + ': ' + str(node.get_passenger_amount()))
 
@@ -164,7 +165,6 @@ def display_company_priority_travel_cost(graph, bus_list):
         y1_profit.append(bus.total_profit_made)
         y1_travel_cost.append(bus.total_travel_time)
         bus.reset()
-        bus.print_bus()
 
     for node in graph.nodes:
         node.reset_passengers()
