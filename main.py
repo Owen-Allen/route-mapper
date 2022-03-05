@@ -240,7 +240,5 @@ def plot_graph(x, y1,y2, label1, label2, y_title, x_title, graph_title, x_names)
 
 if __name__ == '__main__':
     graph, busses = construct_test_graph()
-    # display_network(graph)
-    # display_new_travel_cost_graph(graph, busses)
     # company priority 1
     display_company_priority_travel_cost(graph, busses)
