@@ -3,7 +3,7 @@ class Bus:
         self.name = name
         self.path = []
         self.total_travel_time = 0
-
+        self.modified_path = []
         # dict of destinations and amount of passengers for that destination that the bus must travel to
         self.destinations = {}
         # passenger capacity in bus
@@ -49,11 +49,14 @@ class Bus:
         return self.total_travel_time
 
     def has_edge(self, first_node, second_node):
-        for i in range(len(self.path)):
-            if self.path[i].name == self.path[-1].name:
+        path_to_use = self.path
+        if len(self.modified_path) > 0:
+            path_to_use = self.modified_path
+        for i in range(len(path_to_use)):
+            if path_to_use[i].name == path_to_use[-1].name:
                 return False
-            if self.path[i].name == first_node.name:
-                if self.path[i + 1].name == second_node.name:
+            if path_to_use[i].name == first_node.name:
+                if path_to_use[i + 1].name == second_node.name:
                     return True
         return False
 
@@ -79,23 +82,22 @@ class Bus:
                     self.add_passengers_to_destination(passenger.destination, passenger)
                     self.capacity -= 1
                     self.total_passengers_picked_up += 1
+                    self.total_profit_made += passenger.profit
 
     def pickup_passengers_at_node_going_to_farthest_node_in_path(self, node):
-        # TODO: get the passengers that want to go farthest (picking up any passengers currently)
         index = self.path.index(node)
         whats_left_in_path = self.path[index+1:]
-        print('whats left in path: ', end="")
-        print(whats_left_in_path)
-        for passenger in node.passengers_waiting:
-            if self.capacity > 0:
-                if passenger.destination in whats_left_in_path:
-                    node.remove_passenger(passenger)
-                    if passenger.destination not in self.destinations.keys():
-                        self.add_destination(passenger.destination)
-                    self.add_passengers_to_destination(passenger.destination, passenger)
-                    self.capacity -= 1
-                    self.total_passengers_picked_up += 1
-                    self.total_profit_made += passenger.profit
+        for path_node in reversed(whats_left_in_path):
+            for passenger in node.passengers_waiting:
+                if self.capacity > 0:
+                    if passenger.destination.name == path_node.name:
+                        node.remove_passenger(passenger)
+                        if passenger.destination not in self.destinations.keys():
+                            self.add_destination(passenger.destination)
+                        self.add_passengers_to_destination(passenger.destination, passenger)
+                        self.capacity -= 1
+                        self.total_passengers_picked_up += 1
+                        self.total_profit_made += passenger.profit
 
     def drop_off_passengers_at_node(self, node):
         if len(self.destinations.keys()) > 0:
@@ -107,3 +109,8 @@ class Bus:
     def find_next_destination(self):
         new_list = sorted(self.destinations.keys(), key=lambda x: x.name)
         return new_list[0]
+
+    def travel_to(self, start_node, end_node):
+        weight = start_node.get_weight_to_node(end_node)
+        self.total_travel_time += weight
+

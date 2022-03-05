@@ -26,6 +26,10 @@ class Node:
             self.outgoing_edges[edge_node][1] = x
 
     def add_drivers_on_edge_with_node(self, edge_node, x):
+        """Add a driver to the edge between this node and edge_node
+            :param edge_node: the node that has the edge between this node and edge_node
+            :param x: the amount of drivers we will increase the edge by
+        """
         if edge_node in self.outgoing_edges.keys():
             self.outgoing_edges[edge_node][1] += x
 
@@ -54,9 +58,9 @@ class Node:
     def reset_passengers(self):
         self.passengers_waiting = self.original_passengers
 
-    def get_weight_to_node(self, name):
+    def get_weight_to_node(self, node):
         for edge_node in self.outgoing_edges:
-            if edge_node.name == name:
+            if edge_node.name == node.name:
                 weight = self.outgoing_edges[edge_node][0]
                 if isinstance(weight, int):
                     return weight
