@@ -105,7 +105,7 @@ def display_network(graph):
     # node layout
     pos = nx.planar_layout(graph_display)
 
-    nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=3000)
+    nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=1000)
     edge_weight = nx.get_edge_attributes(graph_display, 'weight')
     nx.draw_networkx_edge_labels(graph_display, pos, edge_labels=edge_weight)
     plt.show()
