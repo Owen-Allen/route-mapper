@@ -1,0 +1,735 @@
+{
+    "ROUTE_NUMBER": 7,
+    "STOPS": [
+        {
+            "STOP_ID": "CG605",
+            "NAME": "CARLETON U",
+            "STOP_CODE": 5813
+        },
+        {
+            "STOP_ID": "CG615",
+            "NAME": "UNIVERSITY / GYMNASIUM",
+            "STOP_CODE": 6610
+        },
+        {
+            "STOP_ID": "CG620",
+            "NAME": "UNIVERSITY / STADIUM",
+            "STOP_CODE": 6611
+        },
+        {
+            "STOP_ID": "CG440",
+            "NAME": "SUNNYSIDE / CARRAWAY",
+            "STOP_CODE": 6684
+        },
+        {
+            "STOP_ID": "CG420",
+            "NAME": "SUNNYSIDE / SENECA",
+            "STOP_CODE": 6683
+        },
+        {
+            "STOP_ID": "CG330",
+            "NAME": "SENECA / GLEN",
+            "STOP_CODE": 6737
+        },
+        {
+            "STOP_ID": "CG340",
+            "NAME": "GROVE / SENECA",
+            "STOP_CODE": 6738
+        },
+        {
+            "STOP_ID": "CG350",
+            "NAME": "GROVE / LEONARD",
+            "STOP_CODE": 6685
+        },
+        {
+            "STOP_ID": "CG360",
+            "NAME": "GROVE / GROSVENOR",
+            "STOP_CODE": 6686
+        },
+        {
+            "STOP_ID": "CG370",
+            "NAME": "GROVE / BANK",
+            "STOP_CODE": 6687
+        },
+        {
+            "STOP_ID": "CF530",
+            "NAME": "BANK / BELMONT",
+            "STOP_CODE": 2414
+        },
+        {
+            "STOP_ID": "CF550",
+            "NAME": "BANK / SUNNYSIDE",
+            "STOP_CODE": 7655
+        },
+        {
+            "STOP_ID": "CF570",
+            "NAME": "BANK / AYLMER",
+            "STOP_CODE": 6773
+        },
+        {
+            "STOP_ID": "CF610",
+            "NAME": "LANSDOWNE TD PLACE",
+            "STOP_CODE": 3080
+        },
+        {
+            "STOP_ID": "CF650",
+            "NAME": "BANK / FIFTH",
+            "STOP_CODE": 7659
+        },
+        {
+            "STOP_ID": "CF670",
+            "NAME": "BANK / THIRD",
+            "STOP_CODE": 6841
+        },
+        {
+            "STOP_ID": "CF710",
+            "NAME": "BANK / FIRST",
+            "STOP_CODE": 6842
+        },
+        {
+            "STOP_ID": "CF730",
+            "NAME": "BANK / PATTERSON",
+            "STOP_CODE": 7664
+        },
+        {
+            "STOP_ID": "CF750",
+            "NAME": "BANK / ISABELLA",
+            "STOP_CODE": 6844
+        },
+        {
+            "STOP_ID": "CH120",
+            "NAME": "BANK / CATHERINE",
+            "STOP_CODE": 8895
+        },
+        {
+            "STOP_ID": "CH100",
+            "NAME": "BANK / FLORA",
+            "STOP_CODE": 7667
+        },
+        {
+            "STOP_ID": "CH080",
+            "NAME": "BANK / GLADSTONE",
+            "STOP_CODE": 8798
+        },
+        {
+            "STOP_ID": "CH060",
+            "NAME": "BANK / LEWIS",
+            "STOP_CODE": 2483
+        },
+        {
+            "STOP_ID": "CH040",
+            "NAME": "BANK / SOMERSET W",
+            "STOP_CODE": 1902
+        },
+        {
+            "STOP_ID": "CH020",
+            "NAME": "BANK / GLOUCESTER",
+            "STOP_CODE": 2484
+        },
+        {
+            "STOP_ID": "CA100",
+            "NAME": "BANK / SLATER",
+            "STOP_CODE": 7688
+        },
+        {
+            "STOP_ID": "CB940",
+            "NAME": "PARLIAMENT / PARLEMENT A",
+            "STOP_CODE": 3052
+        },
+        {
+            "STOP_ID": "CB260",
+            "NAME": "QUEEN / METCALFE",
+            "STOP_CODE": 1512
+        },
+        {
+            "STOP_ID": "CB150",
+            "NAME": "ELGIN / WELLINGTON",
+            "STOP_CODE": 7557
+        },
+        {
+            "STOP_ID": "CD940",
+            "NAME": "RIDEAU B",
+            "STOP_CODE": 3009
+        },
+        {
+            "STOP_ID": "CD140",
+            "NAME": "RIDEAU / CUMBERLAND",
+            "STOP_CODE": 2351
+        },
+        {
+            "STOP_ID": "CD130",
+            "NAME": "RIDEAU / KING EDWARD",
+            "STOP_CODE": 7595
+        },
+        {
+            "STOP_ID": "CD110",
+            "NAME": "RIDEAU / NELSON",
+            "STOP_CODE": 2333
+        },
+        {
+            "STOP_ID": "EA380",
+            "NAME": "BRITTANY / COLEFORD",
+            "STOP_CODE": 1519
+        },
+        {
+            "STOP_ID": "CD090",
+            "NAME": "RIDEAU / FRIEL",
+            "STOP_CODE": 7593
+        },
+        {
+            "STOP_ID": "EA400",
+            "NAME": "BRITTANY / BANGS",
+            "STOP_CODE": 8729
+        },
+        {
+            "STOP_ID": "EA420",
+            "NAME": "BRITTANY / QUARRY",
+            "STOP_CODE": 4397
+        },
+        {
+            "STOP_ID": "CD050",
+            "NAME": "RIDEAU / AUGUSTA",
+            "STOP_CODE": 2331
+        },
+        {
+            "STOP_ID": "EA440",
+            "NAME": "BRITTANY / KRISTIN",
+            "STOP_CODE": 4398
+        },
+        {
+            "STOP_ID": "CC080",
+            "NAME": "COBOURG / BEAUSOLEIL",
+            "STOP_CODE": 1692
+        },
+        {
+            "STOP_ID": "CC090",
+            "NAME": "COBOURG / CLARENCE",
+            "STOP_CODE": 6825
+        },
+        {
+            "STOP_ID": "EA460",
+            "NAME": "BRITTANY / MONTR\u00c9AL",
+            "STOP_CODE": 8730
+        },
+        {
+            "STOP_ID": "CC120",
+            "NAME": "COBOURG / ST PATRICK",
+            "STOP_CODE": 7567
+        },
+        {
+            "STOP_ID": "CC170",
+            "NAME": "ST PATRICK / COBOURG",
+            "STOP_CODE": 7571
+        },
+        {
+            "STOP_ID": "AA221",
+            "NAME": "BEECHWOOD / LOYER",
+            "STOP_CODE": 8794
+        },
+        {
+            "STOP_ID": "AA231",
+            "NAME": "BEECHWOOD / ST CHARLES",
+            "STOP_CODE": 8795
+        },
+        {
+            "STOP_ID": "AA251",
+            "NAME": "BEECHWOOD / MARIER",
+            "STOP_CODE": 1649
+        },
+        {
+            "STOP_ID": "AA270",
+            "NAME": "BEECHWOOD / JOLLIET",
+            "STOP_CODE": 7013
+        },
+        {
+            "STOP_ID": "AA310",
+            "NAME": "BEECHWOOD / JULIANA",
+            "STOP_CODE": 8796
+        },
+        {
+            "STOP_ID": "AA330",
+            "NAME": "HEMLOCK / LANSDOWNE",
+            "STOP_CODE": 7019
+        },
+        {
+            "STOP_ID": "AA335",
+            "NAME": "HEMLOCK / WHITEMARL",
+            "STOP_CODE": 7020
+        },
+        {
+            "STOP_ID": "EA020",
+            "NAME": "BIRCH / HEMLOCK",
+            "STOP_CODE": 8735
+        },
+        {
+            "STOP_ID": "EA040",
+            "NAME": "BIRCH / EASTBOURNE",
+            "STOP_CODE": 4375
+        },
+        {
+            "STOP_ID": "EA060",
+            "NAME": "BIRCH / FARNHAM",
+            "STOP_CODE": 4376
+        },
+        {
+            "STOP_ID": "EA080",
+            "NAME": "BIRCH / SANDRIDGE",
+            "STOP_CODE": 4377
+        },
+        {
+            "STOP_ID": "EA100",
+            "NAME": "SANDRIDGE / MERRIMAN",
+            "STOP_CODE": 4378
+        },
+        {
+            "STOP_ID": "EA120",
+            "NAME": "SANDRIDGE / KILBARRY",
+            "STOP_CODE": 8736
+        },
+        {
+            "STOP_ID": "EA160",
+            "NAME": "ST LAURENT / ARUNDEL",
+            "STOP_CODE": 4380
+        },
+        {
+            "STOP_ID": "EA210",
+            "NAME": "ST LAURENT / EASTBOURNE",
+            "STOP_CODE": 4382
+        },
+        {
+            "STOP_ID": "EA230",
+            "NAME": "ST LAURENT / GLASGOW",
+            "STOP_CODE": 4383
+        },
+        {
+            "STOP_ID": "EA250",
+            "NAME": "ST LAURENT / HEMLOCK",
+            "STOP_CODE": 8724
+        },
+        {
+            "STOP_ID": "EA280",
+            "NAME": "ST LAURENT / MEADOW",
+            "STOP_CODE": 8725
+        },
+        {
+            "STOP_ID": "EA290",
+            "NAME": "ST LAURENT / KAREN",
+            "STOP_CODE": 4390
+        },
+        {
+            "STOP_ID": "EA310",
+            "NAME": "ST LAURENT / DUNBARTON",
+            "STOP_CODE": 8924
+        },
+        {
+            "STOP_ID": "EA330",
+            "NAME": "ST LAURENT / AD. 505",
+            "STOP_CODE": 4391
+        },
+        {
+            "STOP_ID": "EA350",
+            "NAME": "ST LAURENT / MONTR\u00c9AL",
+            "STOP_CODE": 1576
+        },
+        {
+            "STOP_ID": "EB080",
+            "NAME": "ST LAURENT / MORIN",
+            "STOP_CODE": 8602
+        },
+        {
+            "STOP_ID": "EB130",
+            "NAME": "ST LAURENT / C\u00d4T\u00c9",
+            "STOP_CODE": 8604
+        },
+        {
+            "STOP_ID": "EB140",
+            "NAME": "ST LAURENT / GUY",
+            "STOP_CODE": 6692
+        },
+        {
+            "STOP_ID": "EB180",
+            "NAME": "ST LAURENT / MCARTHUR",
+            "STOP_CODE": 5859
+        },
+        {
+            "STOP_ID": "EB200",
+            "NAME": "ST LAURENT / AD. 938",
+            "STOP_CODE": 6693
+        },
+        {
+            "STOP_ID": "EB220",
+            "NAME": "ST LAURENT / DONALD",
+            "STOP_CODE": 8623
+        },
+        {
+            "STOP_ID": "EB230",
+            "NAME": "ST LAURENT / QUEEN MARY",
+            "STOP_CODE": 6695
+        },
+        {
+            "STOP_ID": "EB260",
+            "NAME": "ST LAURENT / COVENTRY",
+            "STOP_CODE": 6696
+        },
+        {
+            "STOP_ID": "EB275",
+            "NAME": "ST LAURENT / LEMIEUX",
+            "STOP_CODE": 1049
+        },
+        {
+            "STOP_ID": "EB930",
+            "NAME": "ST-LAURENT C",
+            "STOP_CODE": 3025
+        },
+        {
+            "STOP_ID": "EA450",
+            "NAME": "BRITTANY / MONTR\u00c9AL",
+            "STOP_CODE": 4396
+        },
+        {
+            "STOP_ID": "EB935",
+            "NAME": "ST-LAURENT D",
+            "STOP_CODE": 3025
+        },
+        {
+            "STOP_ID": "EB270",
+            "NAME": "ST LAURENT / OGILVIE",
+            "STOP_CODE": 6698
+        },
+        {
+            "STOP_ID": "EA430",
+            "NAME": "BRITTANY / KRISTIN",
+            "STOP_CODE": 6126
+        },
+        {
+            "STOP_ID": "EA410",
+            "NAME": "BRITTANY / TRURO",
+            "STOP_CODE": 4394
+        },
+        {
+            "STOP_ID": "EB250",
+            "NAME": "ST LAURENT / CYRVILLE",
+            "STOP_CODE": 6697
+        },
+        {
+            "STOP_ID": "EB240",
+            "NAME": "ST LAURENT / AD. 1055",
+            "STOP_CODE": 8852
+        },
+        {
+            "STOP_ID": "EA390",
+            "NAME": "BRITTANY / BANGS",
+            "STOP_CODE": 8847
+        },
+        {
+            "STOP_ID": "EB210",
+            "NAME": "ST LAURENT / DONALD",
+            "STOP_CODE": 6694
+        },
+        {
+            "STOP_ID": "EA370",
+            "NAME": "BRITTANY / ST LAURENT",
+            "STOP_CODE": 344
+        },
+        {
+            "STOP_ID": "EB191",
+            "NAME": "ST LAURENT / MCARTHUR",
+            "STOP_CODE": 1125
+        },
+        {
+            "STOP_ID": "EB150",
+            "NAME": "ST LAURENT / GUY",
+            "STOP_CODE": 6691
+        },
+        {
+            "STOP_ID": "EB120",
+            "NAME": "ST LAURENT / CLARKE",
+            "STOP_CODE": 8610
+        },
+        {
+            "STOP_ID": "EB100",
+            "NAME": "ST LAURENT / QUEEN E SCHOOL",
+            "STOP_CODE": 6690
+        },
+        {
+            "STOP_ID": "EB090",
+            "NAME": "ST LAURENT / MALARTIC",
+            "STOP_CODE": 1528
+        },
+        {
+            "STOP_ID": "EA360",
+            "NAME": "ST LAURENT / MONTR\u00c9AL",
+            "STOP_CODE": 4393
+        },
+        {
+            "STOP_ID": "EA340",
+            "NAME": "ST LAURENT / AD. 505",
+            "STOP_CODE": 4392
+        },
+        {
+            "STOP_ID": "EA320",
+            "NAME": "ST LAURENT / BRITTANY",
+            "STOP_CODE": 8627
+        },
+        {
+            "STOP_ID": "EA300",
+            "NAME": "ST LAURENT / KAREN",
+            "STOP_CODE": 4389
+        },
+        {
+            "STOP_ID": "EA270",
+            "NAME": "ST LAURENT / MEADOW",
+            "STOP_CODE": 8934
+        },
+        {
+            "STOP_ID": "EA260",
+            "NAME": "ST LAURENT / HEMLOCK",
+            "STOP_CODE": 1580
+        },
+        {
+            "STOP_ID": "EA240",
+            "NAME": "ST LAURENT / CLAREMOUNT",
+            "STOP_CODE": 4388
+        },
+        {
+            "STOP_ID": "EA220",
+            "NAME": "ST LAURENT / MART",
+            "STOP_CODE": 4387
+        },
+        {
+            "STOP_ID": "EA200",
+            "NAME": "ST LAURENT / BLASDELL",
+            "STOP_CODE": 4386
+        },
+        {
+            "STOP_ID": "EA170",
+            "NAME": "ST LAURENT / GASPE",
+            "STOP_CODE": 4384
+        },
+        {
+            "STOP_ID": "EA110",
+            "NAME": "SANDRIDGE / KILBARRY",
+            "STOP_CODE": 4379
+        },
+        {
+            "STOP_ID": "EA090",
+            "NAME": "SANDRIDGE / BIRCH",
+            "STOP_CODE": 8931
+        },
+        {
+            "STOP_ID": "EA050",
+            "NAME": "BIRCH / FARNHAM",
+            "STOP_CODE": 4374
+        },
+        {
+            "STOP_ID": "EA030",
+            "NAME": "BIRCH / EASTBOURNE",
+            "STOP_CODE": 4373
+        },
+        {
+            "STOP_ID": "EA010",
+            "NAME": "BIRCH / HEMLOCK",
+            "STOP_CODE": 8722
+        },
+        {
+            "STOP_ID": "AA325",
+            "NAME": "HEMLOCK / WHITEMARL",
+            "STOP_CODE": 7018
+        },
+        {
+            "STOP_ID": "AA320",
+            "NAME": "HEMLOCK / LANSDOWNE",
+            "STOP_CODE": 7017
+        },
+        {
+            "STOP_ID": "AA300",
+            "NAME": "BEECHWOOD / JULIANA",
+            "STOP_CODE": 7016
+        },
+        {
+            "STOP_ID": "AA280",
+            "NAME": "BEECHWOOD / CORONA",
+            "STOP_CODE": 8797
+        },
+        {
+            "STOP_ID": "AA260",
+            "NAME": "BEECHWOOD / ACACIA",
+            "STOP_CODE": 7015
+        },
+        {
+            "STOP_ID": "AA240",
+            "NAME": "BEECHWOOD / ST CHARLES",
+            "STOP_CODE": 8790
+        },
+        {
+            "STOP_ID": "AA210",
+            "NAME": "BEECHWOOD / MACKAY",
+            "STOP_CODE": 8922
+        },
+        {
+            "STOP_ID": "CC110",
+            "NAME": "COBOURG / ST PATRICK",
+            "STOP_CODE": 7568
+        },
+        {
+            "STOP_ID": "CC100",
+            "NAME": "COBOURG / CLARENCE",
+            "STOP_CODE": 2402
+        },
+        {
+            "STOP_ID": "CC070",
+            "NAME": "COBOURG / BEAUSOLEIL",
+            "STOP_CODE": 6822
+        },
+        {
+            "STOP_ID": "CD040",
+            "NAME": "RIDEAU / AUGUSTA",
+            "STOP_CODE": 2325
+        },
+        {
+            "STOP_ID": "CD060",
+            "NAME": "RIDEAU / CHAPEL",
+            "STOP_CODE": 7591
+        },
+        {
+            "STOP_ID": "CD080",
+            "NAME": "RIDEAU / FRIEL",
+            "STOP_CODE": 2323
+        },
+        {
+            "STOP_ID": "CD100",
+            "NAME": "RIDEAU / NELSON",
+            "STOP_CODE": 7594
+        },
+        {
+            "STOP_ID": "CD120",
+            "NAME": "RIDEAU / KING EDWARD",
+            "STOP_CODE": 1658
+        },
+        {
+            "STOP_ID": "CD150",
+            "NAME": "RIDEAU / DALHOUSIE",
+            "STOP_CODE": 7596
+        },
+        {
+            "STOP_ID": "CD945",
+            "NAME": "RIDEAU A",
+            "STOP_CODE": 3009
+        },
+        {
+            "STOP_ID": "CB160",
+            "NAME": "ELGIN / QUEEN",
+            "STOP_CODE": 7558
+        },
+        {
+            "STOP_ID": "CB200",
+            "NAME": "QUEEN / METCALFE",
+            "STOP_CODE": 1228
+        },
+        {
+            "STOP_ID": "CB930",
+            "NAME": "PARLIAMENT / PARLEMENT B",
+            "STOP_CODE": 3052
+        },
+        {
+            "STOP_ID": "CA090",
+            "NAME": "BANK / SLATER",
+            "STOP_CODE": 7687
+        },
+        {
+            "STOP_ID": "CH010",
+            "NAME": "BANK / GLOUCESTER",
+            "STOP_CODE": 2486
+        },
+        {
+            "STOP_ID": "CH030",
+            "NAME": "BANK / LISGAR",
+            "STOP_CODE": 2487
+        },
+        {
+            "STOP_ID": "CH050",
+            "NAME": "BANK / SOMERSET W",
+            "STOP_CODE": 2488
+        },
+        {
+            "STOP_ID": "CH070",
+            "NAME": "BANK / GILMOUR",
+            "STOP_CODE": 7665
+        },
+        {
+            "STOP_ID": "CH090",
+            "NAME": "BANK / GLADSTONE",
+            "STOP_CODE": 2489
+        },
+        {
+            "STOP_ID": "CH110",
+            "NAME": "BANK / ARLINGTON",
+            "STOP_CODE": 7666
+        },
+        {
+            "STOP_ID": "CF740",
+            "NAME": "BANK / CHAMBERLAIN",
+            "STOP_CODE": 6845
+        },
+        {
+            "STOP_ID": "CF720",
+            "NAME": "BANK / POWELL",
+            "STOP_CODE": 7663
+        },
+        {
+            "STOP_ID": "CF700",
+            "NAME": "BANK / GLEBE",
+            "STOP_CODE": 7662
+        },
+        {
+            "STOP_ID": "CF660",
+            "NAME": "BANK / THIRD",
+            "STOP_CODE": 7660
+        },
+        {
+            "STOP_ID": "CF640",
+            "NAME": "BANK / FIFTH",
+            "STOP_CODE": 6847
+        },
+        {
+            "STOP_ID": "CF600",
+            "NAME": "LANSDOWNE TD PLACE",
+            "STOP_CODE": 3080
+        },
+        {
+            "STOP_ID": "CF561",
+            "NAME": "BANK / AYLMER",
+            "STOP_CODE": 6774
+        },
+        {
+            "STOP_ID": "CG380",
+            "NAME": "SUNNYSIDE / BANK",
+            "STOP_CODE": 6775
+        },
+        {
+            "STOP_ID": "CG390",
+            "NAME": "SUNNYSIDE / GROSVENOR",
+            "STOP_CODE": 6776
+        },
+        {
+            "STOP_ID": "CG400",
+            "NAME": "SUNNYSIDE / ROSEDALE",
+            "STOP_CODE": 6785
+        },
+        {
+            "STOP_ID": "CG410",
+            "NAME": "SUNNYSIDE / SENECA",
+            "STOP_CODE": 6777
+        },
+        {
+            "STOP_ID": "CG430",
+            "NAME": "SUNNYSIDE / BRONSON",
+            "STOP_CODE": 6689
+        },
+        {
+            "STOP_ID": "CG600",
+            "NAME": "CAMPUS / COMMONS",
+            "STOP_CODE": 6612
+        }
+    ]
+}

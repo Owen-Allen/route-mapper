@@ -1,0 +1,540 @@
+{
+    "ROUTE_NUMBER": 14,
+    "STOPS": [
+        {
+            "STOP_ID": "EB935",
+            "NAME": "ST-LAURENT D",
+            "STOP_CODE": 3025
+        },
+        {
+            "STOP_ID": "EB270",
+            "NAME": "ST LAURENT / OGILVIE",
+            "STOP_CODE": 6698
+        },
+        {
+            "STOP_ID": "EB250",
+            "NAME": "ST LAURENT / CYRVILLE",
+            "STOP_CODE": 6697
+        },
+        {
+            "STOP_ID": "EB240",
+            "NAME": "ST LAURENT / AD. 1055",
+            "STOP_CODE": 8852
+        },
+        {
+            "STOP_ID": "EB210",
+            "NAME": "ST LAURENT / DONALD",
+            "STOP_CODE": 6694
+        },
+        {
+            "STOP_ID": "EB191",
+            "NAME": "ST LAURENT / MCARTHUR",
+            "STOP_CODE": 1125
+        },
+        {
+            "STOP_ID": "AC180",
+            "NAME": "MCARTHUR / ST LAURENT",
+            "STOP_CODE": 7069
+        },
+        {
+            "STOP_ID": "AC140",
+            "NAME": "MCARTHUR / DE L'\u00c9GLISE",
+            "STOP_CODE": 8605
+        },
+        {
+            "STOP_ID": "AC120",
+            "NAME": "MCARTHUR / BRANT",
+            "STOP_CODE": 7066
+        },
+        {
+            "STOP_ID": "AC100",
+            "NAME": "MCARTHUR / EASTWOOD",
+            "STOP_CODE": 7065
+        },
+        {
+            "STOP_ID": "AC080",
+            "NAME": "MCARTHUR / LAFONTAINE",
+            "STOP_CODE": 8615
+        },
+        {
+            "STOP_ID": "AC060",
+            "NAME": "MCARTHUR / LACASSE",
+            "STOP_CODE": 7063
+        },
+        {
+            "STOP_ID": "AC035",
+            "NAME": "MCARTHUR / OLMSTEAD",
+            "STOP_CODE": 8774
+        },
+        {
+            "STOP_ID": "AC010",
+            "NAME": "MCARTHUR / VANIER",
+            "STOP_CODE": 8723
+        },
+        {
+            "STOP_ID": "AD140",
+            "NAME": "MCARTHUR / MAYFIELD",
+            "STOP_CODE": 8777
+        },
+        {
+            "STOP_ID": "AD230",
+            "NAME": "NORTH RIVER / MCARTHUR",
+            "STOP_CODE": 7088
+        },
+        {
+            "STOP_ID": "AD210",
+            "NAME": "NORTH RIVER / SELKIRK",
+            "STOP_CODE": 8786
+        },
+        {
+            "STOP_ID": "CD010",
+            "NAME": "RIDEAU / WURTEMBURG",
+            "STOP_CODE": 1845
+        },
+        {
+            "STOP_ID": "CD020",
+            "NAME": "RIDEAU / CHARLOTTE",
+            "STOP_CODE": 2337
+        },
+        {
+            "STOP_ID": "CD040",
+            "NAME": "RIDEAU / AUGUSTA",
+            "STOP_CODE": 2325
+        },
+        {
+            "STOP_ID": "CD060",
+            "NAME": "RIDEAU / CHAPEL",
+            "STOP_CODE": 7591
+        },
+        {
+            "STOP_ID": "CD080",
+            "NAME": "RIDEAU / FRIEL",
+            "STOP_CODE": 2323
+        },
+        {
+            "STOP_ID": "CD100",
+            "NAME": "RIDEAU / NELSON",
+            "STOP_CODE": 7594
+        },
+        {
+            "STOP_ID": "CD120",
+            "NAME": "RIDEAU / KING EDWARD",
+            "STOP_CODE": 1658
+        },
+        {
+            "STOP_ID": "CD150",
+            "NAME": "RIDEAU / DALHOUSIE",
+            "STOP_CODE": 7596
+        },
+        {
+            "STOP_ID": "CD945",
+            "NAME": "RIDEAU A",
+            "STOP_CODE": 3009
+        },
+        {
+            "STOP_ID": "CB160",
+            "NAME": "ELGIN / QUEEN",
+            "STOP_CODE": 7558
+        },
+        {
+            "STOP_ID": "CB170",
+            "NAME": "ELGIN / SLATER",
+            "STOP_CODE": 7559
+        },
+        {
+            "STOP_ID": "CH320",
+            "NAME": "ELGIN / NEPEAN",
+            "STOP_CODE": 8465
+        },
+        {
+            "STOP_ID": "CH310",
+            "NAME": "ELGIN / LISGAR",
+            "STOP_CODE": 7676
+        },
+        {
+            "STOP_ID": "CH290",
+            "NAME": "ELGIN / SOMERSET W",
+            "STOP_CODE": 2471
+        },
+        {
+            "STOP_ID": "CH270",
+            "NAME": "ELGIN / LEWIS",
+            "STOP_CODE": 7673
+        },
+        {
+            "STOP_ID": "CH250",
+            "NAME": "ELGIN / GLADSTONE",
+            "STOP_CODE": 2472
+        },
+        {
+            "STOP_ID": "CH180",
+            "NAME": "GLADSTONE / METCALFE",
+            "STOP_CODE": 7672
+        },
+        {
+            "STOP_ID": "CH160",
+            "NAME": "GLADSTONE / O'CONNOR",
+            "STOP_CODE": 2374
+        },
+        {
+            "STOP_ID": "CH150",
+            "NAME": "GLADSTONE / BANK",
+            "STOP_CODE": 6643
+        },
+        {
+            "STOP_ID": "CI440",
+            "NAME": "GLADSTONE / KENT",
+            "STOP_CODE": 6642
+        },
+        {
+            "STOP_ID": "CI430",
+            "NAME": "GLADSTONE / LYON",
+            "STOP_CODE": 6641
+        },
+        {
+            "STOP_ID": "CI400",
+            "NAME": "GLADSTONE / BAY",
+            "STOP_CODE": 6640
+        },
+        {
+            "STOP_ID": "CI380",
+            "NAME": "GLADSTONE / PERCY",
+            "STOP_CODE": 6639
+        },
+        {
+            "STOP_ID": "CI360",
+            "NAME": "GLADSTONE / BRONSON",
+            "STOP_CODE": 2375
+        },
+        {
+            "STOP_ID": "CJ420",
+            "NAME": "GLADSTONE / ARTHUR",
+            "STOP_CODE": 2373
+        },
+        {
+            "STOP_ID": "CJ440",
+            "NAME": "GLADSTONE / BOOTH",
+            "STOP_CODE": 6664
+        },
+        {
+            "STOP_ID": "CJ460",
+            "NAME": "GLADSTONE / ROCHESTER",
+            "STOP_CODE": 2424
+        },
+        {
+            "STOP_ID": "CJ480",
+            "NAME": "GLADSTONE / PRESTON",
+            "STOP_CODE": 8949
+        },
+        {
+            "STOP_ID": "NB010",
+            "NAME": "GLADSTONE / LORETTA",
+            "STOP_CODE": 8033
+        },
+        {
+            "STOP_ID": "NB030",
+            "NAME": "GLADSTONE / BAYSWATER",
+            "STOP_CODE": 7353
+        },
+        {
+            "STOP_ID": "NB050",
+            "NAME": "GLADSTONE / FAIRMONT",
+            "STOP_CODE": 8034
+        },
+        {
+            "STOP_ID": "NB071",
+            "NAME": "GLADSTONE / ROSEMOUNT",
+            "STOP_CODE": 1807
+        },
+        {
+            "STOP_ID": "NB090",
+            "NAME": "GLADSTONE / PARKDALE",
+            "STOP_CODE": 8035
+        },
+        {
+            "STOP_ID": "NA585",
+            "NAME": "PARKDALE / WELLINGTON",
+            "STOP_CODE": 881
+        },
+        {
+            "STOP_ID": "NA580",
+            "NAME": "PARKDALE / OXFORD",
+            "STOP_CODE": 883
+        },
+        {
+            "STOP_ID": "NA100",
+            "NAME": "SCOTT / PARKDALE",
+            "STOP_CODE": 8050
+        },
+        {
+            "STOP_ID": "NA951",
+            "NAME": "TUNNEY'S PASTURE E",
+            "STOP_CODE": 3011
+        },
+        {
+            "STOP_ID": "NA120",
+            "NAME": "SCOTT / HOLLAND",
+            "STOP_CODE": 7335
+        },
+        {
+            "STOP_ID": "NA570",
+            "NAME": "PARKDALE / ARMSTRONG",
+            "STOP_CODE": 880
+        },
+        {
+            "STOP_ID": "NA575",
+            "NAME": "PARKDALE / WELLINGON",
+            "STOP_CODE": 882
+        },
+        {
+            "STOP_ID": "NB080",
+            "NAME": "GLADSTONE / SHERBROOKE",
+            "STOP_CODE": 7356
+        },
+        {
+            "STOP_ID": "NB060",
+            "NAME": "GLADSTONE / FAIRMONT",
+            "STOP_CODE": 8037
+        },
+        {
+            "STOP_ID": "NB040",
+            "NAME": "GLADSTONE / BAYSWATER",
+            "STOP_CODE": 7354
+        },
+        {
+            "STOP_ID": "NB020",
+            "NAME": "GLADSTONE / LORETTA",
+            "STOP_CODE": 8038
+        },
+        {
+            "STOP_ID": "CJ490",
+            "NAME": "GLADSTONE / PRESTON",
+            "STOP_CODE": 6665
+        },
+        {
+            "STOP_ID": "CJ470",
+            "NAME": "GLADSTONE / ROCHESTER",
+            "STOP_CODE": 2372
+        },
+        {
+            "STOP_ID": "CJ450",
+            "NAME": "GLADSTONE / BOOTH",
+            "STOP_CODE": 6662
+        },
+        {
+            "STOP_ID": "CJ430",
+            "NAME": "GLADSTONE / BELL",
+            "STOP_CODE": 2556
+        },
+        {
+            "STOP_ID": "CJ425",
+            "NAME": "GLADSTONE / BRONSON",
+            "STOP_CODE": 6663
+        },
+        {
+            "STOP_ID": "CI390",
+            "NAME": "GLADSTONE / PERCY",
+            "STOP_CODE": 2378
+        },
+        {
+            "STOP_ID": "CI410",
+            "NAME": "GLADSTONE / BAY",
+            "STOP_CODE": 6644
+        },
+        {
+            "STOP_ID": "CI420",
+            "NAME": "GLADSTONE / LYON",
+            "STOP_CODE": 6645
+        },
+        {
+            "STOP_ID": "CI450",
+            "NAME": "GLADSTONE / KENT",
+            "STOP_CODE": 6646
+        },
+        {
+            "STOP_ID": "CI470",
+            "NAME": "GLADSTONE / BANK",
+            "STOP_CODE": 8107
+        },
+        {
+            "STOP_ID": "CH170",
+            "NAME": "GLADSTONE / O'CONNOR",
+            "STOP_CODE": 7669
+        },
+        {
+            "STOP_ID": "CH190",
+            "NAME": "GLADSTONE / METCALFE",
+            "STOP_CODE": 7670
+        },
+        {
+            "STOP_ID": "CH200",
+            "NAME": "GLADSTONE / ELGIN",
+            "STOP_CODE": 7671
+        },
+        {
+            "STOP_ID": "CH260",
+            "NAME": "ELGIN / WAVERLY",
+            "STOP_CODE": 6403
+        },
+        {
+            "STOP_ID": "CH280",
+            "NAME": "ELGIN / GILMOUR",
+            "STOP_CODE": 2469
+        },
+        {
+            "STOP_ID": "CH300",
+            "NAME": "ELGIN / COOPER",
+            "STOP_CODE": 7674
+        },
+        {
+            "STOP_ID": "CH330",
+            "NAME": "ELGIN / LAURIER W",
+            "STOP_CODE": 7675
+        },
+        {
+            "STOP_ID": "CB175",
+            "NAME": "ELGIN / SLATER",
+            "STOP_CODE": 7560
+        },
+        {
+            "STOP_ID": "CB150",
+            "NAME": "ELGIN / WELLINGTON",
+            "STOP_CODE": 7557
+        },
+        {
+            "STOP_ID": "CD940",
+            "NAME": "RIDEAU B",
+            "STOP_CODE": 3009
+        },
+        {
+            "STOP_ID": "CD140",
+            "NAME": "RIDEAU / CUMBERLAND",
+            "STOP_CODE": 2351
+        },
+        {
+            "STOP_ID": "CD130",
+            "NAME": "RIDEAU / KING EDWARD",
+            "STOP_CODE": 7595
+        },
+        {
+            "STOP_ID": "CD110",
+            "NAME": "RIDEAU / NELSON",
+            "STOP_CODE": 2333
+        },
+        {
+            "STOP_ID": "CD090",
+            "NAME": "RIDEAU / FRIEL",
+            "STOP_CODE": 7593
+        },
+        {
+            "STOP_ID": "CD050",
+            "NAME": "RIDEAU / AUGUSTA",
+            "STOP_CODE": 2331
+        },
+        {
+            "STOP_ID": "CD030",
+            "NAME": "RIDEAU / CHARLOTTE",
+            "STOP_CODE": 7590
+        },
+        {
+            "STOP_ID": "CD015",
+            "NAME": "RIDEAU / WURTEMBURG",
+            "STOP_CODE": 2329
+        },
+        {
+            "STOP_ID": "AD200",
+            "NAME": "NORTH RIVER / MONTR\u00c9AL",
+            "STOP_CODE": 8780
+        },
+        {
+            "STOP_ID": "AD220",
+            "NAME": "NORTH RIVER / AD. 333",
+            "STOP_CODE": 7087
+        },
+        {
+            "STOP_ID": "AD135",
+            "NAME": "MCARTHUR / NORTH RIVER",
+            "STOP_CODE": 1995
+        },
+        {
+            "STOP_ID": "AD145",
+            "NAME": "MCARTHUR / MAYFIELD",
+            "STOP_CODE": 7086
+        },
+        {
+            "STOP_ID": "AC020",
+            "NAME": "MCARTHUR / VANIER",
+            "STOP_CODE": 8773
+        },
+        {
+            "STOP_ID": "AC030",
+            "NAME": "MCARTHUR / OLMSTEAD",
+            "STOP_CODE": 7061
+        },
+        {
+            "STOP_ID": "AC050",
+            "NAME": "MCARTHUR / ALLEN",
+            "STOP_CODE": 8932
+        },
+        {
+            "STOP_ID": "AC090",
+            "NAME": "MCARTHUR / LAFONTAINE",
+            "STOP_CODE": 7064
+        },
+        {
+            "STOP_ID": "AC110",
+            "NAME": "MCARTHUR / IRWIN MILLER",
+            "STOP_CODE": 8600
+        },
+        {
+            "STOP_ID": "AC130",
+            "NAME": "MCARTHUR / BRANT",
+            "STOP_CODE": 7067
+        },
+        {
+            "STOP_ID": "AC150",
+            "NAME": "MCARTHUR / MOORVALE",
+            "STOP_CODE": 8662
+        },
+        {
+            "STOP_ID": "AC190",
+            "NAME": "MCARTHUR / MAY",
+            "STOP_CODE": 7070
+        },
+        {
+            "STOP_ID": "EB180",
+            "NAME": "ST LAURENT / MCARTHUR",
+            "STOP_CODE": 5859
+        },
+        {
+            "STOP_ID": "EB200",
+            "NAME": "ST LAURENT / AD. 938",
+            "STOP_CODE": 6693
+        },
+        {
+            "STOP_ID": "EB220",
+            "NAME": "ST LAURENT / DONALD",
+            "STOP_CODE": 8623
+        },
+        {
+            "STOP_ID": "EB230",
+            "NAME": "ST LAURENT / QUEEN MARY",
+            "STOP_CODE": 6695
+        },
+        {
+            "STOP_ID": "EB260",
+            "NAME": "ST LAURENT / COVENTRY",
+            "STOP_CODE": 6696
+        },
+        {
+            "STOP_ID": "EB275",
+            "NAME": "ST LAURENT / LEMIEUX",
+            "STOP_CODE": 1049
+        },
+        {
+            "STOP_ID": "EB930",
+            "NAME": "ST-LAURENT C",
+            "STOP_CODE": 3025
+        }
+    ]
+}
