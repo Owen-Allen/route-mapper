@@ -51,8 +51,8 @@ def compute_node_edges(G, routes, buses):
                 d2 = datetime.strptime(df_stop_times.loc[index + 1].at["departure_time"], "%H:%M:%S")
 
                 dif = d2 - d1
-                edge_weight = dif.min
-
+                edge_weight = dif.seconds // 60
+                print(edge_weight)
                 # Get those nodes from the graph
                 from_node = G.get_node_with_id(df_stop_times.loc[index].at["stop_id"])
                 to_node = G.get_node_with_id(df_stop_times.loc[index + 1].at["stop_id"])
