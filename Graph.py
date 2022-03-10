@@ -34,3 +34,9 @@ class Graph:
                 edge_to_add = [node.name, edge_node.name, weight]
                 edges.append(edge_to_add)
         return edges
+    
+    def get_node_with_id(self, id):
+        for node in self.nodes:
+            if node.id == id:
+                return node
+        return None

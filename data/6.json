@@ -1,1 +1,605 @@
-{"ROUTE_NUMBER": 6, "STOPS": [{"STOP_ID": "AA380", "NAME": "MAPLE LANE / SPRINGFIELD", "STOP_CODE": 8789}, {"STOP_ID": "AA390", "NAME": "MAPLE LANE / ELMDALE", "STOP_CODE": 7024}, {"STOP_ID": "AA400", "NAME": "MAPLE LANE / ACACIA", "STOP_CODE": 7025}, {"STOP_ID": "AA410", "NAME": "ACACIA / RIDEAU", "STOP_CODE": 7026}, {"STOP_ID": "AA260", "NAME": "BEECHWOOD / ACACIA", "STOP_CODE": 7015}, {"STOP_ID": "AA240", "NAME": "BEECHWOOD / ST CHARLES", "STOP_CODE": 8790}, {"STOP_ID": "AA210", "NAME": "BEECHWOOD / MACKAY", "STOP_CODE": 8922}, {"STOP_ID": "CC180", "NAME": "OLD ST PATRICK / COBOURG", "STOP_CODE": 6830}, {"STOP_ID": "CC200", "NAME": "OLD ST PATRICK / BEAUSOLEIL", "STOP_CODE": 6828}, {"STOP_ID": "CC230", "NAME": "ST PATRICK / BEAUSOLEIL", "STOP_CODE": 2319}, {"STOP_ID": "CC260", "NAME": "ST PATRICK / CUMBERLAND", "STOP_CODE": 2321}, {"STOP_ID": "CC340", "NAME": "DALHOUSIE / ST PATRICK", "STOP_CODE": 6402}, {"STOP_ID": "CC350", "NAME": "DALHOUSIE / YORK", "STOP_CODE": 6838}, {"STOP_ID": "CC380", "NAME": "DALHOUSIE / RIDEAU (D)", "STOP_CODE": 7576}, {"STOP_ID": "CD945", "NAME": "RIDEAU A", "STOP_CODE": 3009}, {"STOP_ID": "CB160", "NAME": "ELGIN / QUEEN", "STOP_CODE": 7558}, {"STOP_ID": "CB200", "NAME": "QUEEN / METCALFE", "STOP_CODE": 1228}, {"STOP_ID": "CB930", "NAME": "PARLIAMENT / PARLEMENT B", "STOP_CODE": 3052}, {"STOP_ID": "CA090", "NAME": "BANK / SLATER", "STOP_CODE": 7687}, {"STOP_ID": "CH010", "NAME": "BANK / GLOUCESTER", "STOP_CODE": 2486}, {"STOP_ID": "CH030", "NAME": "BANK / LISGAR", "STOP_CODE": 2487}, {"STOP_ID": "CH050", "NAME": "BANK / SOMERSET W", "STOP_CODE": 2488}, {"STOP_ID": "CH070", "NAME": "BANK / GILMOUR", "STOP_CODE": 7665}, {"STOP_ID": "CH090", "NAME": "BANK / GLADSTONE", "STOP_CODE": 2489}, {"STOP_ID": "CH110", "NAME": "BANK / ARLINGTON", "STOP_CODE": 7666}, {"STOP_ID": "CF740", "NAME": "BANK / CHAMBERLAIN", "STOP_CODE": 6845}, {"STOP_ID": "CF720", "NAME": "BANK / POWELL", "STOP_CODE": 7663}, {"STOP_ID": "CF700", "NAME": "BANK / GLEBE", "STOP_CODE": 7662}, {"STOP_ID": "CF660", "NAME": "BANK / THIRD", "STOP_CODE": 7660}, {"STOP_ID": "CF640", "NAME": "BANK / FIFTH", "STOP_CODE": 6847}, {"STOP_ID": "CF600", "NAME": "LANSDOWNE TD PLACE", "STOP_CODE": 3080}, {"STOP_ID": "CF561", "NAME": "BANK / AYLMER", "STOP_CODE": 6774}, {"STOP_ID": "CF540", "NAME": "BANK / HOPEWELL", "STOP_CODE": 6778}, {"STOP_ID": "CF520", "NAME": "BANK / GROVE", "STOP_CODE": 7654}, {"STOP_ID": "CF500", "NAME": "BANK / CAMERON", "STOP_CODE": 6740}, {"STOP_ID": "CF485", "NAME": "BANK / RIVERDALE", "STOP_CODE": 3325}, {"STOP_ID": "RA020", "NAME": "BANK / RIVERSIDE", "STOP_CODE": 8261}, {"STOP_ID": "RA910", "NAME": "BILLINGS BRIDGE / BANK", "STOP_CODE": 3034}, {"STOP_ID": "RA940", "NAME": "BILLINGS BRIDGE 4B", "STOP_CODE": 3034}, {"STOP_ID": "RA040", "NAME": "BANK / TRANSITWAY", "STOP_CODE": 4897}, {"STOP_ID": "RA060", "NAME": "BANK / OHIO", "STOP_CODE": 6464}, {"STOP_ID": "RA080", "NAME": "BANK / BELANGER", "STOP_CODE": 8302}, {"STOP_ID": "RA100", "NAME": "BANK / RANDALL", "STOP_CODE": 4101}, {"STOP_ID": "RA120", "NAME": "BANK / KARN", "STOP_CODE": 4102}, {"STOP_ID": "RA140", "NAME": "BANK / HERON", "STOP_CODE": 8306}, {"STOP_ID": "RA160", "NAME": "BANK / ERIE", "STOP_CODE": 4105}, {"STOP_ID": "RA200", "NAME": "BANK / WALKLEY", "STOP_CODE": 8431}, {"STOP_ID": "RF010", "NAME": "BANK / SURREY", "STOP_CODE": 8860}, {"STOP_ID": "RF050", "NAME": "BANK / FOXBAR", "STOP_CODE": 4218}, {"STOP_ID": "RF060", "NAME": "BANK / KITCHENER", "STOP_CODE": 4219}, {"STOP_ID": "RF090", "NAME": "JOHNSTON / BANK", "STOP_CODE": 5739}, {"STOP_ID": "RF310", "NAME": "SOUTHGATE / CLEARWATER", "STOP_CODE": 8438}, {"STOP_ID": "RF330", "NAME": "SOUTHGATE / AD.3308", "STOP_CODE": 4242}, {"STOP_ID": "RF360", "NAME": "CAHILL / BANK", "STOP_CODE": 4243}, {"STOP_ID": "RF390", "NAME": "BANK / AD. 2380", "STOP_CODE": 5727}, {"STOP_ID": "RF410", "NAME": "BANK / HUNT CLUB", "STOP_CODE": 4245}, {"STOP_ID": "RF430", "NAME": "HUNT CLUB / BANK", "STOP_CODE": 8440}, {"STOP_ID": "RF450", "NAME": "HUNT CLUB / AD. 1189", "STOP_CODE": 8448}, {"STOP_ID": "RF470", "NAME": "1145 HUNT CLUB", "STOP_CODE": 8441}, {"STOP_ID": "RF940", "NAME": "SOUTH KEYS 2A", "STOP_CODE": 3038}, {"STOP_ID": "RF905", "NAME": "GREENBORO 1B", "STOP_CODE": 3037}, {"STOP_ID": "RF900", "NAME": "GREENBORO 1A", "STOP_CODE": 3037}, {"STOP_ID": "RF950", "NAME": "SOUTH KEYS 1B", "STOP_CODE": 3038}, {"STOP_ID": "RF001", "NAME": "HUNT CLUB LOOP - STOP 1A", "STOP_CODE": 8668}, {"STOP_ID": "RF480", "NAME": "HUNT CLUB / BRIDLE PATH", "STOP_CODE": 1969}, {"STOP_ID": "RF460", "NAME": "HUNT CLUB / BRIDLE PATH", "STOP_CODE": 4247}, {"STOP_ID": "RF400", "NAME": "BANK / HUNT CLUB", "STOP_CODE": 4244}, {"STOP_ID": "RF380", "NAME": "BANK / AD. 2401", "STOP_CODE": 5726}, {"STOP_ID": "RF375", "NAME": "BANK / CAHILL", "STOP_CODE": 885}, {"STOP_ID": "RF365", "NAME": "BANK / SOUTH KEYS WALKWAY", "STOP_CODE": 4221}, {"STOP_ID": "RF075", "NAME": "BANK / JOHNSTON", "STOP_CODE": 4835}, {"STOP_ID": "RF070", "NAME": "BANK / KITCHENER", "STOP_CODE": 4220}, {"STOP_ID": "RF030", "NAME": "BANK / NOTTINGHILL", "STOP_CODE": 8861}, {"STOP_ID": "RA190", "NAME": "BANK / WALKLEY", "STOP_CODE": 8436}, {"STOP_ID": "RA180", "NAME": "BANK / ALTA VISTA", "STOP_CODE": 4107}, {"STOP_ID": "RA170", "NAME": "BANK / ERIE", "STOP_CODE": 4106}, {"STOP_ID": "RA150", "NAME": "BANK / COLLINS", "STOP_CODE": 8435}, {"STOP_ID": "RA130", "NAME": "BANK / HERON", "STOP_CODE": 4104}, {"STOP_ID": "RA110", "NAME": "BANK / KARN", "STOP_CODE": 4103}, {"STOP_ID": "RA090", "NAME": "BANK / ROCKINGHAM", "STOP_CODE": 8469}, {"STOP_ID": "RA070", "NAME": "BANK / LAMIRA", "STOP_CODE": 8296}, {"STOP_ID": "RA050", "NAME": "BANK / KILBORN PATHWAY- SENTIER", "STOP_CODE": 8295}, {"STOP_ID": "RA945", "NAME": "BILLINGS BRIDGE 4C", "STOP_CODE": 3034}, {"STOP_ID": "RA030", "NAME": "BANK / RIVERSIDE", "STOP_CODE": 4100}, {"STOP_ID": "RA010", "NAME": "BANK / RIVERSIDE", "STOP_CODE": 8298}, {"STOP_ID": "CF490", "NAME": "BANK / RIVERDALE", "STOP_CODE": 6741}, {"STOP_ID": "CF510", "NAME": "BANK / CAMERON", "STOP_CODE": 7653}, {"STOP_ID": "CF530", "NAME": "BANK / BELMONT", "STOP_CODE": 2414}, {"STOP_ID": "CF550", "NAME": "BANK / SUNNYSIDE", "STOP_CODE": 7655}, {"STOP_ID": "CF570", "NAME": "BANK / AYLMER", "STOP_CODE": 6773}, {"STOP_ID": "CF610", "NAME": "LANSDOWNE TD PLACE", "STOP_CODE": 3080}, {"STOP_ID": "CF650", "NAME": "BANK / FIFTH", "STOP_CODE": 7659}, {"STOP_ID": "CF670", "NAME": "BANK / THIRD", "STOP_CODE": 6841}, {"STOP_ID": "CF710", "NAME": "BANK / FIRST", "STOP_CODE": 6842}, {"STOP_ID": "CF730", "NAME": "BANK / PATTERSON", "STOP_CODE": 7664}, {"STOP_ID": "CF750", "NAME": "BANK / ISABELLA", "STOP_CODE": 6844}, {"STOP_ID": "CH120", "NAME": "BANK / CATHERINE", "STOP_CODE": 8895}, {"STOP_ID": "CH100", "NAME": "BANK / FLORA", "STOP_CODE": 7667}, {"STOP_ID": "CH080", "NAME": "BANK / GLADSTONE", "STOP_CODE": 8798}, {"STOP_ID": "CH060", "NAME": "BANK / LEWIS", "STOP_CODE": 2483}, {"STOP_ID": "CH040", "NAME": "BANK / SOMERSET W", "STOP_CODE": 1902}, {"STOP_ID": "CH020", "NAME": "BANK / GLOUCESTER", "STOP_CODE": 2484}, {"STOP_ID": "CA100", "NAME": "BANK / SLATER", "STOP_CODE": 7688}, {"STOP_ID": "CB940", "NAME": "PARLIAMENT / PARLEMENT A", "STOP_CODE": 3052}, {"STOP_ID": "CB260", "NAME": "QUEEN / METCALFE", "STOP_CODE": 1512}, {"STOP_ID": "CB150", "NAME": "ELGIN / WELLINGTON", "STOP_CODE": 7557}, {"STOP_ID": "CD940", "NAME": "RIDEAU B", "STOP_CODE": 3009}, {"STOP_ID": "CC370", "NAME": "DALHOUSIE / RIDEAU", "STOP_CODE": 7577}, {"STOP_ID": "CC360", "NAME": "DALHOUSIE / CLARENCE", "STOP_CODE": 6837}, {"STOP_ID": "CC320", "NAME": "MURRAY / DALHOUSIE", "STOP_CODE": 2322}, {"STOP_ID": "CC330", "NAME": "MURRAY / CUMBERLAND", "STOP_CODE": 7575}, {"STOP_ID": "CC335", "NAME": "MURRAY / KING EDWARD", "STOP_CODE": 2320}, {"STOP_ID": "CC220", "NAME": "BEAUSOLEIL / ST PATRICK", "STOP_CODE": 1904}, {"STOP_ID": "CC210", "NAME": "OLD ST PATRICK / DE LA SALLE H.S.", "STOP_CODE": 6827}, {"STOP_ID": "CC190", "NAME": "OLD ST PATRICK / COBOURG", "STOP_CODE": 2964}, {"STOP_ID": "CC170", "NAME": "ST PATRICK / COBOURG", "STOP_CODE": 7571}, {"STOP_ID": "AA340", "NAME": "SPRINGFIELD / BEECHWOOD", "STOP_CODE": 8788}, {"STOP_ID": "AA350", "NAME": "SPRINGFIELD / PUTMAN", "STOP_CODE": 7021}, {"STOP_ID": "AA360", "NAME": "SPRINGFIELD / RIDEAU", "STOP_CODE": 7022}, {"STOP_ID": "AA370", "NAME": "SPRINGFIELD / LINDENLEA", "STOP_CODE": 7023}]}
+{
+    "route_number": 6,
+    "stops": [
+        {
+            "stop_id": "AA380",
+            "name": "MAPLE LANE / SPRINGFIELD",
+            "stop_code": 8789
+        },
+        {
+            "stop_id": "AA390",
+            "name": "MAPLE LANE / ELMDALE",
+            "stop_code": 7024
+        },
+        {
+            "stop_id": "AA400",
+            "name": "MAPLE LANE / ACACIA",
+            "stop_code": 7025
+        },
+        {
+            "stop_id": "AA410",
+            "name": "ACACIA / RIDEAU",
+            "stop_code": 7026
+        },
+        {
+            "stop_id": "AA260",
+            "name": "BEECHWOOD / ACACIA",
+            "stop_code": 7015
+        },
+        {
+            "stop_id": "AA240",
+            "name": "BEECHWOOD / ST CHARLES",
+            "stop_code": 8790
+        },
+        {
+            "stop_id": "AA210",
+            "name": "BEECHWOOD / MACKAY",
+            "stop_code": 8922
+        },
+        {
+            "stop_id": "CC180",
+            "name": "OLD ST PATRICK / COBOURG",
+            "stop_code": 6830
+        },
+        {
+            "stop_id": "CC200",
+            "name": "OLD ST PATRICK / BEAUSOLEIL",
+            "stop_code": 6828
+        },
+        {
+            "stop_id": "CC230",
+            "name": "ST PATRICK / BEAUSOLEIL",
+            "stop_code": 2319
+        },
+        {
+            "stop_id": "CC260",
+            "name": "ST PATRICK / CUMBERLAND",
+            "stop_code": 2321
+        },
+        {
+            "stop_id": "CC340",
+            "name": "DALHOUSIE / ST PATRICK",
+            "stop_code": 6402
+        },
+        {
+            "stop_id": "CC350",
+            "name": "DALHOUSIE / YORK",
+            "stop_code": 6838
+        },
+        {
+            "stop_id": "CC380",
+            "name": "DALHOUSIE / RIDEAU (D)",
+            "stop_code": 7576
+        },
+        {
+            "stop_id": "CD945",
+            "name": "RIDEAU A",
+            "stop_code": 3009
+        },
+        {
+            "stop_id": "CB160",
+            "name": "ELGIN / QUEEN",
+            "stop_code": 7558
+        },
+        {
+            "stop_id": "CB200",
+            "name": "QUEEN / METCALFE",
+            "stop_code": 1228
+        },
+        {
+            "stop_id": "CB930",
+            "name": "PARLIAMENT / PARLEMENT B",
+            "stop_code": 3052
+        },
+        {
+            "stop_id": "CA090",
+            "name": "BANK / SLATER",
+            "stop_code": 7687
+        },
+        {
+            "stop_id": "CH010",
+            "name": "BANK / GLOUCESTER",
+            "stop_code": 2486
+        },
+        {
+            "stop_id": "CH030",
+            "name": "BANK / LISGAR",
+            "stop_code": 2487
+        },
+        {
+            "stop_id": "CH050",
+            "name": "BANK / SOMERSET W",
+            "stop_code": 2488
+        },
+        {
+            "stop_id": "CH070",
+            "name": "BANK / GILMOUR",
+            "stop_code": 7665
+        },
+        {
+            "stop_id": "CH090",
+            "name": "BANK / GLADSTONE",
+            "stop_code": 2489
+        },
+        {
+            "stop_id": "CH110",
+            "name": "BANK / ARLINGTON",
+            "stop_code": 7666
+        },
+        {
+            "stop_id": "CF740",
+            "name": "BANK / CHAMBERLAIN",
+            "stop_code": 6845
+        },
+        {
+            "stop_id": "CF720",
+            "name": "BANK / POWELL",
+            "stop_code": 7663
+        },
+        {
+            "stop_id": "CF700",
+            "name": "BANK / GLEBE",
+            "stop_code": 7662
+        },
+        {
+            "stop_id": "CF660",
+            "name": "BANK / THIRD",
+            "stop_code": 7660
+        },
+        {
+            "stop_id": "CF640",
+            "name": "BANK / FIFTH",
+            "stop_code": 6847
+        },
+        {
+            "stop_id": "CF600",
+            "name": "LANSDOWNE TD PLACE",
+            "stop_code": 3080
+        },
+        {
+            "stop_id": "CF561",
+            "name": "BANK / AYLMER",
+            "stop_code": 6774
+        },
+        {
+            "stop_id": "CF540",
+            "name": "BANK / HOPEWELL",
+            "stop_code": 6778
+        },
+        {
+            "stop_id": "CF520",
+            "name": "BANK / GROVE",
+            "stop_code": 7654
+        },
+        {
+            "stop_id": "CF500",
+            "name": "BANK / CAMERON",
+            "stop_code": 6740
+        },
+        {
+            "stop_id": "CF485",
+            "name": "BANK / RIVERDALE",
+            "stop_code": 3325
+        },
+        {
+            "stop_id": "RA020",
+            "name": "BANK / RIVERSIDE",
+            "stop_code": 8261
+        },
+        {
+            "stop_id": "RA910",
+            "name": "BILLINGS BRIDGE / BANK",
+            "stop_code": 3034
+        },
+        {
+            "stop_id": "RA940",
+            "name": "BILLINGS BRIDGE 4B",
+            "stop_code": 3034
+        },
+        {
+            "stop_id": "RA040",
+            "name": "BANK / TRANSITWAY",
+            "stop_code": 4897
+        },
+        {
+            "stop_id": "RA060",
+            "name": "BANK / OHIO",
+            "stop_code": 6464
+        },
+        {
+            "stop_id": "RA080",
+            "name": "BANK / BELANGER",
+            "stop_code": 8302
+        },
+        {
+            "stop_id": "RA100",
+            "name": "BANK / RANDALL",
+            "stop_code": 4101
+        },
+        {
+            "stop_id": "RA120",
+            "name": "BANK / KARN",
+            "stop_code": 4102
+        },
+        {
+            "stop_id": "RA140",
+            "name": "BANK / HERON",
+            "stop_code": 8306
+        },
+        {
+            "stop_id": "RA160",
+            "name": "BANK / ERIE",
+            "stop_code": 4105
+        },
+        {
+            "stop_id": "RA200",
+            "name": "BANK / WALKLEY",
+            "stop_code": 8431
+        },
+        {
+            "stop_id": "RF010",
+            "name": "BANK / SURREY",
+            "stop_code": 8860
+        },
+        {
+            "stop_id": "RF050",
+            "name": "BANK / FOXBAR",
+            "stop_code": 4218
+        },
+        {
+            "stop_id": "RF060",
+            "name": "BANK / KITCHENER",
+            "stop_code": 4219
+        },
+        {
+            "stop_id": "RF090",
+            "name": "JOHNSTON / BANK",
+            "stop_code": 5739
+        },
+        {
+            "stop_id": "RF310",
+            "name": "SOUTHGATE / CLEARWATER",
+            "stop_code": 8438
+        },
+        {
+            "stop_id": "RF330",
+            "name": "SOUTHGATE / AD.3308",
+            "stop_code": 4242
+        },
+        {
+            "stop_id": "RF360",
+            "name": "CAHILL / BANK",
+            "stop_code": 4243
+        },
+        {
+            "stop_id": "RF390",
+            "name": "BANK / AD. 2380",
+            "stop_code": 5727
+        },
+        {
+            "stop_id": "RF410",
+            "name": "BANK / HUNT CLUB",
+            "stop_code": 4245
+        },
+        {
+            "stop_id": "RF430",
+            "name": "HUNT CLUB / BANK",
+            "stop_code": 8440
+        },
+        {
+            "stop_id": "RF450",
+            "name": "HUNT CLUB / AD. 1189",
+            "stop_code": 8448
+        },
+        {
+            "stop_id": "RF470",
+            "name": "1145 HUNT CLUB",
+            "stop_code": 8441
+        },
+        {
+            "stop_id": "RF940",
+            "name": "SOUTH KEYS 2A",
+            "stop_code": 3038
+        },
+        {
+            "stop_id": "RF905",
+            "name": "GREENBORO 1B",
+            "stop_code": 3037
+        },
+        {
+            "stop_id": "RF900",
+            "name": "GREENBORO 1A",
+            "stop_code": 3037
+        },
+        {
+            "stop_id": "RF950",
+            "name": "SOUTH KEYS 1B",
+            "stop_code": 3038
+        },
+        {
+            "stop_id": "RF001",
+            "name": "HUNT CLUB LOOP - STOP 1A",
+            "stop_code": 8668
+        },
+        {
+            "stop_id": "RF480",
+            "name": "HUNT CLUB / BRIDLE PATH",
+            "stop_code": 1969
+        },
+        {
+            "stop_id": "RF460",
+            "name": "HUNT CLUB / BRIDLE PATH",
+            "stop_code": 4247
+        },
+        {
+            "stop_id": "RF400",
+            "name": "BANK / HUNT CLUB",
+            "stop_code": 4244
+        },
+        {
+            "stop_id": "RF380",
+            "name": "BANK / AD. 2401",
+            "stop_code": 5726
+        },
+        {
+            "stop_id": "RF375",
+            "name": "BANK / CAHILL",
+            "stop_code": 885
+        },
+        {
+            "stop_id": "RF365",
+            "name": "BANK / SOUTH KEYS WALKWAY",
+            "stop_code": 4221
+        },
+        {
+            "stop_id": "RF075",
+            "name": "BANK / JOHNSTON",
+            "stop_code": 4835
+        },
+        {
+            "stop_id": "RF070",
+            "name": "BANK / KITCHENER",
+            "stop_code": 4220
+        },
+        {
+            "stop_id": "RF030",
+            "name": "BANK / NOTTINGHILL",
+            "stop_code": 8861
+        },
+        {
+            "stop_id": "RA190",
+            "name": "BANK / WALKLEY",
+            "stop_code": 8436
+        },
+        {
+            "stop_id": "RA180",
+            "name": "BANK / ALTA VISTA",
+            "stop_code": 4107
+        },
+        {
+            "stop_id": "RA170",
+            "name": "BANK / ERIE",
+            "stop_code": 4106
+        },
+        {
+            "stop_id": "RA150",
+            "name": "BANK / COLLINS",
+            "stop_code": 8435
+        },
+        {
+            "stop_id": "RA130",
+            "name": "BANK / HERON",
+            "stop_code": 4104
+        },
+        {
+            "stop_id": "RA110",
+            "name": "BANK / KARN",
+            "stop_code": 4103
+        },
+        {
+            "stop_id": "RA090",
+            "name": "BANK / ROCKINGHAM",
+            "stop_code": 8469
+        },
+        {
+            "stop_id": "RA070",
+            "name": "BANK / LAMIRA",
+            "stop_code": 8296
+        },
+        {
+            "stop_id": "RA050",
+            "name": "BANK / KILBORN PATHWAY- SENTIER",
+            "stop_code": 8295
+        },
+        {
+            "stop_id": "RA945",
+            "name": "BILLINGS BRIDGE 4C",
+            "stop_code": 3034
+        },
+        {
+            "stop_id": "RA030",
+            "name": "BANK / RIVERSIDE",
+            "stop_code": 4100
+        },
+        {
+            "stop_id": "RA010",
+            "name": "BANK / RIVERSIDE",
+            "stop_code": 8298
+        },
+        {
+            "stop_id": "CF490",
+            "name": "BANK / RIVERDALE",
+            "stop_code": 6741
+        },
+        {
+            "stop_id": "CF510",
+            "name": "BANK / CAMERON",
+            "stop_code": 7653
+        },
+        {
+            "stop_id": "CF530",
+            "name": "BANK / BELMONT",
+            "stop_code": 2414
+        },
+        {
+            "stop_id": "CF550",
+            "name": "BANK / SUNNYSIDE",
+            "stop_code": 7655
+        },
+        {
+            "stop_id": "CF570",
+            "name": "BANK / AYLMER",
+            "stop_code": 6773
+        },
+        {
+            "stop_id": "CF610",
+            "name": "LANSDOWNE TD PLACE",
+            "stop_code": 3080
+        },
+        {
+            "stop_id": "CF650",
+            "name": "BANK / FIFTH",
+            "stop_code": 7659
+        },
+        {
+            "stop_id": "CF670",
+            "name": "BANK / THIRD",
+            "stop_code": 6841
+        },
+        {
+            "stop_id": "CF710",
+            "name": "BANK / FIRST",
+            "stop_code": 6842
+        },
+        {
+            "stop_id": "CF730",
+            "name": "BANK / PATTERSON",
+            "stop_code": 7664
+        },
+        {
+            "stop_id": "CF750",
+            "name": "BANK / ISABELLA",
+            "stop_code": 6844
+        },
+        {
+            "stop_id": "CH120",
+            "name": "BANK / CATHERINE",
+            "stop_code": 8895
+        },
+        {
+            "stop_id": "CH100",
+            "name": "BANK / FLORA",
+            "stop_code": 7667
+        },
+        {
+            "stop_id": "CH080",
+            "name": "BANK / GLADSTONE",
+            "stop_code": 8798
+        },
+        {
+            "stop_id": "CH060",
+            "name": "BANK / LEWIS",
+            "stop_code": 2483
+        },
+        {
+            "stop_id": "CH040",
+            "name": "BANK / SOMERSET W",
+            "stop_code": 1902
+        },
+        {
+            "stop_id": "CH020",
+            "name": "BANK / GLOUCESTER",
+            "stop_code": 2484
+        },
+        {
+            "stop_id": "CA100",
+            "name": "BANK / SLATER",
+            "stop_code": 7688
+        },
+        {
+            "stop_id": "CB940",
+            "name": "PARLIAMENT / PARLEMENT A",
+            "stop_code": 3052
+        },
+        {
+            "stop_id": "CB260",
+            "name": "QUEEN / METCALFE",
+            "stop_code": 1512
+        },
+        {
+            "stop_id": "CB150",
+            "name": "ELGIN / WELLINGTON",
+            "stop_code": 7557
+        },
+        {
+            "stop_id": "CD940",
+            "name": "RIDEAU B",
+            "stop_code": 3009
+        },
+        {
+            "stop_id": "CC370",
+            "name": "DALHOUSIE / RIDEAU",
+            "stop_code": 7577
+        },
+        {
+            "stop_id": "CC360",
+            "name": "DALHOUSIE / CLARENCE",
+            "stop_code": 6837
+        },
+        {
+            "stop_id": "CC320",
+            "name": "MURRAY / DALHOUSIE",
+            "stop_code": 2322
+        },
+        {
+            "stop_id": "CC330",
+            "name": "MURRAY / CUMBERLAND",
+            "stop_code": 7575
+        },
+        {
+            "stop_id": "CC335",
+            "name": "MURRAY / KING EDWARD",
+            "stop_code": 2320
+        },
+        {
+            "stop_id": "CC220",
+            "name": "BEAUSOLEIL / ST PATRICK",
+            "stop_code": 1904
+        },
+        {
+            "stop_id": "CC210",
+            "name": "OLD ST PATRICK / DE LA SALLE H.S.",
+            "stop_code": 6827
+        },
+        {
+            "stop_id": "CC190",
+            "name": "OLD ST PATRICK / COBOURG",
+            "stop_code": 2964
+        },
+        {
+            "stop_id": "CC170",
+            "name": "ST PATRICK / COBOURG",
+            "stop_code": 7571
+        },
+        {
+            "stop_id": "AA340",
+            "name": "SPRINGFIELD / BEECHWOOD",
+            "stop_code": 8788
+        },
+        {
+            "stop_id": "AA350",
+            "name": "SPRINGFIELD / PUTMAN",
+            "stop_code": 7021
+        },
+        {
+            "stop_id": "AA360",
+            "name": "SPRINGFIELD / RIDEAU",
+            "stop_code": 7022
+        },
+        {
+            "stop_id": "AA370",
+            "name": "SPRINGFIELD / LINDENLEA",
+            "stop_code": 7023
+        }
+    ]
+}

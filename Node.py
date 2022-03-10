@@ -3,8 +3,9 @@ import math
 
 class Node:
 
-    def __init__(self, name=''):
+    def __init__(self, name='', id=''):
         self.name = name
+        self.id = id
         # node, [weight of edge, amount of drivers on edge]
         self.outgoing_edges = {}
 

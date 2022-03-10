@@ -8,6 +8,8 @@ from Graph import Graph
 from Passenger import Passenger
 from Shortest_path import *
 
+from parse import construct_graph_and_buses
+
 
 def calculate_cost_of_path(path):
     total_travel_time = 0
@@ -31,7 +33,6 @@ def construct_test_graph():
     graph = Graph()
     busses = []
     nodes = []
-
     # generate nodes
     nodeA = Node('A')
     nodeB = Node('B')
@@ -238,7 +239,11 @@ def plot_graph(x, y1,y2, label1, label2, y_title, x_title, graph_title, x_names)
     plt.show()
 
 
+
+
+
 if __name__ == '__main__':
-    graph, busses = construct_test_graph()
+    # graph, busses = construct_test_graph()
+    graph, busses = construct_graph_and_buses()
     # company priority 1
     display_company_priority_travel_cost(graph, busses)

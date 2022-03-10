@@ -1,0 +1,53 @@
+{
+    "GetNextTripsForStopResult": {
+        "StopNo": "7024",
+        "StopLabel": "MAPLE LANE / ELMDALE",
+        "Error": "",
+        "Route": {
+            "RouteDirection": {
+                "RouteNo": "6",
+                "RouteLabel": "Greenboro",
+                "Direction": "",
+                "Error": "",
+                "RequestProcessingTime": "20220309151921",
+                "Trips": {
+                    "Trip": [
+                        {
+                            "Longitude": "",
+                            "Latitude": "",
+                            "GPSSpeed": "",
+                            "TripDestination": "Greenboro",
+                            "TripStartTime": "15:19",
+                            "AdjustedScheduleTime": "0",
+                            "AdjustmentAge": "-1",
+                            "LastTripOfSchedule": false,
+                            "BusType": ""
+                        },
+                        {
+                            "Longitude": "",
+                            "Latitude": "",
+                            "GPSSpeed": "",
+                            "TripDestination": "Greenboro",
+                            "TripStartTime": "15:34",
+                            "AdjustedScheduleTime": "15",
+                            "AdjustmentAge": "-1",
+                            "LastTripOfSchedule": false,
+                            "BusType": ""
+                        },
+                        {
+                            "Longitude": "",
+                            "Latitude": "",
+                            "GPSSpeed": "",
+                            "TripDestination": "Greenboro",
+                            "TripStartTime": "15:52",
+                            "AdjustedScheduleTime": "33",
+                            "AdjustmentAge": "-1",
+                            "LastTripOfSchedule": false,
+                            "BusType": ""
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

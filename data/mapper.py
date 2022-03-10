@@ -6,29 +6,31 @@ import pandas as pd
 
 import requests
 
-# with open('../key.json') as f:
-#     data = json.load(f)
-#     appID = data["APPLICATION_ID"]
-#     apiKey = data["APPLICATION_KEY"]
 
 
-# print(appID)
-# print(apiKey)
-# query = {"appID": appID, "apiKey" : apiKey, "stopNo" : 6655}
-# response = requests.get("https://api.octranspo1.com/v2.0/GetNextTripsForStop", params=query).json()
+with open('../key.json') as f:
+    data = json.load(f)
+    appID = data["APPLICATION_ID"]
+    apiKey = data["APPLICATION_KEY"]
 
-# with open("14.json", "w") as f:
-#     json.dump(response, f)
 
-# print(response.json())
+def compute_time_between_stops(STOP1, STOP2):
+    return
 
-def get_stop_id(filename):
-    text = ""
-    with open(filename, 'r') as f:
-        text = f.read()
-    print(text)
+
+def query_stop(STOP_CODE):
+    global appID, apiKey
+    query = {"appID": appID, "apiKey" : apiKey, "stopNo" : STOP_CODE}
+    response = requests.get("https://api.octranspo1.com/v2.0/GetNextTripsForStop", params=query).json()
+
+    with open("test.json", "w") as f:
+        json.dump(response, f)
+    return response
+
 
 
 if __name__ == "__main__":
-    parsetxt("7.txt")
+    print(query_stop(8789))
+    print(query_stop(7024))
+
 
