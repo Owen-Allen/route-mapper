@@ -31,7 +31,7 @@ def compute_node_edges(G, routes, buses):
     nodes = G.get_nodes()
 
     for route in routes: # construct a graph using the routes of all buses
-        bus = Bus(route["route_number"])
+        bus = Bus(str(route["route_number"]))
 
         trip = df_trips.loc[df_trips['route_id'] == str(route["route_number"]) + "-332"].iloc[0]
         trip_id = trip.loc["trip_id"]
@@ -51,11 +51,8 @@ def compute_node_edges(G, routes, buses):
                 d2 = datetime.strptime(df_stop_times.loc[index + 1].at["departure_time"], "%H:%M:%S")
 
                 dif = d2 - d1
-                edge_weight = dif.total_seconds()
-                if(edge_weight == 0): # LIAR
-                    # print("round up to 30 seconds? not sure what to do here")
-                    edge_weight = 30
-                
+                edge_weight = dif.min
+
                 # Get those nodes from the graph
                 from_node = G.get_node_with_id(df_stop_times.loc[index].at["stop_id"])
                 to_node = G.get_node_with_id(df_stop_times.loc[index + 1].at["stop_id"])
@@ -68,7 +65,7 @@ def compute_node_edges(G, routes, buses):
                 from_node.add_edge(to_node, edge_weight)
                 bus.add_destination(from_node)
             
-            buses.append(bus)
+        buses.append(bus)
                             
 
         # Now we can iterate through all of the stops in stop_times.txt that serve this trip
