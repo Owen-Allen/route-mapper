@@ -267,7 +267,6 @@ def display_company_priority_profit(graph, bus_list):
         y2_passengers.append(bus.total_passengers_picked_up)
         y2_profit.append(bus.total_profit_made)
         y2_travel_cost.append(bus.total_travel_time)
-        bus.reset()
 
     # display graphs
     display_network(graph)

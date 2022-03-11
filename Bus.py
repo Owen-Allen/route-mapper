@@ -68,7 +68,6 @@ class Bus:
         self.destinations = {}
         # passenger capacity in bus
         self.capacity = self.original_capacity
-        self.modified_path = []
         self.total_passengers_picked_up = 0
         self.total_profit_made = 0
 
