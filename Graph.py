@@ -20,6 +20,11 @@ class Graph:
         for node in self.nodes:
             print(node.name)
 
+    def reset_all_nodes(self):
+        for node in self.nodes:
+            node.reset_passengers()
+            node.reset_drivers_on_edges()
+
     def get_node_by_name(self, name):
         for node in self.nodes:
             if node.name == name:

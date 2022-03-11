@@ -42,7 +42,6 @@ def construct_test_graph():
     nodeZ = Node('Z', '5')
     nodeE = Node('E', '6')
 
-
     nodes.append(nodeA)
     nodes.append(nodeB)
     nodes.append(nodeC)
@@ -81,7 +80,7 @@ def construct_test_graph():
     # generate graph
     nodeA.add_edge(nodeB, [10, 0])
     nodeA.add_edge(nodeD, [7, 0])
-    nodeA.add_edge(nodeZ,  [lambda x: x, 0])
+    nodeA.add_edge(nodeZ, [lambda x: x, 0])
 
     nodeD.add_edge(nodeE, [7, 0])
 
@@ -129,7 +128,7 @@ def display_shortest_path_travel_cost_graph(graph, busses):
         y2.append(new_cost)
         names.append(bus.name)
 
-    plot_graph(x,y1,y2,'Current path','Shortest path','Cost','Busses','Travel Cost for each bus',names)
+    plot_graph(x, y1, y2, 'Current path', 'Shortest path', 'Cost', 'Busses', 'Travel Cost for each bus', names)
 
 
 def update_path_costs(graph, busses):
@@ -142,18 +141,10 @@ def update_path_costs(graph, busses):
                     node.add_drivers_on_edge_with_node(edge_node, 1)
 
 
-def display_company_priority_travel_cost(graph, bus_list):
-    names = []
-    for bus in bus_list:
-        names.append(bus.name)
-        bus.reset()
+def get_original_bus_graph_details(graph, bus_list):
     y1_passengers = []
-    y2_passengers = []
     y1_profit = []
-    y2_profit = []
     y1_travel_cost = []
-    y2_travel_cost = []
-
     update_path_costs(graph, bus_list)
 
     # regular bus route
@@ -168,10 +159,22 @@ def display_company_priority_travel_cost(graph, bus_list):
         y1_profit.append(bus.total_profit_made)
         y1_travel_cost.append(bus.total_travel_time)
         bus.reset()
+    return y1_passengers, y1_profit, y1_travel_cost
 
-    for node in graph.nodes:
-        node.reset_passengers()
-        node.reset_drivers_on_edges()
+
+def display_company_priority_travel_cost(graph, bus_list):
+    names = []
+    for bus in bus_list:
+        names.append(bus.name)
+        bus.reset()
+
+    y2_passengers = []
+    y2_profit = []
+    y2_travel_cost = []
+
+    y1_passengers, y1_profit, y1_travel_cost = get_original_bus_graph_details(graph, bus_list)
+
+    graph.reset_all_nodes()
 
     # modified bus route
     for bus in bus_list:
@@ -207,7 +210,66 @@ def display_company_priority_travel_cost(graph, bus_list):
         y2_travel_cost.append(bus.total_travel_time)
         bus.reset()
 
+    # display graphs
+    update_path_costs(graph, bus_list)
+    display_network(graph)
+    x = np.arange(len(bus_list))
+    plot_graph(x, y1_passengers, y2_passengers, 'Original', 'Modified', 'Passengers picked up', 'Busses',
+               'Passengers picked up by busses', names)
+    plot_graph(x, y1_profit, y2_profit, 'Original', 'Modified', 'Profit made', 'Busses',
+               'Profit made by each bus', names)
+    plot_graph(x, y1_travel_cost, y2_travel_cost, 'Original', 'Modified', 'Cost', 'Busses',
+               'Travel Cost by busses', names)
 
+    graph.reset_all_nodes()
+
+def display_company_priority_profit(graph, bus_list):
+    names = []
+    for bus in bus_list:
+        names.append(bus.name)
+        bus.reset()
+
+    y2_passengers = []
+    y2_profit = []
+    y2_travel_cost = []
+
+    y1_passengers, y1_profit, y1_travel_cost = get_original_bus_graph_details(graph, bus_list)
+
+    graph.reset_all_nodes()
+
+    # modified bus route
+    for bus in bus_list:
+        start_node = bus.path[0]
+        current_node = start_node
+        next_destination = start_node
+        final_destination = bus.path[-1]
+        while current_node.id != final_destination.id:
+            bus.modified_path.append(current_node)
+            if current_node.id == next_destination.id:
+                bus.drop_off_passengers_at_node(current_node)
+                bus.pickup_passengers_at_node_going_to_closest_node_in_path(current_node)
+
+            # get the next stop that the bus must make
+            next_destination = bus.find_next_destination(current_node)
+
+            # get the shortest path to the next stop
+            modified_path = find_shortest_path_from_source_to_target(graph, current_node, next_destination)
+            # travel to next stop
+            next_node_to_travel_to = modified_path[1]
+            current_node.add_drivers_on_edge_with_node(next_node_to_travel_to, 1)
+            # bus arrived at stop
+            current_node = next_node_to_travel_to
+
+        # drop off passengers at final destination of bus
+        bus.drop_off_passengers_at_node(current_node)
+        bus.modified_path.append(final_destination)
+        bus.total_travel_time = calculate_cost_of_path(bus.modified_path)
+
+    for bus in bus_list:
+        y2_passengers.append(bus.total_passengers_picked_up)
+        y2_profit.append(bus.total_profit_made)
+        y2_travel_cost.append(bus.total_travel_time)
+        bus.reset()
 
     # display graphs
     update_path_costs(graph, bus_list)
@@ -220,9 +282,10 @@ def display_company_priority_travel_cost(graph, bus_list):
     plot_graph(x, y1_travel_cost, y2_travel_cost, 'Original', 'Modified', 'Cost', 'Busses',
                'Travel Cost by busses', names)
 
+    graph.reset_all_nodes()
 
 
-def plot_graph(x, y1,y2, label1, label2, y_title, x_title, graph_title, x_names):
+def plot_graph(x, y1, y2, label1, label2, y_title, x_title, graph_title, x_names):
     figure, plot = plt.subplots()
     width = 0.40
     # plot data in grouped manner of bar type
@@ -239,9 +302,6 @@ def plot_graph(x, y1,y2, label1, label2, y_title, x_title, graph_title, x_names)
     plot.bar_label(modified_plot)
 
     plt.show()
-
-
-
 
 
 if __name__ == '__main__':

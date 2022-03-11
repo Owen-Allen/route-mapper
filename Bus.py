@@ -102,6 +102,21 @@ class Bus:
                         self.total_passengers_picked_up += 1
                         self.total_profit_made += passenger.profit
 
+    def pickup_passengers_at_node_going_to_closest_node_in_path(self, node):
+        index = self.path.index(node)
+        whats_left_in_path = self.path[index+1:]
+        for path_node in whats_left_in_path:
+            for passenger in node.passengers_waiting:
+                if self.capacity > 0:
+                    if passenger.destination.id == path_node.id:
+                        node.remove_passenger(passenger)
+                        if passenger.destination not in self.destinations.keys():
+                            self.add_destination(passenger.destination)
+                        self.add_passengers_to_destination(passenger.destination, passenger)
+                        self.capacity -= 1
+                        self.total_passengers_picked_up += 1
+                        self.total_profit_made += passenger.profit
+
     def drop_off_passengers_at_node(self, node):
         if len(self.destinations.keys()) > 0:
             passengers_for_node = self.destinations[node]
