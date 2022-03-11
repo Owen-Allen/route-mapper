@@ -32,6 +32,9 @@ class Bus:
     def set_path(self, path):
         self.path = path
 
+    def add_node_to_path(self, node):
+        self.path.append(node)
+
     def add_passengers_to_destination(self, node, passenger):
         self.destinations[node].append(passenger)
 
@@ -53,10 +56,10 @@ class Bus:
         if len(self.modified_path) > 0:
             path_to_use = self.modified_path
         for i in range(len(path_to_use)):
-            if path_to_use[i].name == path_to_use[-1].name:
+            if path_to_use[i].id == path_to_use[-1].id:
                 return False
-            if path_to_use[i].name == first_node.name:
-                if path_to_use[i + 1].name == second_node.name:
+            if path_to_use[i].id == first_node.id:
+                if path_to_use[i + 1].id == second_node.id:
                     return True
         return False
 
@@ -69,7 +72,7 @@ class Bus:
         self.total_profit_made = 0
 
     def pickup_passengers_at_node(self, node):
-        if node.name == self.path[-1]:
+        if node.id == self.path[-1].id:
             return
         index = self.path.index(node)
         whats_left_in_path = self.path[index+1:]
@@ -90,7 +93,7 @@ class Bus:
         for path_node in reversed(whats_left_in_path):
             for passenger in node.passengers_waiting:
                 if self.capacity > 0:
-                    if passenger.destination.name == path_node.name:
+                    if passenger.destination.id == path_node.id:
                         node.remove_passenger(passenger)
                         if passenger.destination not in self.destinations.keys():
                             self.add_destination(passenger.destination)
@@ -106,9 +109,19 @@ class Bus:
             self.capacity += amount_of_passengers
             del self.destinations[node]
 
-    def find_next_destination(self):
-        new_list = sorted(self.destinations.keys(), key=lambda x: x.name)
-        return new_list[0]
+    def find_next_destination(self, current_node):
+        if len(self.destinations.keys()) > 0:
+            new_list = sorted(self.destinations.keys(), key=lambda x: x.id)
+            return new_list[0]
+        else:
+            return self.get_next_node_in_path(current_node)
+
+    def get_next_node_in_path(self, current_node):
+        if current_node == self.path[-1]:
+            return current_node
+        for i in range(len(self.path)):
+            if self.path[i].id == current_node.id:
+                return self.path[i+1]
 
     def travel_to(self, start_node, end_node):
         weight = start_node.get_weight_to_node(end_node)

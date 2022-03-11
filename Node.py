@@ -61,13 +61,14 @@ class Node:
 
     def get_weight_to_node(self, node):
         for edge_node in self.outgoing_edges:
-            if edge_node.name == node.name:
+            if edge_node.id == node.id:
                 weight = self.outgoing_edges[edge_node][0]
                 if isinstance(weight, int):
                     return weight
                 else:
                     drivers_on_path = self.outgoing_edges[edge_node][1]
                     return weight(drivers_on_path)
+        return 0
 
     def remove_passenger_by_id(self, passenger_id):
         for passenger in self.passengers_waiting:

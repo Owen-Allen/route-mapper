@@ -43,7 +43,7 @@ def compute_node_edges(G, routes, buses):
                 last_stop_id = df_stop_times.loc[index].at["stop_id"]
                 last_stop = G.get_node_with_id(last_stop_id)
                 if last_stop:
-                    bus.add_destination(last_stop)
+                    bus.add_node_to_path(last_stop)
                 else:
                     print(f"Could not find last stop for bus {bus.name}")
             else:
@@ -62,9 +62,9 @@ def compute_node_edges(G, routes, buses):
                 if to_node == None:
                     print("THIS SHOULD NEVER HAPPEN, YOUR GRAPH G HASNT CREATED THE to_node FOR THIS STOP")
 
-                from_node.add_edge(to_node, edge_weight)
-                bus.add_destination(from_node)
-            
+                from_node.add_edge(to_node, [edge_weight, 0])
+                bus.add_node_to_path(from_node)
+
         buses.append(bus)
                             
 

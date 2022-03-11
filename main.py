@@ -7,6 +7,7 @@ from Node import Node
 from Graph import Graph
 from Passenger import Passenger
 from Shortest_path import *
+from parse import *
 
 from parse import construct_graph_and_buses
 
@@ -34,12 +35,13 @@ def construct_test_graph():
     busses = []
     nodes = []
     # generate nodes
-    nodeA = Node('A')
-    nodeB = Node('B')
-    nodeC = Node('C')
-    nodeD = Node('D')
-    nodeE = Node('E')
-    nodeZ = Node('Z')
+    nodeA = Node('A', '1')
+    nodeB = Node('B', '2')
+    nodeC = Node('C', '3')
+    nodeD = Node('D', '4')
+    nodeZ = Node('Z', '5')
+    nodeE = Node('E', '6')
+
 
     nodes.append(nodeA)
     nodes.append(nodeB)
@@ -177,14 +179,14 @@ def display_company_priority_travel_cost(graph, bus_list):
         current_node = start_node
         next_destination = start_node
         final_destination = bus.path[-1]
-        while current_node.name != final_destination.name:
+        while current_node.id != final_destination.id:
             bus.modified_path.append(current_node)
-            if current_node.name == next_destination.name:
+            if current_node.id == next_destination.id:
                 bus.drop_off_passengers_at_node(current_node)
                 bus.pickup_passengers_at_node_going_to_farthest_node_in_path(current_node)
 
             # get the next stop that the bus must make
-            next_destination = bus.find_next_destination()
+            next_destination = bus.find_next_destination(current_node)
 
             # get the shortest path to the next stop
             modified_path = find_shortest_path_from_source_to_target(graph, current_node, next_destination)
@@ -210,7 +212,7 @@ def display_company_priority_travel_cost(graph, bus_list):
     # display graphs
     update_path_costs(graph, bus_list)
     display_network(graph)
-    x = np.arange(len(busses))
+    x = np.arange(len(bus_list))
     plot_graph(x, y1_passengers, y2_passengers, 'Original', 'Modified', 'Passengers picked up', 'Busses',
                'Passengers picked up by busses', names)
     plot_graph(x, y1_profit, y2_profit, 'Original', 'Modified', 'Profit made', 'Busses',
@@ -243,7 +245,8 @@ def plot_graph(x, y1,y2, label1, label2, y_title, x_title, graph_title, x_names)
 
 
 if __name__ == '__main__':
-    # graph, busses = construct_test_graph()
-    graph, busses = construct_graph_and_buses()
+    # __graph, __busses = construct_test_graph()
+    __graph, __busses = construct_graph_and_buses()
+    # display_network(__graph)
     # company priority 1
-    display_company_priority_travel_cost(graph, busses)
+    display_company_priority_travel_cost(__graph, __busses)
