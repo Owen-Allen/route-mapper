@@ -301,8 +301,8 @@ def plot_graph(x, y1, y2, label1, label2, y_title, x_title, graph_title, x_names
 
 
 if __name__ == '__main__':
-    _graph_travel_cost, _busses_travel_cost = construct_test_graph()
-    _graph_profit, _busses_profit = construct_test_graph()
+    _graph_travel_cost, _busses_travel_cost = construct_graph_and_buses()
+    _graph_profit, _busses_profit = construct_graph_and_buses()
 
     # _graph, _busses = construct_graph_and_buses()
     # display_network(_graph)
