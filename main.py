@@ -244,6 +244,14 @@ def plot_graph(x, y1,y2, label1, label2, y_title, x_title, graph_title, x_names)
 
 if __name__ == '__main__':
     # graph, busses = construct_test_graph()
-    graph, busses = construct_graph_and_buses()
+    graph, buses = construct_graph_and_buses()
+
+    
+    for node in graph.get_nodes():
+        print(f"this is the node: {node} {node.id} and its edges, {node.get_edges()}")
+
+    # display_network(graph)
+    # for node in graph.get_nodes():
+    #     print(f"this {node.outgoing_edges}")
     # company priority 1
-    display_company_priority_travel_cost(graph, busses)
+    # display_company_priority_travel_cost(graph, busses)

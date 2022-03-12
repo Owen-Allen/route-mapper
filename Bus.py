@@ -114,3 +114,5 @@ class Bus:
         weight = start_node.get_weight_to_node(end_node)
         self.total_travel_time += weight
 
+    def get_destinations(self):
+        return self.destinations
