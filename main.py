@@ -307,7 +307,19 @@ if __name__ == '__main__':
     # display_network(_graph)
 
     # company priority travel cost
-    display_company_priority_travel_cost(_graph_travel_cost, _busses_travel_cost)
+    # display_company_priority_travel_cost(_graph_travel_cost, _busses_travel_cost)
 
     # company priority profit
-    display_company_priority_profit(_graph_profit, _busses_profit)
+    # display_company_priority_profit(_graph_profit, _busses_profit)
+    # graph, busses = construct_test_graph()
+    graph, buses = construct_graph_and_buses()
+
+    
+    for node in graph.get_nodes():
+        print(f"this is the node: {node} {node.id} and its edges, {node.get_edges()}")
+
+    # display_network(graph)
+    # for node in graph.get_nodes():
+    #     print(f"this {node.outgoing_edges}")
+    # company priority 1
+    # display_company_priority_travel_cost(graph, busses)

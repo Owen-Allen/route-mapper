@@ -9,14 +9,68 @@ from Bus import Bus
 
 from datetime import datetime
 
-'''
-{
-    NUMBER: #, 
-    ROUTE:  ordered array[{STOP_ID, NAME, STOP_CODE}, ..] 
-    }
-'''
 
 ROUTE_NUMBERS = [6,7,11,14]
+
+ROUTE_DIRECTIONS = {
+                    6: ["Rockcliffe", "Greenboro"],
+                    7: ["St-Laurent", "Carleton"],
+                    11: ["Parliament ~ Parlement", "Bayshore"],
+                    14: ["Tunney's Pasture", "St-Laurent"]
+                    }
+
+def construct_graph_and_buses():
+
+    G = Graph()
+    buses = []
+
+    df_trips = pd.read_csv("data/google_transit/trips.txt")
+
+    df_stop_times = pd.read_csv("data/google_transit/stop_times.txt")
+
+    for route in ROUTE_NUMBERS:
+        for direction in ROUTE_DIRECTIONS[route]: # 7 Carleton vs 7 St-Laurent
+            print(f"{route} {direction}")
+            trip = df_trips.loc[(df_trips['route_id'] == str(route) + "-332") & (df_trips['trip_headsign'] == direction)].iloc[0]
+            trip_id = trip.at["trip_id"]
+
+            trip_stops = df_stop_times.loc[df_stop_times['trip_id'] == trip_id]
+            
+            bus = Bus(name= str(route) + trip.at["trip_headsign"])
+
+            for i in trip_stops.index:
+
+                if i != trip_stops.index[len(trip_stops.index) - 1]:
+                    # Create node i and node i + 1 if not already created
+                    id_1 = df_stop_times.loc[i].at["stop_id"]
+                    n1 = G.get_node_with_id(id_1)
+                    if n1 == None:
+                        n1 = Node(name=id_1, id=id_1)
+                        G.add_node(n1)
+
+                    id_2 = df_stop_times.loc[i + 1].at["stop_id"]
+                    n2 = G.get_node_with_id(id_2)
+                    if n2 == None:
+                        n2 = Node(name=id_2, id=id_2)
+                        G.add_node(n2)
+                    
+
+                    d1 = datetime.strptime(df_stop_times.loc[i].at["departure_time"], "%H:%M:%S")
+                    d2 = datetime.strptime(df_stop_times.loc[i + 1].at["departure_time"], "%H:%M:%S")
+
+                    dif = d2 - d1
+                    edge_weight = dif.seconds // 60
+
+                    n1.add_edge(n2, edge_weight)
+
+                    bus.add_destination(n1)
+                    bus.add_destination(n2)
+                
+                buses.append(bus)
+    return G, buses
+                    
+
+
 
 def compute_node_edges(G, routes, buses):
     # Use the bus number (7 -> 7-332) to get a trip_id from trips.txt
@@ -36,6 +90,8 @@ def compute_node_edges(G, routes, buses):
         trip = df_trips.loc[df_trips['route_id'] == str(route["route_number"]) + "-332"].iloc[0]
         trip_id = trip.loc["trip_id"]
 
+        print(trip_id)
+
         trip_stops = df_stop_times.loc[df_stop_times['trip_id'] == trip_id]
         for index in trip_stops.index: # the stop at index connects to stop at index + 1
             if index == trip_stops.index[len(trip_stops.index) - 1]: # if we're at the end of the array
@@ -52,7 +108,6 @@ def compute_node_edges(G, routes, buses):
 
                 dif = d2 - d1
                 edge_weight = dif.seconds // 60
-                print(edge_weight)
                 # Get those nodes from the graph
                 from_node = G.get_node_with_id(df_stop_times.loc[index].at["stop_id"])
                 to_node = G.get_node_with_id(df_stop_times.loc[index + 1].at["stop_id"])
@@ -108,7 +163,42 @@ def construct_bus_json(route_number):
     with open("data/" +str(route_number) + ".json", "w") as f:
         json.dump(bus, f)
 
-def construct_graph_and_buses():
+def fill_graph(G):
+
+
+    buses = []
+    df_trips = pd.read_csv("data/google_transit/trips.txt")
+
+    df_stop_times = pd.read_csv("data/google_transit/stop_times.txt")
+
+    for route in ROUTE_NUMBERS:
+        directions_computed = dict() # keep track of which directions we've already computed for this route
+        # i.e. 7 Carleton vs 7 St-Laurent
+        trip = df_trips.loc[df_trips['route_id'] == str(route) + "-332"].iloc[0]
+
+        while(len(directions_computed) < 2):
+            if trip.at["trip_headsign"] not in directions_computed:
+
+
+                trip_id = trip.at["trip-id"]
+                trip_stops = df_stop_times.loc[df_stop_times['trip_id'] == trip_id] # all of the stops for this trip
+
+                for index in trip_stops.index:
+
+                    if index != trip_stops[len(trip_stops.index) - 1]: # Don't do the last stop
+                        d1 = datetime.strptime(df_stop_times.loc[index].at["departure_time"], "%H:%M:%S")
+                        d2 = datetime.strptime(df_stop_times.loc[index + 1].at["departure_time"], "%H:%M:%S")
+
+                        # FOR EACH STOP, WE NEED TO CREATE A NODE IF IT DOES NOT ALREADY EXIST,
+                        # THEN ADD AN EDGE FROM NODE at INDEX to INDEX + 1
+
+
+       
+
+
+
+
+def construct_graph_and_buses_old():
     routes = []
     buses = []
     for route_num in ROUTE_NUMBERS:
@@ -116,16 +206,19 @@ def construct_graph_and_buses():
             routes.append(json.load(f))
     
     G = Graph()
-    construct_empty_nodes(G, routes)
-    compute_node_edges(G, routes, buses)        
+    # construct_empty_nodes(G, routes)
+    # compute_node_edges(G, routes, buses)        
 
+    # fill_graph(G)
+    test(G)
+    G.print_edge_nodes()
     return G, buses
     
 
 
 if __name__ == "__main__":
-    
-    construct_graph_and_buses()
+    g, b = construct_graph_and_buses()
+
 
     # construct_bus_json(6)
 
