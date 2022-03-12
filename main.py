@@ -318,7 +318,7 @@ if __name__ == '__main__':
     for node in graph.get_nodes():
         print(f"this is the node: {node} {node.id} and its edges, {node.get_edges()}")
 
-    # display_network(graph)
+    display_network(graph)
     # for node in graph.get_nodes():
     #     print(f"this {node.outgoing_edges}")
     # company priority 1

@@ -61,7 +61,7 @@ def construct_graph_and_buses():
                     dif = d2 - d1
                     edge_weight = dif.seconds // 60
 
-                    n1.add_edge(n2, edge_weight)
+                    n1.add_edge(n2, [edge_weight,0])
 
                     bus.add_destination(n1)
                     bus.add_destination(n2)
