@@ -310,7 +310,7 @@ def plot_graph(x, y1, y2, label1, label2, y_title, x_title, graph_title, x_names
 
 def reset_all_values(graph_to_reset, bus_list):
     graph_to_reset.reset_all_nodes()
-    for bus in busses:
+    for bus in bus_list:
         bus.reset()
 
 
