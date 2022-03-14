@@ -70,13 +70,14 @@ class Bus:
         self.capacity = self.original_capacity
         self.total_passengers_picked_up = 0
         self.total_profit_made = 0
+        self.modified_path = []
 
     def pickup_passengers_at_node(self, node):
         if node.id == self.path[-1].id:
             return
         index = self.path.index(node)
         whats_left_in_path = self.path[index+1:]
-        for passenger in node.passengers_waiting:
+        for passenger in node.passengers_list:
             if self.capacity > 0:
                 if passenger.destination in whats_left_in_path:
                     node.remove_passenger(passenger)
@@ -91,7 +92,7 @@ class Bus:
         index = self.path.index(node)
         whats_left_in_path = self.path[index+1:]
         for path_node in reversed(whats_left_in_path):
-            for passenger in node.passengers_waiting:
+            for passenger in node.passengers_list:
                 if self.capacity > 0:
                     if passenger.destination.id == path_node.id:
                         node.remove_passenger(passenger)
@@ -106,7 +107,7 @@ class Bus:
         index = self.path.index(node)
         whats_left_in_path = self.path[index+1:]
         for path_node in whats_left_in_path:
-            for passenger in node.passengers_waiting:
+            for passenger in node.passengers_list:
                 if self.capacity > 0:
                     if passenger.destination.id == path_node.id:
                         node.remove_passenger(passenger)
