@@ -1,4 +1,7 @@
+import copy
 import math
+
+from Passenger import Passenger
 
 
 class Node:
@@ -10,7 +13,7 @@ class Node:
         self.outgoing_edges = {}
 
         self.original_passengers = []
-        self.passengers_waiting = []
+        self.passengers_list = []
 
         # for shortest path
         self.dist = math.inf
@@ -21,6 +24,7 @@ class Node:
 
     def __str__(self):
         return self.name
+
 
     def set_drivers_on_edge_with_node(self, edge_node, x):
         if edge_node in self.outgoing_edges.keys():
@@ -50,14 +54,14 @@ class Node:
             print(node.name)
 
     def add_passenger(self, passenger):
-        self.passengers_waiting.append(passenger)
+        self.passengers_list.append(passenger)
         self.original_passengers.append(passenger)
 
     def get_passenger_amount(self):
-        return len(self.passengers_waiting)
+        return len(self.passengers_list)
 
     def reset_passengers(self):
-        self.passengers_waiting = self.original_passengers
+        self.passengers_list = self.original_passengers.copy()
 
     def get_weight_to_node(self, node):
         for edge_node in self.outgoing_edges:
@@ -71,9 +75,9 @@ class Node:
         return 0
 
     def remove_passenger_by_id(self, passenger_id):
-        for passenger in self.passengers_waiting:
+        for passenger in self.passengers_list:
             if passenger.passenger_id == passenger_id:
-                self.passengers_waiting.remove(passenger)
+                self.passengers_list.remove(passenger)
 
     def remove_passenger(self, passenger_to_remove):
-        self.passengers_waiting.remove(passenger_to_remove)
+        self.passengers_list.remove(passenger_to_remove)
