@@ -127,18 +127,20 @@ class Bus:
 
     def find_next_destination(self, current_node):
         # find next nearest destination
-        if len(self.destinations.keys()) > 0:
-            for i in range(len(self.path)):
-                if self.path[i].id == current_node.id:
-                    whats_left_in_original_path = self.path[i + 1:]
-            for path_node in whats_left_in_original_path:
-                if path_node in self.destinations.keys():
-                    return path_node
-
-            # new_list = sorted(self.destinations.keys(), key=lambda x: x.id)
-            # return new_list[0]
-        else:
-            return self.get_next_node_in_path(current_node)
+        for i in range(len(self.path)):
+            next_node = self.get_next_node_in_path(self.path[i])
+            if next_node in self.destinations.keys():
+                return next_node
+        # if len(self.destinations.keys()) > 0:
+        #     for i in range(len(self.path)):
+        #         if self.path[i] in self.destinations.keys():
+        #             return self.path[i]
+        #
+        #     # new_list = sorted(self.destinations.keys(), key=lambda x: x.id)
+        #     # return new_list[0]
+        # else:
+        #     print('here')
+        #     return self.get_next_node_in_path(current_node)
 
     def get_next_node_in_path(self, current_node):
         if current_node == self.path[-1]:

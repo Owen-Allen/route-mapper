@@ -177,7 +177,9 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
 
     _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_travel_cost, bus_list)
 
-
+    print("Passenger count: ")
+    for node in graph_travel_cost.nodes:
+        print(node.name + ': ' + str(node.get_passenger_amount()))
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -191,7 +193,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
                 _bus_modified.drop_off_passengers_at_node(_current_node)
                 _bus_modified.pickup_passengers_at_node_going_to_farthest_node_in_path(_current_node)
 
-            # get the next stop that the bus must make
+            # get the next stop that the bus must go to drop off its passengers
             _next_destination = _bus_modified.find_next_destination(_current_node)
 
             # get the shortest path to the next stop
@@ -226,14 +228,14 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
     print(_y2_travel_cost)
 
     # display graphs
-    display_network(graph_travel_cost)
-    x = np.arange(len(bus_list))
-    plot_graph(x, _y1_passengers, _y2_passengers, 'Original', 'Modified', 'Passengers picked up', 'Busses',
-               'Passengers picked up by busses', names)
-    plot_graph(x, _y1_profit, _y2_profit, 'Original', 'Modified', 'Profit made', 'Busses',
-               'Profit made by each bus', names)
-    plot_graph(x, _y1_travel_cost, _y2_travel_cost, 'Original', 'Modified', 'Cost', 'Busses',
-               'Travel Cost by busses', names)
+    # display_network(graph_travel_cost)
+    # x = np.arange(len(bus_list))
+    # plot_graph(x, _y1_passengers, _y2_passengers, 'Original', 'Modified', 'Passengers picked up', 'Busses',
+    #            'Passengers picked up by busses', names)
+    # plot_graph(x, _y1_profit, _y2_profit, 'Original', 'Modified', 'Profit made', 'Busses',
+    #            'Profit made by each bus', names)
+    # plot_graph(x, _y1_travel_cost, _y2_travel_cost, 'Original', 'Modified', 'Cost', 'Busses',
+    #            'Travel Cost by busses', names)
 
 
 def display_company_priority_profit(graph_for_profit, bus_list):
@@ -337,7 +339,10 @@ if __name__ == '__main__':
         if destination_number == 0:
             node_to_wait_at = graph.nodes[1]
         else:
-            node_to_wait_at = graph.nodes[randrange(start=0, stop=destination_number)]
+            node_index = destination_number
+            while node_index == destination_number:
+                node_index = randrange(start=0, stop=len(graph.nodes))
+            node_to_wait_at = graph.nodes[node_index]
 
         node_to_wait_at.add_passenger(p)
         passengers.append(p)
@@ -346,12 +351,15 @@ if __name__ == '__main__':
     bus_set = set(busses)
     non_duplicate_busses = list(bus_set)
 
+    # _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph, non_duplicate_busses)
+    # _y2_passengers, _y2_profit, _y2_travel_cost = get_original_bus_graph_details(graph, non_duplicate_busses)
+
 
     display_company_priority_travel_cost(graph, non_duplicate_busses)
 
     reset_all_values(graph, busses)
 
-    display_company_priority_profit(graph, non_duplicate_busses)
+    # display_company_priority_profit(graph, non_duplicate_busses)
     # display_company_priority_travel_cost(graph, busses)
     # display_company_priority_travel_cost(graph, busses)
     # _graph_travel_cost, _busses_travel_cost = construct_graph_and_buses()

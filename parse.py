@@ -58,7 +58,7 @@ def construct_graph_and_buses():
                     d2 = datetime.strptime(df_stop_times.loc[i + 1].at["departure_time"], "%H:%M:%S")
 
                     dif = d2 - d1
-                    edge_weight = dif.seconds // 60
+                    edge_weight = dif.seconds
 
                     n1.add_edge(n2, [edge_weight, 0])
 
