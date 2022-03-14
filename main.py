@@ -161,6 +161,12 @@ def get_original_bus_graph_details(graph_original, bus_list):
 
 
 def display_company_priority_travel_cost(graph_travel_cost, bus_list):
+
+    print("Passenger count: ")
+    for node in graph_travel_cost.nodes:
+        print(node.name + ': ' + str(node.get_passenger_amount()))
+
+
     names = []
     for bus in bus_list:
         names.append(bus.name)
@@ -171,9 +177,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
 
     _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_travel_cost, bus_list)
 
-    print("Passenger count: ")
-    for node in graph_travel_cost.nodes:
-        print(node.name + ': ' + str(node.get_passenger_amount()))
+
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -323,8 +327,26 @@ if __name__ == '__main__':
     # currently, issues with double values
     graph, busses = construct_graph_and_buses()
 
+    # generate passengers
+    passengers = []
+    for i in range(100000):
+        p = Passenger()
+        # random destination for each passenger
+        destination_number = randrange(start=0, stop=len(graph.nodes))
+        p.destination = graph.nodes[destination_number]
+        if destination_number == 0:
+            node_to_wait_at = graph.nodes[1]
+        else:
+            node_to_wait_at = graph.nodes[randrange(start=0, stop=destination_number)]
+
+        node_to_wait_at.add_passenger(p)
+        passengers.append(p)
+    graph.passengers = passengers
+
     bus_set = set(busses)
     non_duplicate_busses = list(bus_set)
+
+
     display_company_priority_travel_cost(graph, non_duplicate_busses)
 
     reset_all_values(graph, busses)

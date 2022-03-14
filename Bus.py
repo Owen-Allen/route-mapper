@@ -18,7 +18,6 @@ class Bus:
     def __str__(self):
         return self.name
 
-
     def print_bus(self):
         print(self.name + ": ")
         print("Destinations: ", end="")
@@ -76,7 +75,7 @@ class Bus:
         if node.id == self.path[-1].id:
             return
         index = self.path.index(node)
-        whats_left_in_path = self.path[index+1:]
+        whats_left_in_path = self.path[index + 1:]
         for passenger in node.passengers_list:
             if self.capacity > 0:
                 if passenger.destination in whats_left_in_path:
@@ -90,7 +89,7 @@ class Bus:
 
     def pickup_passengers_at_node_going_to_farthest_node_in_path(self, node):
         index = self.path.index(node)
-        whats_left_in_path = self.path[index+1:]
+        whats_left_in_path = self.path[index + 1:]
         for path_node in reversed(whats_left_in_path):
             for passenger in node.passengers_list:
                 if self.capacity > 0:
@@ -105,7 +104,7 @@ class Bus:
 
     def pickup_passengers_at_node_going_to_closest_node_in_path(self, node):
         index = self.path.index(node)
-        whats_left_in_path = self.path[index+1:]
+        whats_left_in_path = self.path[index + 1:]
         for path_node in whats_left_in_path:
             for passenger in node.passengers_list:
                 if self.capacity > 0:
@@ -120,15 +119,24 @@ class Bus:
 
     def drop_off_passengers_at_node(self, node):
         if len(self.destinations.keys()) > 0:
-            passengers_for_node = self.destinations[node]
-            amount_of_passengers = len(passengers_for_node)
-            self.capacity += amount_of_passengers
-            del self.destinations[node]
+            if node in self.destinations.keys():
+                passengers_for_node = self.destinations[node]
+                amount_of_passengers = len(passengers_for_node)
+                self.capacity += amount_of_passengers
+                del self.destinations[node]
 
     def find_next_destination(self, current_node):
+        # find next nearest destination
         if len(self.destinations.keys()) > 0:
-            new_list = sorted(self.destinations.keys(), key=lambda x: x.id)
-            return new_list[0]
+            for i in range(len(self.path)):
+                if self.path[i].id == current_node.id:
+                    whats_left_in_original_path = self.path[i + 1:]
+            for path_node in whats_left_in_original_path:
+                if path_node in self.destinations.keys():
+                    return path_node
+
+            # new_list = sorted(self.destinations.keys(), key=lambda x: x.id)
+            # return new_list[0]
         else:
             return self.get_next_node_in_path(current_node)
 
@@ -137,7 +145,7 @@ class Bus:
             return current_node
         for i in range(len(self.path)):
             if self.path[i].id == current_node.id:
-                return self.path[i+1]
+                return self.path[i + 1]
 
     def travel_to(self, start_node, end_node):
         weight = start_node.get_weight_to_node(end_node)
