@@ -322,11 +322,14 @@ if __name__ == '__main__':
 
     # currently, issues with double values
     graph, busses = construct_graph_and_buses()
-    display_company_priority_travel_cost(graph, busses)
+
+    bus_set = set(busses)
+    non_duplicate_busses = list(bus_set)
+    display_company_priority_travel_cost(graph, non_duplicate_busses)
 
     reset_all_values(graph, busses)
 
-    display_company_priority_profit(graph, busses)
+    display_company_priority_profit(graph, non_duplicate_busses)
     # display_company_priority_travel_cost(graph, busses)
     # display_company_priority_travel_cost(graph, busses)
     # _graph_travel_cost, _busses_travel_cost = construct_graph_and_buses()
