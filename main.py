@@ -1,11 +1,10 @@
 from random import randrange
 import networkx as nx
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from Passenger import Passenger
 from Shortest_path import *
 from parse import *
-
 
 def calculate_cost_of_path(path):
     total_travel_time = 0
@@ -94,6 +93,7 @@ def construct_test_graph():
 
 
 def display_network(graph_to_display):
+    plt.figure(num=None, dpi=50)
     graph_display = nx.DiGraph()
     edges = graph_to_display.get_all_graph_edges_with_weight()
 
@@ -102,8 +102,9 @@ def display_network(graph_to_display):
 
     # node layout
     pos = nx.planar_layout(graph_display)
+    # pos = nx.spring_layout(graph_display)
 
-    nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=1000)
+    nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=2000)
     edge_weight = nx.get_edge_attributes(graph_display, 'weight')
     nx.draw_networkx_edge_labels(graph_display, pos, edge_labels=edge_weight)
     plt.show()
@@ -153,9 +154,8 @@ def get_original_bus_graph_details(graph_original, bus_list):
         _y1_passengers.append(_bus_original.total_passengers_picked_up)
         _y1_profit.append(_bus_original.total_profit_made)
         _y1_travel_cost.append(_bus_original.total_travel_time)
-        _bus_original.reset()
 
-    graph_original.reset_all_nodes()
+    reset_all_values(graph_original, bus_list)
 
     return _y1_passengers, _y1_profit, _y1_travel_cost
 
@@ -291,6 +291,7 @@ def display_company_priority_profit(graph_for_profit, bus_list):
 
 def plot_graph(x, y1, y2, label1, label2, y_title, x_title, graph_title, x_names):
     figure, plot = plt.subplots()
+
     width = 0.40
     # plot data in grouped manner of bar type
     original_plot = plot.bar(x - width / 2, y1, width, label=label1)
@@ -305,6 +306,8 @@ def plot_graph(x, y1, y2, label1, label2, y_title, x_title, graph_title, x_names
     plot.bar_label(original_plot)
     plot.bar_label(modified_plot)
 
+
+    figure.tight_layout()
     plt.show()
 
 
@@ -315,10 +318,10 @@ def reset_all_values(graph_to_reset, bus_list):
 
 
 if __name__ == '__main__':
-    graph, busses = construct_test_graph()
+    # graph, busses = construct_test_graph()
 
     # currently, issues with double values
-    # graph, busses = construct_graph_and_buses()
+    graph, busses = construct_graph_and_buses()
     display_company_priority_travel_cost(graph, busses)
 
     reset_all_values(graph, busses)

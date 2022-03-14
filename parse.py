@@ -63,7 +63,7 @@ def construct_graph_and_buses():
                     n1.add_edge(n2, [edge_weight, 0])
 
                     bus.add_node_to_path(n1)
-                    bus.add_node_to_path(n2)
+                    # bus.add_node_to_path(n2)
 
                 buses.append(bus)
     return G, buses
