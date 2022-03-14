@@ -228,14 +228,14 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
     print(_y2_travel_cost)
 
     # display graphs
-    # display_network(graph_travel_cost)
-    # x = np.arange(len(bus_list))
-    # plot_graph(x, _y1_passengers, _y2_passengers, 'Original', 'Modified', 'Passengers picked up', 'Busses',
-    #            'Passengers picked up by busses', names)
-    # plot_graph(x, _y1_profit, _y2_profit, 'Original', 'Modified', 'Profit made', 'Busses',
-    #            'Profit made by each bus', names)
-    # plot_graph(x, _y1_travel_cost, _y2_travel_cost, 'Original', 'Modified', 'Cost', 'Busses',
-    #            'Travel Cost by busses', names)
+    display_network(graph_travel_cost)
+    x = np.arange(len(bus_list))
+    plot_graph(x, _y1_passengers, _y2_passengers, 'Original', 'Modified', 'Passengers picked up', 'Busses',
+               'Passengers picked up by busses', names)
+    plot_graph(x, _y1_profit, _y2_profit, 'Original', 'Modified', 'Profit made', 'Busses',
+               'Profit made by each bus', names)
+    plot_graph(x, _y1_travel_cost, _y2_travel_cost, 'Original', 'Modified', 'Cost', 'Busses',
+               'Travel Cost by busses', names)
 
 
 def display_company_priority_profit(graph_for_profit, bus_list):
