@@ -37,10 +37,10 @@ def construct_graph_and_buses():
             trip_stops = df_stop_times.loc[df_stop_times['trip_id'] == trip_id]
             
             bus = Bus(name= str(route) + trip.at["trip_headsign"])
-
+            path = []
             for i in trip_stops.index:
 
-                if i != trip_stops.index[len(trip_stops.index) - 1]:
+                if i != trip_stops.index[len(trip_stops.index) - 1]: # not at last stop
                     # Create node i and node i + 1 if not already created
                     id_1 = df_stop_times.loc[i].at["stop_id"]
                     n1 = G.get_node_with_id(id_1)
@@ -59,14 +59,21 @@ def construct_graph_and_buses():
                     d2 = datetime.strptime(df_stop_times.loc[i + 1].at["departure_time"], "%H:%M:%S")
 
                     dif = d2 - d1
-                    edge_weight = dif.seconds // 60
+                    edge_weight = dif.seconds
+
+                    if edge_weight == 0:
+                        edge_weight = 30
 
                     n1.add_edge(n2, [edge_weight,0])
 
-                    bus.add_destination(n1)
-                    bus.add_destination(n2)
-                
-                buses.append(bus)
+                    path.append(n1)
+                else:
+                    id_1 = df_stop_times.loc[i].at["stop_id"]
+                    n = G.get_node_with_id(id_1)
+                    path.append(n)
+
+            bus.set_path(path)
+            buses.append(bus)
     return G, buses
                     
 
