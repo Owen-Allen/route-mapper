@@ -55,10 +55,10 @@ class Bus:
         if len(self.modified_path) > 0:
             path_to_use = self.modified_path
         for i in range(len(path_to_use)):
-            if path_to_use[i].id == path_to_use[-1].id:
+            if path_to_use[i].code == path_to_use[-1].code:
                 return False
-            if path_to_use[i].id == first_node.id:
-                if path_to_use[i + 1].id == second_node.id:
+            if path_to_use[i].code == first_node.code:
+                if path_to_use[i + 1].code == second_node.code:
                     return True
         return False
 
@@ -72,7 +72,7 @@ class Bus:
         self.modified_path = []
 
     def pickup_passengers_at_node(self, node):
-        if node.id == self.path[-1].id:
+        if node.code == self.path[-1].code:
             return
         index = self.path.index(node)
         whats_left_in_path = self.path[index + 1:]
@@ -93,7 +93,7 @@ class Bus:
         for path_node in reversed(whats_left_in_path):
             for passenger in node.passengers_list:
                 if self.capacity > 0:
-                    if passenger.destination.id == path_node.id:
+                    if passenger.destination.code == path_node.code:
                         node.remove_passenger(passenger)
                         if passenger.destination not in self.destinations.keys():
                             self.add_destination(passenger.destination)
@@ -108,7 +108,7 @@ class Bus:
         for path_node in whats_left_in_path:
             for passenger in node.passengers_list:
                 if self.capacity > 0:
-                    if passenger.destination.id == path_node.id:
+                    if passenger.destination.code == path_node.code:
                         node.remove_passenger(passenger)
                         if passenger.destination not in self.destinations.keys():
                             self.add_destination(passenger.destination)
@@ -136,7 +136,7 @@ class Bus:
         #         if self.path[i] in self.destinations.keys():
         #             return self.path[i]
         #
-        #     # new_list = sorted(self.destinations.keys(), key=lambda x: x.id)
+        #     # new_list = sorted(self.destinations.keys(), key=lambda x: x.code)
         #     # return new_list[0]
         # else:
         #     print('here')
@@ -146,7 +146,7 @@ class Bus:
         if current_node == self.path[-1]:
             return current_node
         for i in range(len(self.path)):
-            if self.path[i].id == current_node.id:
+            if self.path[i].code == current_node.code:
                 return self.path[i + 1]
 
     def travel_to(self, start_node, end_node):

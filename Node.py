@@ -6,9 +6,10 @@ from Passenger import Passenger
 
 class Node:
 
-    def __init__(self, name='', id=''):
+    def __init__(self, name='', code=''):
         self.name = name
-        self.id = id
+        self.code = code
+        self.pos = (1,1)
         # node, [weight of edge, amount of drivers on edge]
         self.outgoing_edges = {}
 
@@ -65,7 +66,7 @@ class Node:
 
     def get_weight_to_node(self, node):
         for edge_node in self.outgoing_edges:
-            if edge_node.id == node.id:
+            if edge_node.code == node.code:
                 weight = self.outgoing_edges[edge_node][0]
                 if isinstance(weight, int):
                     return weight

@@ -30,9 +30,18 @@ class Graph:
             if node.name == name:
                 return node
 
-    def get_node_with_id(self, id):
+
+    def get_node_with_code(self, code):
         for node in self.nodes:
-            if node.id == id:
+            if node.code == code:
+                return node
+        return None
+
+    def get_node(self, name, code):
+        for node in self.nodes:
+            if node.name == name:
+                return node
+            elif node.code == code:
                 return node
         return None
 
@@ -41,8 +50,14 @@ class Graph:
         for node in self.nodes:
             for edge_node in node.outgoing_edges:
                 weight = node.get_weight_to_node(edge_node)
-                edge_to_add = [node.id, edge_node.id, weight]
+                edge_to_add = [node.code, edge_node.code, weight]
                 edges.append(edge_to_add)
         return edges
+
+    def get_all_node_locations(self):
+        locations = dict()
+        for node in self.nodes:
+            locations[node.code] = node.pos
+        return locations
 
 

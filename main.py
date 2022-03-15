@@ -97,11 +97,16 @@ def display_network(graph_to_display):
     graph_display = nx.DiGraph()
     edges = graph_to_display.get_all_graph_edges_with_weight()
 
+    print(edges)
+
     # add edges to graph
     graph_display.add_weighted_edges_from(edges)
 
     # node layout
-    pos = nx.planar_layout(graph_display)
+    # pos = nx.planar_layout(graph_display) # COMMENTED OUT BY OWEN
+    pos = graph_to_display.get_all_node_locations()
+    print(pos)
+    # pos = nx.get_node_attributes(graph_to_display, 'pos')
     # pos = nx.spring_layout(graph_display)
 
     nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=2000)
@@ -187,9 +192,9 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         _current_node = _start_node
         _next_destination = _start_node
         _final_destination = _bus_modified.path[-1]
-        while _current_node.id != _final_destination.id:
+        while _current_node.code != _final_destination.code:
             _bus_modified.modified_path.append(_current_node)
-            if _current_node.id == _next_destination.id:
+            if _current_node.code == _next_destination.code:
                 _bus_modified.drop_off_passengers_at_node(_current_node)
                 _bus_modified.pickup_passengers_at_node_going_to_farthest_node_in_path(_current_node)
 
@@ -255,9 +260,9 @@ def display_company_priority_profit(graph_for_profit, bus_list):
         current_node = start_node
         next_destination = start_node
         final_destination = bus.path[-1]
-        while current_node.id != final_destination.id:
+        while current_node.code != final_destination.code:
             bus.modified_path.append(current_node)
-            if current_node.id == next_destination.id:
+            if current_node.code == next_destination.code:
                 bus.drop_off_passengers_at_node(current_node)
                 bus.pickup_passengers_at_node_going_to_closest_node_in_path(current_node)
 
@@ -327,7 +332,9 @@ if __name__ == '__main__':
     # graph, busses = construct_test_graph()
 
     # currently, issues with double values
-    graph, busses = construct_graph_and_buses()
+    # graph, busses = construct_graph_and_buses()
+    graph, busses = construct_g_b()
+
 
     # generate passengers
     passengers = []
