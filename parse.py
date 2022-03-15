@@ -28,7 +28,9 @@ ROUTE_DIRECTIONS = {
 # 2484,"BANK / GLOUCESTER"
 
 TRIP_IDS = {
-    7: ["83445871-JAN22-JANDA22-Weekday-03", "83445877-JAN22-JANDA22-Weekday-03"], 
+    # 7: ["83445877-JAN22-JANDA22-Weekday-03"]
+
+    7: ["83445871-JAN22-JANDA22-Weekday-03", "83445877-JAN22-JANDA22-Weekday-03"],
     6: ["83479758-JAN22-JANDA22-Weekday-04", "83479759-JAN22-JANDA22-Weekday-04"],
     10: ["83480772-JAN22-JANDA22-Weekday-04", "83480774-JAN22-JANDA22-Weekday-04"]
 }
@@ -51,10 +53,10 @@ def get_stop_location(stop):
     return (lon, lat)
 
 def create_nodes_from_stops(stops_for_trip, G):
-    nodes = []
+    bus_path = []
     for index, cur_stop in stops_for_trip.iterrows():
         if index == stops_for_trip.index[-1]: # last stop
-            print("LAST")
+            # print("LAST")
             break
         else:
             next_stop = stops_for_trip.loc[index + 1]
@@ -69,13 +71,17 @@ def create_nodes_from_stops(stops_for_trip, G):
                 cur_node = Node(name=cur_name, code=cur_code)
                 cur_node.pos = get_stop_location(cur_stop)
                 G.add_node(cur_node)
-                nodes.append(cur_node)
+
+            if cur_node not in bus_path:
+                bus_path.append(cur_node)
 
             if next_node is None:
                 next_node = Node(name=next_name, code=next_code)
                 G.add_node(next_node)
                 next_node.pos = get_stop_location(next_stop)
-                nodes.append(next_node)
+            
+            # if next_node not in bus_path:
+            #     bus_path.append(next_node)
         
             if cur_node.code != next_node.code:
                 d1 = datetime.strptime(cur_stop["departure_time"], "%H:%M:%S")
@@ -87,9 +93,7 @@ def create_nodes_from_stops(stops_for_trip, G):
                 if(edge_weight == 0):
                     edge_weight = 30
                 cur_node.add_edge(next_node, [edge_weight, 0])
-    return nodes
-
-            
+    return bus_path
 
 def construct_g_b():
     G = Graph()
@@ -176,10 +180,10 @@ def construct_graph_and_buses():
                     n = G.get_node_with_id(id)
                     path.append(n)
             
-            print(f"this is the path {path}")
+            # print(f"this is the path {path}")
             bus.set_path(path)
             buses.append(bus)
-            print(bus)
+            # print(bus)
             break
     return G, buses
 
