@@ -11,6 +11,7 @@ class Bus:
         self.capacity = capacity
         self.total_passengers_picked_up = 0
         self.total_profit_made = 0
+        self.average_stop_time = 10
 
     def __repr__(self):
         return self.name
@@ -118,6 +119,7 @@ class Bus:
                         self.total_profit_made += passenger.profit
 
     def drop_off_passengers_at_node(self, node):
+        self.total_travel_time += self.average_stop_time
         if len(self.destinations.keys()) > 0:
             if node in self.destinations.keys():
                 passengers_for_node = self.destinations[node]
@@ -127,11 +129,13 @@ class Bus:
 
     def find_next_destination(self, current_node):
         # find next nearest destination
-        for i in range(len(self.path)):
-            next_node = self.get_next_node_in_path(self.path[i])
-            if next_node in self.destinations.keys():
-                return next_node
-        # if len(self.destinations.keys()) > 0:
+        if len(self.destinations.keys()) > 0:
+            for i in range(len(self.path)):
+                next_node = self.get_next_node_in_path(self.path[i])
+                if next_node in self.destinations.keys():
+                    return next_node
+        else:
+            return self.get_next_node_in_path(current_node)
         #     for i in range(len(self.path)):
         #         if self.path[i] in self.destinations.keys():
         #             return self.path[i]

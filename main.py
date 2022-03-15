@@ -153,7 +153,7 @@ def get_original_bus_graph_details(graph_original, bus_list):
         for path_node in _bus_original.path:
             _bus_original.drop_off_passengers_at_node(path_node)
             _bus_original.pickup_passengers_at_node(path_node)
-        _bus_original.total_travel_time = calculate_cost_of_path(_bus_original.path)
+        _bus_original.total_travel_time += calculate_cost_of_path(_bus_original.path)
 
     for _bus_original in bus_list:
         _y1_passengers.append(_bus_original.total_passengers_picked_up)
@@ -182,9 +182,9 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
 
     _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_travel_cost, bus_list)
 
-    print("Passenger count: ")
-    for node in graph_travel_cost.nodes:
-        print(node.name + ': ' + str(node.get_passenger_amount()))
+    # print("Passenger count: ")
+    # for node in graph_travel_cost.nodes:
+    #     print(node.name + ': ' + str(node.get_passenger_amount()))
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -213,7 +213,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         # drop off passengers at final destination of bus
         _bus_modified.drop_off_passengers_at_node(_current_node)
         _bus_modified.modified_path.append(_final_destination)
-        _bus_modified.total_travel_time = calculate_cost_of_path(_bus_modified.modified_path)
+        _bus_modified.total_travel_time += calculate_cost_of_path(_bus_modified.modified_path)
 
     update_path_costs(graph_travel_cost, bus_list)
 
@@ -355,14 +355,14 @@ if __name__ == '__main__':
         passengers.append(p)
     graph.passengers = passengers
 
-    bus_set = set(busses)
-    non_duplicate_busses = list(bus_set)
+    # bus_set = set(busses)
+    # non_duplicate_busses = list(bus_set)
 
     # _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph, non_duplicate_busses)
     # _y2_passengers, _y2_profit, _y2_travel_cost = get_original_bus_graph_details(graph, non_duplicate_busses)
 
 
-    display_company_priority_travel_cost(graph, non_duplicate_busses)
+    display_company_priority_travel_cost(graph, busses)
 
     reset_all_values(graph, busses)
 

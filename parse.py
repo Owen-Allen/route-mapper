@@ -92,7 +92,7 @@ def create_nodes_from_stops(stops_for_trip, G):
 
                 if(edge_weight == 0):
                     edge_weight = 30
-                cur_node.add_edge(next_node, [edge_weight, 0])
+                cur_node.add_edge(next_node, [lambda edge_weight: edge_weight, 0])
     return bus_path
 
 def construct_g_b():
