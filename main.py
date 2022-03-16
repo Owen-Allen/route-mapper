@@ -94,19 +94,17 @@ def construct_test_graph():
 
 
 def display_network(graph_to_display):
-    plt.figure(num=None, dpi=50)
+    plt.figure(num=None, dpi=70)
     graph_display = nx.DiGraph()
     edges = graph_to_display.get_all_graph_edges_with_weight()
 
-    # print(edges)
 
     # add edges to graph
     graph_display.add_weighted_edges_from(edges)
 
     # node layout
-    pos = nx.planar_layout(graph_display);
-    # pos = graph_to_display.get_all_node_locations()
-    # print(pos)
+    # pos = nx.planar_layout(graph_display)
+    pos = graph_to_display.get_all_node_locations()
     # pos = nx.get_node_attributes(graph_to_display, 'pos')
 
     nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=2000)
@@ -167,9 +165,6 @@ def get_original_bus_graph_details(graph_original, bus_list):
 
 
 def display_company_priority_travel_cost(graph_travel_cost, bus_list):
-    # print("Passenger count: ")
-    # for node in graph_travel_cost.nodes:
-    #     print(node.name + ': ' + str(node.get_passenger_amount()))
 
     _y2_passengers = []
     _y2_profit = []
@@ -177,9 +172,6 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
 
     _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_travel_cost, bus_list)
 
-    # print("Passenger count: ")
-    # for node in graph_travel_cost.nodes:
-    #     print(node.name + ': ' + str(node.get_passenger_amount()))
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -219,10 +211,6 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         _bus_modified.modified_path.append(_final_destination)
         _bus_modified.total_travel_time += calculate_cost_of_path(_bus_modified.modified_path)
 
-        if _bus_modified.name == "7 St-Laurent":
-            print("MODIFIED PATH")
-            print_path(_bus_modified.modified_path)
-
     update_path_costs(graph_travel_cost, bus_list)
 
     for _bus_modified in bus_list:
@@ -255,9 +243,6 @@ def display_company_priority_profit(graph_for_profit, bus_list):
 
     _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_for_profit, bus_list)
 
-    # print("Passenger count: ")
-    # for node in graph_travel_cost.nodes:
-    #     print(node.name + ': ' + str(node.get_passenger_amount()))
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -281,8 +266,6 @@ def display_company_priority_profit(graph_for_profit, bus_list):
                                                                      _next_destination)
 
             _current_node.add_drivers_between_all_nodes_in_path(modified_path)
-
-            print(modified_path)
 
             if len(modified_path) < 2:
                 print("NO PATH TO NODE " + _next_destination.name + " FROM NODE " + _current_node.name)
@@ -410,9 +393,9 @@ if __name__ == '__main__':
     for bus in busses:
         names.append(bus.name)
 
-    for bus in busses:
-        if bus.name == "7 St-Laurent":
-            print_path(bus.path)
+    # for bus in busses:
+    #     if bus.name == "7 St-Laurent":
+    #         print_path(bus.path)
 
     y_original_travel = []
     y_modified_travel = []
@@ -504,4 +487,4 @@ if __name__ == '__main__':
     update_path_costs(graph, busses)
     display_network(graph)
     print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
-    # print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
+    print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
