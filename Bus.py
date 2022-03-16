@@ -119,8 +119,9 @@ class Bus:
                         self.total_profit_made += passenger.profit
 
     def drop_off_passengers_at_node(self, node):
-        self.total_travel_time += self.average_stop_time
+
         if len(self.destinations.keys()) > 0:
+            self.total_travel_time += self.average_stop_time
             if node in self.destinations.keys():
                 passengers_for_node = self.destinations[node]
                 amount_of_passengers = len(passengers_for_node)
