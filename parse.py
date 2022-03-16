@@ -10,7 +10,7 @@ from datetime import datetime
 # ROUTE_NUMBERS = [6, 7, 10, 11, 14]
 
 
-ROUTE_NUMBERS = [7, 6, 10]
+ROUTE_NUMBERS = [7, 6, 10, 14]
 
 
 ROUTE_DIRECTIONS = {
@@ -28,11 +28,10 @@ ROUTE_DIRECTIONS = {
 # 2484,"BANK / GLOUCESTER"
 
 TRIP_IDS = {
-    # 7: ["83445877-JAN22-JANDA22-Weekday-03"]
-
     7: ["83445871-JAN22-JANDA22-Weekday-03", "83445877-JAN22-JANDA22-Weekday-03"],
     6: ["83479758-JAN22-JANDA22-Weekday-04", "83479759-JAN22-JANDA22-Weekday-04"],
-    10: ["83480772-JAN22-JANDA22-Weekday-04", "83480774-JAN22-JANDA22-Weekday-04"]
+    10: ["83480772-JAN22-JANDA22-Weekday-04", "83480774-JAN22-JANDA22-Weekday-04"],
+    14: ["83446728-JAN22-JANDA22-Weekday-03", "83447050-JAN22-JANDA22-Weekday-03"]
 }
 
 # TRIP_IDS = {
@@ -83,7 +82,7 @@ def create_nodes_from_stops(stops_for_trip, G):
             # if next_node not in bus_path:
             #     bus_path.append(next_node)
         
-            if cur_node.code != next_node.code:
+            if cur_node.code != next_node.code: # no self loops
                 d1 = datetime.strptime(cur_stop["departure_time"], "%H:%M:%S")
                 d2 = datetime.strptime(next_stop["departure_time"], "%H:%M:%S")
 
@@ -92,7 +91,12 @@ def create_nodes_from_stops(stops_for_trip, G):
 
                 if(edge_weight == 0):
                     edge_weight = 30
-                cur_node.add_edge(next_node, [lambda edge_weight: edge_weight, 0])
+
+                if "BANK" in cur_name or "SOMERSET" in cur_name:
+                    # CONGESTION AFFECTED PATH
+                    cur_node.add_edge(next_node, [lambda x: edge_weight +(x * edge_weight / 5), 0])
+                else:
+                    cur_node.add_edge(next_node, [edge_weight, 0])
     return bus_path
 
 def construct_g_b():
@@ -115,7 +119,9 @@ def construct_g_b():
 
             bus_path = create_nodes_from_stops(stops_for_trip, G)
             bus.set_path(bus_path)
-            buses.append(bus)
+
+            if route != 14:
+                buses.append(bus)
     
     return G, buses
 
@@ -277,10 +283,15 @@ def name_stops(g):
 if __name__ == "__main__":
     graph, buses = construct_g_b()
 
-    for bus in buses:
-        print(bus)
-        for node in bus.path:
-            print(f"{node}, edges {node.outgoing_edges}")
+
+    # for bus in buses:
+        # print(bus)
+        # for node in bus.path:
+            # print(f"{node}, edges {node.outgoing_edges}")
+
+    for node in graph.nodes:
+        if len(node.outgoing_edges) == 0:
+            print(node.name)
 
 
 
