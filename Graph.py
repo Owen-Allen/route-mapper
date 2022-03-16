@@ -49,7 +49,7 @@ class Graph:
         edges = []
         for node in self.nodes:
             for edge_node in node.outgoing_edges:
-                weight = node.get_weight_to_node(edge_node)
+                weight = node.get_weight_to_node_without_driver_increase(edge_node)
                 edge_to_add = [node.code, edge_node.code, weight]
                 edges.append(edge_to_add)
         return edges

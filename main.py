@@ -75,7 +75,7 @@ def construct_test_graph():
     # generate graph
     node_a.add_edge(node_b, [10, 0])
     node_a.add_edge(node_d, [7, 0])
-    node_a.add_edge(node_z, [lambda x: x, 0])
+    node_a.add_edge(node_z, [lambda x: x * 1000, 0])
 
     node_d.add_edge(node_e, [7, 0])
 
@@ -83,8 +83,8 @@ def construct_test_graph():
 
     node_c.add_edge(node_e, [lambda x: x / 2, 0])
 
-    node_z.add_edge(node_c, [lambda x: x, 0])
-    node_z.add_edge(node_e, [lambda x: x, 0])
+    node_z.add_edge(node_c, [lambda x: x * 100, 0])
+    node_z.add_edge(node_e, [lambda x: x * 100, 0])
 
     graph_test.set_nodes(nodes)
     busses_test.append(bus1)
@@ -104,7 +104,8 @@ def display_network(graph_to_display):
     graph_display.add_weighted_edges_from(edges)
 
     # node layout
-    pos = graph_to_display.get_all_node_locations()
+    pos = nx.planar_layout(graph_display);
+    # pos = graph_to_display.get_all_node_locations()
     # print(pos)
     # pos = nx.get_node_attributes(graph_to_display, 'pos')
 
@@ -187,7 +188,6 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         _next_destination = _start_node
         _final_destination = _bus_modified.path[-1]
 
-
         while _current_node.code != _final_destination.code:
 
             _bus_modified.modified_path.append(_current_node)
@@ -205,7 +205,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
             _current_node.add_drivers_between_all_nodes_in_path(modified_path)
 
             # travel to next stop
-            path_skipped = modified_path[1:len(modified_path)-1]
+            path_skipped = modified_path[1:len(modified_path) - 1]
             for path_skipped_node in path_skipped:
                 _bus_modified.modified_path.append(path_skipped_node)
 
@@ -222,10 +222,8 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         if _bus_modified.name == "7 St-Laurent":
             print("MODIFIED PATH")
             print_path(_bus_modified.modified_path)
-            
-    update_path_costs(graph_travel_cost, bus_list)
 
-    
+    update_path_costs(graph_travel_cost, bus_list)
 
     for _bus_modified in bus_list:
         _y2_passengers.append(_bus_modified.total_passengers_picked_up)
@@ -287,7 +285,7 @@ def display_company_priority_profit(graph_for_profit, bus_list):
             print(modified_path)
 
             if len(modified_path) < 2:
-                print("NO PATH TO NODE " + next_destination.name + " FROM NODE " + current_node.name)
+                print("NO PATH TO NODE " + _next_destination.name + " FROM NODE " + _current_node.name)
             # travel to next stop
             path_skipped = modified_path[1:len(modified_path) - 1]
             for path_skipped_node in path_skipped:
@@ -416,7 +414,6 @@ if __name__ == '__main__':
         if bus.name == "7 St-Laurent":
             print_path(bus.path)
 
-
     y_original_travel = []
     y_modified_travel = []
 
@@ -504,6 +501,7 @@ if __name__ == '__main__':
 
         reset_all_values(graph, busses)
 
+    update_path_costs(graph, busses)
     display_network(graph)
     print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
-    print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
+    # print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")

@@ -77,9 +77,23 @@ class Node:
                 if isinstance(weight, int):
                     return weight
                 else:
+                    drivers_on_path = self.outgoing_edges[edge_node][1] + 1  # include yourself on the path
+                    weight_on_path = weight(drivers_on_path)
+                    return weight_on_path
+        return None
+
+
+    def get_weight_to_node_without_driver_increase(self, node):
+        for edge_node in self.outgoing_edges:
+            if edge_node.code == node.code:
+                weight = self.outgoing_edges[edge_node][0]
+                if isinstance(weight, int):
+                    return weight
+                else:
                     drivers_on_path = self.outgoing_edges[edge_node][1]
-                    return weight(drivers_on_path)
-        return 0
+                    weight_on_path = weight(drivers_on_path)
+                    return weight_on_path
+        return None
 
     def remove_passenger_by_id(self, passenger_id):
         for passenger in self.passengers_list:

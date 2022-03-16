@@ -10,6 +10,7 @@ def find_minimum_dist(nodes):
     lowest_dist_node = None
     for node in nodes:
         if node.dist < lowest_dist:
+            lowest_dist = node.dist
             lowest_dist_node = node
     return lowest_dist_node
 
