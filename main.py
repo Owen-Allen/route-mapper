@@ -97,7 +97,7 @@ def display_network(graph_to_display):
     graph_display = nx.DiGraph()
     edges = graph_to_display.get_all_graph_edges_with_weight()
 
-    print(edges)
+    # print(edges)
 
     # add edges to graph
     graph_display.add_weighted_edges_from(edges)
@@ -105,7 +105,7 @@ def display_network(graph_to_display):
     # node layout
     # pos = nx.planar_layout(graph_display) # COMMENTED OUT BY OWEN
     pos = graph_to_display.get_all_node_locations()
-    print(pos)
+    # print(pos)
     # pos = nx.get_node_attributes(graph_to_display, 'pos')
     # pos = nx.spring_layout(graph_display)
 
@@ -215,7 +215,13 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         _bus_modified.modified_path.append(_final_destination)
         _bus_modified.total_travel_time += calculate_cost_of_path(_bus_modified.modified_path)
 
+        if _bus_modified.name == "7 St-Laurent":
+            print("MODIFIED PATH")
+            print_path(_bus_modified.modified_path)
+            
     update_path_costs(graph_travel_cost, bus_list)
+
+    
 
     for _bus_modified in bus_list:
         _y2_passengers.append(_bus_modified.total_passengers_picked_up)
@@ -334,6 +340,11 @@ if __name__ == '__main__':
     # currently, issues with double values
     # graph, busses = construct_graph_and_buses()
     graph, busses = construct_g_b()
+
+
+    for bus in busses:
+        if bus.name == "7 St-Laurent":
+            print_path(bus.path)
 
 
     # generate passengers
