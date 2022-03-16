@@ -67,7 +67,7 @@ def construct_test_graph():
 
     # generate busses
     bus1 = Bus("Bus 1")
-    bus1.set_path([node_a, node_b, node_c, node_e])
+    bus1.set_path([node_a, node_c, node_b, node_e])
 
     bus2 = Bus("Bus 2")
     bus2.set_path([node_a, node_d, node_e])
@@ -217,15 +217,16 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         _y2_profit.append(_bus_modified.total_profit_made)
         _y2_travel_cost.append(_bus_modified.total_travel_time)
 
-    print('Passengers picked up: ')
-    print(_y1_passengers)
-    print(_y2_passengers)
-    print('Profit made: ')
-    print(_y1_profit)
-    print(_y2_profit)
-    print('Travel Cost: ')
-    print(_y1_travel_cost)
-    print(_y2_travel_cost)
+    # graph details
+    # print('Passengers picked up: ')
+    # print(_y1_passengers)
+    # print(_y2_passengers)
+    # print('Profit made: ')
+    # print(_y1_profit)
+    # print(_y2_profit)
+    # print('Travel Cost: ')
+    # print(_y1_travel_cost)
+    # print(_y2_travel_cost)
 
     return _y1_passengers, _y1_profit, _y1_travel_cost, _y2_passengers, _y2_profit, _y2_travel_cost
 
@@ -254,6 +255,9 @@ def display_company_priority_profit(graph_for_profit, bus_list):
 
             # get the shortest path to the next stop
             modified_path = find_shortest_path_from_source_to_target(graph_for_profit, current_node, next_destination)
+
+            if len(modified_path) < 2:
+                print("NO PATH TO NODE " + next_destination.name + " FROM NODE " + current_node.name)
             # travel to next stop
             next_node_to_travel_to = modified_path[1]
             current_node.add_drivers_on_edge_with_node(next_node_to_travel_to, 1)
@@ -352,11 +356,11 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
 
 
 if __name__ == '__main__':
-    # graph, busses = construct_test_graph()
+    graph, busses = construct_test_graph()
 
     # currently, issues with double values
     # graph, busses = construct_graph_and_buses()
-    graph, busses = construct_g_b()
+    # graph, busses = construct_g_b()
 
     names = []
     for bus in busses:
@@ -451,4 +455,3 @@ if __name__ == '__main__':
     display_network(graph)
     print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
     print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
-
