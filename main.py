@@ -67,7 +67,7 @@ def construct_test_graph():
 
     # generate busses
     bus1 = Bus("Bus 1")
-    bus1.set_path([node_a, node_c, node_b, node_e])
+    bus1.set_path([node_a, node_b, node_c, node_e])
 
     bus2 = Bus("Bus 2")
     bus2.set_path([node_a, node_d, node_e])
@@ -187,7 +187,10 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
         _current_node = _start_node
         _next_destination = _start_node
         _final_destination = _bus_modified.path[-1]
+
+
         while _current_node.code != _final_destination.code:
+
             _bus_modified.modified_path.append(_current_node)
             if _current_node.code == _next_destination.code:
                 _bus_modified.drop_off_passengers_at_node(_current_node)
@@ -199,9 +202,16 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
             # get the shortest path to the next stop
             modified_path = find_shortest_path_from_source_to_target(graph_travel_cost, _current_node,
                                                                      _next_destination)
+
+            _current_node.add_drivers_between_all_nodes_in_path(modified_path)
+
             # travel to next stop
-            next_node_to_travel_to = modified_path[1]
-            _current_node.add_drivers_on_edge_with_node(next_node_to_travel_to, 1)
+            path_skipped = modified_path[1:len(modified_path)-1]
+            for path_skipped_node in path_skipped:
+                _bus_modified.modified_path.append(path_skipped_node)
+
+            next_node_to_travel_to = modified_path[-1]
+
             # bus arrived at stop
             _current_node = next_node_to_travel_to
 
@@ -232,50 +242,77 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
 
 
 def display_company_priority_profit(graph_for_profit, bus_list):
-    y2_passengers = []
-    y2_profit = []
-    y2_travel_cost = []
+    # print("Passenger count: ")
+    # for node in graph_travel_cost.nodes:
+    #     print(node.name + ': ' + str(node.get_passenger_amount()))
 
-    y1_passengers, y1_profit, y1_travel_cost = get_original_bus_graph_details(graph_for_profit, bus_list)
+    _y2_passengers = []
+    _y2_profit = []
+    _y2_travel_cost = []
+
+    _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_for_profit, bus_list)
+
+    # print("Passenger count: ")
+    # for node in graph_travel_cost.nodes:
+    #     print(node.name + ': ' + str(node.get_passenger_amount()))
 
     # modified bus route
-    for bus in bus_list:
-        start_node = bus.path[0]
-        current_node = start_node
-        next_destination = start_node
-        final_destination = bus.path[-1]
-        while current_node.code != final_destination.code:
-            bus.modified_path.append(current_node)
-            if current_node.code == next_destination.code:
-                bus.drop_off_passengers_at_node(current_node)
-                bus.pickup_passengers_at_node_going_to_closest_node_in_path(current_node)
+    for _bus_modified in bus_list:
+        _start_node = _bus_modified.path[0]
+        _current_node = _start_node
+        _next_destination = _start_node
+        _final_destination = _bus_modified.path[-1]
 
-            # get the next stop that the bus must make
-            next_destination = bus.find_next_destination(current_node)
+        while _current_node.code != _final_destination.code:
+
+            _bus_modified.modified_path.append(_current_node)
+            if _current_node.code == _next_destination.code:
+                _bus_modified.drop_off_passengers_at_node(_current_node)
+                _bus_modified.pickup_passengers_at_node_going_to_closest_node_in_path(_current_node)
+
+            # get the next stop that the bus must go to drop off its passengers
+            _next_destination = _bus_modified.find_next_destination(_current_node)
 
             # get the shortest path to the next stop
-            modified_path = find_shortest_path_from_source_to_target(graph_for_profit, current_node, next_destination)
+            modified_path = find_shortest_path_from_source_to_target(graph_for_profit, _current_node,
+                                                                     _next_destination)
 
-            if len(modified_path) < 2:
-                print("NO PATH TO NODE " + next_destination.name + " FROM NODE " + current_node.name)
+            _current_node.add_drivers_between_all_nodes_in_path(modified_path)
+
             # travel to next stop
-            next_node_to_travel_to = modified_path[1]
-            current_node.add_drivers_on_edge_with_node(next_node_to_travel_to, 1)
+            path_skipped = modified_path[1:len(modified_path) - 1]
+            for path_skipped_node in path_skipped:
+                _bus_modified.modified_path.append(path_skipped_node)
+
+            next_node_to_travel_to = modified_path[-1]
+
             # bus arrived at stop
-            current_node = next_node_to_travel_to
+            _current_node = next_node_to_travel_to
 
         # drop off passengers at final destination of bus
-        bus.drop_off_passengers_at_node(current_node)
-        bus.modified_path.append(final_destination)
-        bus.total_travel_time = calculate_cost_of_path(bus.modified_path)
+        _bus_modified.drop_off_passengers_at_node(_current_node)
+        _bus_modified.modified_path.append(_final_destination)
+        _bus_modified.total_travel_time += calculate_cost_of_path(_bus_modified.modified_path)
 
     update_path_costs(graph_for_profit, bus_list)
-    for bus in bus_list:
-        y2_passengers.append(bus.total_passengers_picked_up)
-        y2_profit.append(bus.total_profit_made)
-        y2_travel_cost.append(bus.total_travel_time)
 
-    return y1_passengers, y1_profit, y1_travel_cost, y2_passengers, y2_profit, y2_travel_cost
+    for _bus_modified in bus_list:
+        _y2_passengers.append(_bus_modified.total_passengers_picked_up)
+        _y2_profit.append(_bus_modified.total_profit_made)
+        _y2_travel_cost.append(_bus_modified.total_travel_time)
+
+    # graph details
+    # print('Passengers picked up: ')
+    # print(_y1_passengers)
+    # print(_y2_passengers)
+    # print('Profit made: ')
+    # print(_y1_profit)
+    # print(_y2_profit)
+    # print('Travel Cost: ')
+    # print(_y1_travel_cost)
+    # print(_y2_travel_cost)
+
+    return _y1_passengers, _y1_profit, _y1_travel_cost, _y2_passengers, _y2_profit, _y2_travel_cost
 
 
 def plot_graph(x, y1, y2, label1, label2, y_title, x_title, graph_title, x_names):

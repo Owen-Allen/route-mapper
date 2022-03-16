@@ -39,6 +39,12 @@ class Node:
         if edge_node in self.outgoing_edges.keys():
             self.outgoing_edges[edge_node][1] += x
 
+
+    def add_drivers_between_all_nodes_in_path(self, path):
+        for i in range(len(path)):
+            if path[i] == path[-1]:
+                return
+            path[i].add_drivers_on_edge_with_node(path[i+1], 1)
     def reset_drivers_on_edges(self):
         for edge_node in self.outgoing_edges:
             self.outgoing_edges[edge_node][1] = 0
