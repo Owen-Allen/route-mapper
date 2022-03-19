@@ -389,6 +389,8 @@ if __name__ == '__main__':
     # graph, busses = construct_graph_and_buses()
     graph, busses = construct_g_b()
 
+    add_extra_paths(graph)
+
     names = []
     for bus in busses:
         names.append(bus.name)
