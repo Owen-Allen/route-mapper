@@ -494,6 +494,6 @@ if __name__ == '__main__':
         reset_all_values(graph, busses)
 
     update_path_costs(graph, busses)
-    # display_network(graph)
+    display_network(graph)
     print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
     print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
