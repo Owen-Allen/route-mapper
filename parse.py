@@ -7,25 +7,9 @@ from Bus import Bus
 
 from datetime import datetime
 
-# ROUTE_NUMBERS = [6, 7, 10, 11, 14]
-
 
 ROUTE_NUMBERS = [7, 6, 10, 14]
 
-
-ROUTE_DIRECTIONS = {
-    # 5: ["Billings Bridge", "Rideau"],
-    # 6: ["Rockcliffe", "Greenboro"],
-    # 7: ["St-Laurent", "Carleton"],
-    # 10: ["Hurdman", "Lyon"],
-    # 11: ["Parliament ~ Parlement", "Bayshore"],
-    # 14: ["Tunney's Pasture", "St-Laurent"],
-    # 15: ["Parliament ~ Parlement", "Blair"]
-}
-# 7667 Bank Flora
-# 8798 Bank Gladstone
-# 7665 BANK / GILMOUR
-# 2484,"BANK / GLOUCESTER"
 
 TRIP_IDS = {
     7: ["83445871-JAN22-JANDA22-Weekday-03", "83445877-JAN22-JANDA22-Weekday-03"],
@@ -33,12 +17,6 @@ TRIP_IDS = {
     10: ["83480772-JAN22-JANDA22-Weekday-04", "83480774-JAN22-JANDA22-Weekday-04"],
     14: ["83446728-JAN22-JANDA22-Weekday-03", "83447050-JAN22-JANDA22-Weekday-03"]
 }
-
-# TRIP_IDS = {
-#     7: [83445871, 83445877], 
-#     6: [83479758, 83479759],
-#     10: [83480772, 83480774]
-# }
 
 
 df_stops = pd.read_csv("data/google_transit/stops.txt") # USED TO GATHER STOP NAME AND STOP CODE
@@ -125,126 +103,56 @@ def construct_g_b():
     
     return G, buses
 
+def add_extra_paths(G):
+    print("ADDING EXTRA PATHS")
 
-def construct_graph_and_buses():
-    G = Graph()
-    buses = []
+    # SUNNYSIDE EXTENSION
+    # CONNECT 6683, 6785 6776, 6775, 6773
+    sunnyside = [6683, 6785, 6776, 6775, 6773]
+    # these nodes already have an edges going the opposite way
 
-    df_trips = pd.read_csv("data/google_transit/trips.txt")
+    for i in range(0, len(sunnyside) - 1):
+        n1 = G.get_node_with_code(sunnyside[i])
+        n2 = G.get_node_with_code(sunnyside[i + 1])
 
-    df_stop_times = pd.read_csv("data/google_transit/stop_times.txt")
+        # get the existing weight from n2 to n1
+        edge = n2.outgoing_edges[n1]
+        # use that weight for the edge from n1 to n2
+        n1.add_edge(n2, [edge[0], edge[1]])
 
-    for route in ROUTE_NUMBERS:
-        for direction in ROUTE_DIRECTIONS[route]:  # 7 Carleton vs 7 St-Laurent
-            print(f"{route} {direction}")
-            trip = \
-                df_trips.loc[
-                    (df_trips['route_id'] == str(route) + "-332") & (df_trips['trip_headsign'] == direction)].iloc[
-                    0]
-            trip_id = trip.at["trip_id"]
+    # BANK STREET DETOUR
+    # If bank street is very busy, the bus can make a detour
+    # From Bank / Gladstone -> Metcalfe / Gladstone -> Metcalfe / Somerset -> Metcalfe / Queen
 
-            trip_stops = df_stop_times.loc[df_stop_times['trip_id'] == trip_id]
-            
-            bus = Bus(name= str(route) + trip.at["trip_headsign"])
-            path = []
-            for i in trip_stops.index:
+    # ALL EDGE WEIGHTS WERE FOUND USING GOOGLE MAPS
 
-                if i != trip_stops.index[len(trip_stops.index) - 1]: # not at last stop
-                    # Create node i and node i + 1 if not already created
-                    id_1 = df_stop_times.loc[i].at["stop_id"]
-                    n1 = G.get_node_with_id(id_1)
-                    if n1 is None:
-                        n1 = Node(name=id_1, id=id_1)
-                        G.add_node(n1)
-
-                    id_2 = df_stop_times.loc[i + 1].at["stop_id"]
-                    n2 = G.get_node_with_id(id_2)
-                    if n2 is None:
-                        n2 = Node(name=id_2, id=id_2)
-                        G.add_node(n2)
-
-                    d1 = datetime.strptime(df_stop_times.loc[i].at["departure_time"], "%H:%M:%S")
-                    d2 = datetime.strptime(df_stop_times.loc[i + 1].at["departure_time"], "%H:%M:%S")
-
-                    dif = d2 - d1
-                    edge_weight = dif.seconds
-
-                    if edge_weight == 0:
-                        edge_weight = 30
-
-                    n1.add_edge(n2, [edge_weight, 0])
-
-                    # bus.add_node_to_path(n1)
-                    # bus.add_node_to_path(n2)
-
-                    path.append(n1)
-                else:
-                    id = df_stop_times.loc[i].at["stop_id"]
-                    print("IN ELSE")
-                    print(trip_id)
-                    print(id)
-                    n = G.get_node_with_id(id)
-                    path.append(n)
-            
-            # print(f"this is the path {path}")
-            bus.set_path(path)
-            buses.append(bus)
-            # print(bus)
-            break
-    return G, buses
+    bank_gladstone = G.get_node_with_code(8798)
+    metcalfe_gladstone = G.get_node_with_code(7672)
+    bank_gladstone.add_edge(metcalfe_gladstone, [60, 0])
+    metcalfe_gladstone.add_edge(bank_gladstone, [60, 0])
 
 
-def compute_node_edges(G, routes, buses):
-    # Use the bus number (7 -> 7-332) to get a trip_id from trips.txt
-    #               EX 7-322 -> 83446041
-    # Now with that trip_id parse stop_times.txt to get the time of arrival for each stop
-    # We can use the difference in the time of arrival to calculate the edge weights.
 
-    df_trips = pd.read_csv("data/google_transit/trips.txt")
-
-    df_stop_times = pd.read_csv("data/google_transit/stop_times.txt")
-
-    nodes = G.get_nodes()
-
-    for route in routes:  # construct a graph using the routes of all buses
-        bus = Bus(str(route["route_number"]))
-
-        trip = df_trips.loc[df_trips['route_id'] == str(route["route_number"]) + "-332"].iloc[0]
-        trip_id = trip.loc["trip_id"]
-
-        print(trip_id)
-
-        trip_stops = df_stop_times.loc[df_stop_times['trip_id'] == trip_id]
-        for index in trip_stops.index:  # the stop at index connects to stop at index + 1
-            if index == trip_stops.index[len(trip_stops.index) - 1]:  # if we're at the end of the array
-                # avoids out of bounds
-                last_stop_id = df_stop_times.loc[index].at["stop_id"]
-                last_stop = G.get_node_with_id(last_stop_id)
-                if last_stop:
-                    bus.add_node_to_path(last_stop)
-                else:
-                    print(f"Could not find last stop for bus {bus.name}")
-            else:
-                d1 = datetime.strptime(df_stop_times.loc[index].at["departure_time"], "%H:%M:%S")
-                d2 = datetime.strptime(df_stop_times.loc[index + 1].at["departure_time"], "%H:%M:%S")
-
-                dif = d2 - d1
-                edge_weight = dif.seconds // 60
-                # Get those nodes from the graph
-                from_node = G.get_node_with_id(df_stop_times.loc[index].at["stop_id"])
-                to_node = G.get_node_with_id(df_stop_times.loc[index + 1].at["stop_id"])
-
-                if from_node is None:
-                    print("THIS SHOULD NEVER HAPPEN, YOUR GRAPH G HASN'T CREATED THE from_node FOR THIS STOP")
-                if to_node is None:
-                    print("THIS SHOULD NEVER HAPPEN, YOUR GRAPH G HASN'T CREATED THE to_node FOR THIS STOP")
-
-                from_node.add_edge(to_node, [edge_weight, 0])
-                bus.add_node_to_path(from_node)
-
-        buses.append(bus)
+    metcalfe_somerset = Node("METCALFE / SOMSERSET", 1) # this stop doesn't exist
+    metcalfe_somerset.pos = (-75.692233, 45.416985)
+    G.add_node(metcalfe_somerset)
+    metcalfe_gladstone.add_edge(metcalfe_somerset, [60, 0])
+    metcalfe_somerset.add_edge(metcalfe_gladstone, [60, 0])
 
 
+    metcalfe_queen = G.get_node_with_code(1512)
+    metcalfe_somerset.add_edge(metcalfe_queen, [120,0])
+    metcalfe_queen.add_edge(metcalfe_somerset, [120,0])
+
+def check_path(buses):
+    for bus in buses:
+        print("in loop")
+        if bus.name == "7 St-Laurent":
+            print(bus)
+            print("NORMAL PATH")
+            print(bus.path)
+            print("MODIFIED PATH")
+            print(bus.modified_path)
 
 
 def construct_bus_json(route_number):
@@ -269,8 +177,6 @@ def construct_bus_json(route_number):
     with open("data/" + str(route_number) + ".json", "w") as f:
         json.dump(bus, f)
 
-
-
 def name_stops(g):
     df_stops = pd.read_csv("data/google_transit/stops.txt")
     for node in g.get_nodes():
@@ -278,42 +184,8 @@ def name_stops(g):
         node.id = stop_name
         node.name = stop_name
 
-
-
 if __name__ == "__main__":
     graph, buses = construct_g_b()
 
-
-    # for bus in buses:
-        # print(bus)
-        # for node in bus.path:
-            # print(f"{node}, edges {node.outgoing_edges}")
-
-    for node in graph.nodes:
-        if len(node.outgoing_edges) == 0:
-            print(node.name)
-
-
-
-
-    # name_stops(g)
-
-    # print("done creating buses")
-
-    # for bus in b:
-    #     print(bus)
-    #     print(bus.path)
-
-    # for node in g.get_nodes():
-    #     print(node.id)
-
-
-    
-
-    # construct_bus_json(6)
-
-    # construct_bus_json(7)
-
-    # construct_bus_json(11)
-
-    # construct_bus_json(14)
+    add_extra_paths(graph)
+    print(buses[0].path)
