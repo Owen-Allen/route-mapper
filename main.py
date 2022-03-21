@@ -353,6 +353,7 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
         y1 = []
         y2 = []
         for j in range(len(original_array_for_line_graph)):
+            # reset the arrays
             y1.clear()
             y2.clear()
             for bus_values in original_array_for_line_graph[j]:
