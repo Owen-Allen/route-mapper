@@ -98,7 +98,6 @@ def display_network(graph_to_display):
     graph_display = nx.DiGraph()
     edges = graph_to_display.get_all_graph_edges_with_weight()
 
-
     # add edges to graph
     graph_display.add_weighted_edges_from(edges)
 
@@ -165,13 +164,11 @@ def get_original_bus_graph_details(graph_original, bus_list):
 
 
 def display_company_priority_travel_cost(graph_travel_cost, bus_list):
-
     _y2_passengers = []
     _y2_profit = []
     _y2_travel_cost = []
 
     _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_travel_cost, bus_list)
-
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -242,7 +239,6 @@ def display_company_priority_profit(graph_for_profit, bus_list):
     _y2_travel_cost = []
 
     _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_for_profit, bus_list)
-
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -364,8 +360,15 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
             for bus_values in modified_array_for_line_graph[j]:
                 y2.append(bus_values[i])
 
-            plt.plot(passenger_amounts, y1, label="Original path")
-            plt.plot(passenger_amounts, y2, label="Alternate path")
+            # annotate the points with their values
+            for index in range(len(passenger_amounts)):
+                plt.annotate(y1[index], (passenger_amounts[index], y1[index]), textcoords="offset points",
+                             xytext=(0, 5), ha='center', wrap=True)
+                plt.annotate(y2[index], (passenger_amounts[index], y2[index]), textcoords="offset points",
+                             xytext=(0, 5), ha='center', wrap=True)
+
+            plt.plot(passenger_amounts, y1, label="Original path", marker='o')
+            plt.plot(passenger_amounts, y2, label="Alternate path", marker='o')
 
             plt.xlabel("Passenger count")
 
@@ -379,6 +382,7 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
                 plt.ylabel("Travel cost")
 
             plt.legend()
+            # plt.grid(True)
             plt.show()
 
 
@@ -485,6 +489,6 @@ if __name__ == '__main__':
         reset_all_values(graph, busses)
 
     update_path_costs(graph, busses)
-    display_network(graph)
+    # display_network(graph)
     print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
     print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
