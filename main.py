@@ -1,11 +1,12 @@
 from random import randrange
-import networkx as nx
-import numpy as np
+
 import matplotlib.pyplot as plt
+import networkx as nx
+from pyvis.network import Network
+
 from Passenger import Passenger
 from Shortest_path import *
 from parse import *
-from pyvis.network import Network
 
 
 def calculate_cost_of_path(path):
@@ -24,7 +25,6 @@ def print_path(path):
     for node in path:
         path_to_print.append(node.name)
     print(path_to_print)
-
 
 
 def display_busses_route(graph_to_display, bus_list, type):
@@ -65,7 +65,6 @@ def display_bus_route(graph_to_display, bus_to_display, type):
     network.set_options(options)
     network.from_nx(graph_display)
     network.show("graphs/" + bus_to_display.name + "/" + bus_to_display.name + "_" + type + "_network.html")
-
 
 
 def update_path_costs(graph_to_update, bus_list_to_update):
@@ -244,7 +243,6 @@ def display_company_priority_profit(graph_for_profit, bus_list, passenger_amount
     # print(_y2_travel_cost)
 
     return _y1_passengers, _y1_profit, _y1_travel_cost, _y2_passengers, _y2_profit, _y2_travel_cost
-
 
 
 def reset_all_values(graph_to_reset, bus_list):

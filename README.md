@@ -5,7 +5,6 @@
 #### NOTE: You must have python installed to run
 
 #### Libraries used:
-- NumPy
 - matplotlib.pyplot
 - networkx
 - random
