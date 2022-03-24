@@ -1,0 +1,176 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1800;
+            height: 900px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+        #loadingBar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width: 1800;
+            height: 900px;
+            background-color:rgba(200,200,200,0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity:1;
+        }
+
+        #bar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:20px;
+            height:20px;
+            margin:auto auto auto auto;
+            border-radius:11px;
+            border:2px solid rgba(30,30,30,0.05);
+            background: rgb(0, 173, 246); /* Old browsers */
+            box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+        }
+
+        #border {
+            position:absolute;
+            top:10px;
+            left:10px;
+            width:500px;
+            height:23px;
+            margin:auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+
+        #text {
+            position:absolute;
+            top:8px;
+            left:530px;
+            width:30px;
+            height:50px;
+            margin:auto auto auto auto;
+            font-size:22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position:relative;
+            top:400px;
+            width:600px;
+            height:44px;
+            margin:auto auto auto auto;
+            border:8px solid rgba(0,0,0,0.1);
+            background: rgb(252,252,252); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+            border-radius:72px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+<div id="loadingBar">
+    <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+            <div id="bar"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "BANK / AYLMER", "label": "BANK / AYLMER", "shape": "dot", "size": 10}, {"id": "BANK / HOPEWELL", "label": "BANK / HOPEWELL", "shape": "dot", "size": 10}, {"id": "LANSDOWNE TD PLACE", "label": "LANSDOWNE TD PLACE", "shape": "dot", "size": 10}, {"id": "BANK / GROVE", "label": "BANK / GROVE", "shape": "dot", "size": 10}, {"id": "BANK / FIFTH", "label": "BANK / FIFTH", "shape": "dot", "size": 10}, {"id": "BANK / THIRD", "label": "BANK / THIRD", "shape": "dot", "size": 10}, {"id": "BANK / GLADSTONE", "label": "BANK / GLADSTONE", "shape": "dot", "size": 10}, {"id": "BANK / LEWIS", "label": "BANK / LEWIS", "shape": "dot", "size": 10}, {"id": "BANK / ARLINGTON", "label": "BANK / ARLINGTON", "shape": "dot", "size": 10}, {"id": "BANK / SOMERSET W", "label": "BANK / SOMERSET W", "shape": "dot", "size": 10}, {"id": "BANK / CHAMBERLAIN", "label": "BANK / CHAMBERLAIN", "shape": "dot", "size": 10}, {"id": "GLADSTONE / METCALFE", "label": "GLADSTONE / METCALFE", "shape": "dot", "size": 10}, {"id": "BANK / GILMOUR", "label": "BANK / GILMOUR", "shape": "dot", "size": 10}, {"id": "QUEEN / METCALFE", "label": "QUEEN / METCALFE", "shape": "dot", "size": 10}, {"id": "METCALFE / SOMSERSET", "label": "METCALFE / SOMSERSET", "shape": "dot", "size": 10}, {"id": "RIDEAU B", "label": "RIDEAU B", "shape": "dot", "size": 10}, {"id": "ELGIN / QUEEN", "label": "ELGIN / QUEEN", "shape": "dot", "size": 10}, {"id": "BANK / POWELL", "label": "BANK / POWELL", "shape": "dot", "size": 10}, {"id": "BANK / GLEBE", "label": "BANK / GLEBE", "shape": "dot", "size": 10}, {"id": "BANK / HUNT CLUB", "label": "BANK / HUNT CLUB", "shape": "dot", "size": 10}, {"id": "HUNT CLUB / BANK", "label": "HUNT CLUB / BANK", "shape": "dot", "size": 10}, {"id": "HUNT CLUB / AD. 1189", "label": "HUNT CLUB / AD. 1189", "shape": "dot", "size": 10}, {"id": "BANK / KITCHENER", "label": "BANK / KITCHENER", "shape": "dot", "size": 10}, {"id": "JOHNSTON / BANK", "label": "JOHNSTON / BANK", "shape": "dot", "size": 10}, {"id": "SOUTHGATE / CLEARWATER", "label": "SOUTHGATE / CLEARWATER", "shape": "dot", "size": 10}, {"id": "BANK / WALKLEY", "label": "BANK / WALKLEY", "shape": "dot", "size": 10}, {"id": "BANK / SURREY", "label": "BANK / SURREY", "shape": "dot", "size": 10}, {"id": "BANK / FOXBAR", "label": "BANK / FOXBAR", "shape": "dot", "size": 10}, {"id": "BANK / ERIE", "label": "BANK / ERIE", "shape": "dot", "size": 10}, {"id": "BANK / HERON", "label": "BANK / HERON", "shape": "dot", "size": 10}, {"id": "BANK / KARN", "label": "BANK / KARN", "shape": "dot", "size": 10}, {"id": "BILLINGS BRIDGE / BANK", "label": "BILLINGS BRIDGE / BANK", "shape": "dot", "size": 10}, {"id": "BANK / TRANSITWAY", "label": "BANK / TRANSITWAY", "shape": "dot", "size": 10}, {"id": "BANK / RIVERSIDE", "label": "BANK / RIVERSIDE", "shape": "dot", "size": 10}, {"id": "BANK / OHIO", "label": "BANK / OHIO", "shape": "dot", "size": 10}, {"id": "BANK / RIVERDALE", "label": "BANK / RIVERDALE", "shape": "dot", "size": 10}, {"id": "BANK / CAMERON", "label": "BANK / CAMERON", "shape": "dot", "size": 10}, {"id": "BANK / BELANGER", "label": "BANK / BELANGER", "shape": "dot", "size": 10}, {"id": "BANK / RANDALL", "label": "BANK / RANDALL", "shape": "dot", "size": 10}, {"id": "SOUTHGATE / AD.3308", "label": "SOUTHGATE / AD.3308", "shape": "dot", "size": 10}, {"id": "CAHILL / BANK", "label": "CAHILL / BANK", "shape": "dot", "size": 10}, {"id": "BANK / AD. 2380", "label": "BANK / AD. 2380", "shape": "dot", "size": 10}, {"id": "1145 HUNT CLUB", "label": "1145 HUNT CLUB", "shape": "dot", "size": 10}, {"id": "SOUTH KEYS 1B", "label": "SOUTH KEYS 1B", "shape": "dot", "size": 10}, {"id": "CARLETON U", "label": "CARLETON U", "shape": "dot", "size": 10}, {"id": "UNIVERSITY / GYMNASIUM", "label": "UNIVERSITY / GYMNASIUM", "shape": "dot", "size": 10}, {"id": "RAVEN / UNIVERSITY", "label": "RAVEN / UNIVERSITY", "shape": "dot", "size": 10}, {"id": "UNIVERSITY / STADIUM", "label": "UNIVERSITY / STADIUM", "shape": "dot", "size": 10}, {"id": "SUNNYSIDE / CARRAWAY", "label": "SUNNYSIDE / CARRAWAY", "shape": "dot", "size": 10}, {"id": "BRONSON / SUNNYSIDE", "label": "BRONSON / SUNNYSIDE", "shape": "dot", "size": 10}, {"id": "SUNNYSIDE / SENECA", "label": "SUNNYSIDE / SENECA", "shape": "dot", "size": 10}, {"id": "SENECA / GLEN", "label": "SENECA / GLEN", "shape": "dot", "size": 10}, {"id": "SUNNYSIDE / BRONSON", "label": "SUNNYSIDE / BRONSON", "shape": "dot", "size": 10}, {"id": "SUNNYSIDE / ROSEDALE", "label": "SUNNYSIDE / ROSEDALE", "shape": "dot", "size": 10}, {"id": "GROVE / SENECA", "label": "GROVE / SENECA", "shape": "dot", "size": 10}, {"id": "GROVE / LEONARD", "label": "GROVE / LEONARD", "shape": "dot", "size": 10}, {"id": "GROVE / GROSVENOR", "label": "GROVE / GROSVENOR", "shape": "dot", "size": 10}, {"id": "GROVE / BANK", "label": "GROVE / BANK", "shape": "dot", "size": 10}, {"id": "BANK / BELMONT", "label": "BANK / BELMONT", "shape": "dot", "size": 10}, {"id": "BANK / SUNNYSIDE", "label": "BANK / SUNNYSIDE", "shape": "dot", "size": 10}, {"id": "SUNNYSIDE / BANK", "label": "SUNNYSIDE / BANK", "shape": "dot", "size": 10}, {"id": "BANK / FIRST", "label": "BANK / FIRST", "shape": "dot", "size": 10}, {"id": "BANK / PATTERSON", "label": "BANK / PATTERSON", "shape": "dot", "size": 10}, {"id": "BANK / ISABELLA", "label": "BANK / ISABELLA", "shape": "dot", "size": 10}, {"id": "BANK / CATHERINE", "label": "BANK / CATHERINE", "shape": "dot", "size": 10}, {"id": "BANK / FLORA", "label": "BANK / FLORA", "shape": "dot", "size": 10}, {"id": "BANK / GLOUCESTER", "label": "BANK / GLOUCESTER", "shape": "dot", "size": 10}, {"id": "BANK / SLATER", "label": "BANK / SLATER", "shape": "dot", "size": 10}, {"id": "BANK / LISGAR", "label": "BANK / LISGAR", "shape": "dot", "size": 10}, {"id": "PARLIAMENT / PARLEMENT A", "label": "PARLIAMENT / PARLEMENT A", "shape": "dot", "size": 10}, {"id": "ELGIN / WELLINGTON", "label": "ELGIN / WELLINGTON", "shape": "dot", "size": 10}, {"id": "RIDEAU / CUMBERLAND", "label": "RIDEAU / CUMBERLAND", "shape": "dot", "size": 10}, {"id": "RIDEAU / KING EDWARD", "label": "RIDEAU / KING EDWARD", "shape": "dot", "size": 10}, {"id": "RIDEAU / NELSON", "label": "RIDEAU / NELSON", "shape": "dot", "size": 10}, {"id": "RIDEAU / DALHOUSIE", "label": "RIDEAU / DALHOUSIE", "shape": "dot", "size": 10}, {"id": "RIDEAU / FRIEL", "label": "RIDEAU / FRIEL", "shape": "dot", "size": 10}, {"id": "RIDEAU / AUGUSTA", "label": "RIDEAU / AUGUSTA", "shape": "dot", "size": 10}, {"id": "COBOURG / BEAUSOLEIL", "label": "COBOURG / BEAUSOLEIL", "shape": "dot", "size": 10}, {"id": "RIDEAU / CHAPEL", "label": "RIDEAU / CHAPEL", "shape": "dot", "size": 10}, {"id": "RIDEAU / CHARLOTTE", "label": "RIDEAU / CHARLOTTE", "shape": "dot", "size": 10}, {"id": "COBOURG / CLARENCE", "label": "COBOURG / CLARENCE", "shape": "dot", "size": 10}, {"id": "COBOURG / ST PATRICK", "label": "COBOURG / ST PATRICK", "shape": "dot", "size": 10}, {"id": "ST PATRICK / COBOURG", "label": "ST PATRICK / COBOURG", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / LOYER", "label": "BEECHWOOD / LOYER", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / ST CHARLES", "label": "BEECHWOOD / ST CHARLES", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / MARIER", "label": "BEECHWOOD / MARIER", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / MACKAY", "label": "BEECHWOOD / MACKAY", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / JOLLIET", "label": "BEECHWOOD / JOLLIET", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / JULIANA", "label": "BEECHWOOD / JULIANA", "shape": "dot", "size": 10}, {"id": "HEMLOCK / LANSDOWNE", "label": "HEMLOCK / LANSDOWNE", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / CORONA", "label": "BEECHWOOD / CORONA", "shape": "dot", "size": 10}, {"id": "HEMLOCK / WHITEMARL", "label": "HEMLOCK / WHITEMARL", "shape": "dot", "size": 10}, {"id": "BIRCH / HEMLOCK", "label": "BIRCH / HEMLOCK", "shape": "dot", "size": 10}, {"id": "BIRCH / EASTBOURNE", "label": "BIRCH / EASTBOURNE", "shape": "dot", "size": 10}, {"id": "BIRCH / FARNHAM", "label": "BIRCH / FARNHAM", "shape": "dot", "size": 10}, {"id": "BIRCH / SANDRIDGE", "label": "BIRCH / SANDRIDGE", "shape": "dot", "size": 10}, {"id": "SANDRIDGE / MERRIMAN", "label": "SANDRIDGE / MERRIMAN", "shape": "dot", "size": 10}, {"id": "SANDRIDGE / KILBARRY", "label": "SANDRIDGE / KILBARRY", "shape": "dot", "size": 10}, {"id": "ST LAURENT / ARUNDEL", "label": "ST LAURENT / ARUNDEL", "shape": "dot", "size": 10}, {"id": "SANDRIDGE / BIRCH", "label": "SANDRIDGE / BIRCH", "shape": "dot", "size": 10}, {"id": "ST LAURENT / EASTBOURNE", "label": "ST LAURENT / EASTBOURNE", "shape": "dot", "size": 10}, {"id": "ST LAURENT / GLASGOW", "label": "ST LAURENT / GLASGOW", "shape": "dot", "size": 10}, {"id": "ST LAURENT / HEMLOCK", "label": "ST LAURENT / HEMLOCK", "shape": "dot", "size": 10}, {"id": "ST LAURENT / MEADOW", "label": "ST LAURENT / MEADOW", "shape": "dot", "size": 10}, {"id": "ST LAURENT / CLAREMOUNT", "label": "ST LAURENT / CLAREMOUNT", "shape": "dot", "size": 10}, {"id": "ST LAURENT / KAREN", "label": "ST LAURENT / KAREN", "shape": "dot", "size": 10}, {"id": "ST LAURENT / DUNBARTON", "label": "ST LAURENT / DUNBARTON", "shape": "dot", "size": 10}, {"id": "ST LAURENT / AD. 505", "label": "ST LAURENT / AD. 505", "shape": "dot", "size": 10}, {"id": "ST LAURENT / MONTR\u00c9AL", "label": "ST LAURENT / MONTR\u00c9AL", "shape": "dot", "size": 10}, {"id": "ST LAURENT / BRITTANY", "label": "ST LAURENT / BRITTANY", "shape": "dot", "size": 10}, {"id": "ST LAURENT / MORIN", "label": "ST LAURENT / MORIN", "shape": "dot", "size": 10}, {"id": "ST LAURENT / C\u00d4T\u00c9", "label": "ST LAURENT / C\u00d4T\u00c9", "shape": "dot", "size": 10}, {"id": "ST LAURENT / GUY", "label": "ST LAURENT / GUY", "shape": "dot", "size": 10}, {"id": "ST LAURENT / MCARTHUR", "label": "ST LAURENT / MCARTHUR", "shape": "dot", "size": 10}, {"id": "ST LAURENT / CLARKE", "label": "ST LAURENT / CLARKE", "shape": "dot", "size": 10}, {"id": "ST LAURENT / AD. 938", "label": "ST LAURENT / AD. 938", "shape": "dot", "size": 10}, {"id": "MCARTHUR / ST LAURENT", "label": "MCARTHUR / ST LAURENT", "shape": "dot", "size": 10}, {"id": "ST LAURENT / DONALD", "label": "ST LAURENT / DONALD", "shape": "dot", "size": 10}, {"id": "ST LAURENT / QUEEN MARY", "label": "ST LAURENT / QUEEN MARY", "shape": "dot", "size": 10}, {"id": "ST LAURENT / COVENTRY", "label": "ST LAURENT / COVENTRY", "shape": "dot", "size": 10}, {"id": "ST LAURENT / LEMIEUX", "label": "ST LAURENT / LEMIEUX", "shape": "dot", "size": 10}, {"id": "ST-LAURENT C", "label": "ST-LAURENT C", "shape": "dot", "size": 10}, {"id": "ST LAURENT / OGILVIE", "label": "ST LAURENT / OGILVIE", "shape": "dot", "size": 10}, {"id": "ST LAURENT / CYRVILLE", "label": "ST LAURENT / CYRVILLE", "shape": "dot", "size": 10}, {"id": "ST LAURENT / AD. 1055", "label": "ST LAURENT / AD. 1055", "shape": "dot", "size": 10}, {"id": "ST LAURENT / QUEEN E SCHOOL", "label": "ST LAURENT / QUEEN E SCHOOL", "shape": "dot", "size": 10}, {"id": "ST LAURENT / MALARTIC", "label": "ST LAURENT / MALARTIC", "shape": "dot", "size": 10}, {"id": "ST LAURENT / MART", "label": "ST LAURENT / MART", "shape": "dot", "size": 10}, {"id": "ST LAURENT / BLASDELL", "label": "ST LAURENT / BLASDELL", "shape": "dot", "size": 10}, {"id": "ST LAURENT / GASPE", "label": "ST LAURENT / GASPE", "shape": "dot", "size": 10}, {"id": "BEECHWOOD / ACACIA", "label": "BEECHWOOD / ACACIA", "shape": "dot", "size": 10}, {"id": "ELGIN / SLATER", "label": "ELGIN / SLATER", "shape": "dot", "size": 10}, {"id": "SUNNYSIDE / GROSVENOR", "label": "SUNNYSIDE / GROSVENOR", "shape": "dot", "size": 10}, {"id": "CAMPUS / COMMONS", "label": "CAMPUS / COMMONS", "shape": "dot", "size": 10}, {"id": "GREENBORO 1A", "label": "GREENBORO 1A", "shape": "dot", "size": 10}, {"id": "HUNT CLUB LOOP - STOP 1A", "label": "HUNT CLUB LOOP - STOP 1A", "shape": "dot", "size": 10}, {"id": "HUNT CLUB / BRIDLE PATH", "label": "HUNT CLUB / BRIDLE PATH", "shape": "dot", "size": 10}, {"id": "BANK / AD. 2401", "label": "BANK / AD. 2401", "shape": "dot", "size": 10}, {"id": "BANK / CAHILL", "label": "BANK / CAHILL", "shape": "dot", "size": 10}, {"id": "BANK / SOUTH KEYS WALKWAY", "label": "BANK / SOUTH KEYS WALKWAY", "shape": "dot", "size": 10}, {"id": "BANK / JOHNSTON", "label": "BANK / JOHNSTON", "shape": "dot", "size": 10}, {"id": "BANK / NOTTINGHILL", "label": "BANK / NOTTINGHILL", "shape": "dot", "size": 10}, {"id": "BANK / ALTA VISTA", "label": "BANK / ALTA VISTA", "shape": "dot", "size": 10}, {"id": "BANK / COLLINS", "label": "BANK / COLLINS", "shape": "dot", "size": 10}, {"id": "BANK / ROCKINGHAM", "label": "BANK / ROCKINGHAM", "shape": "dot", "size": 10}, {"id": "BANK / LAMIRA", "label": "BANK / LAMIRA", "shape": "dot", "size": 10}, {"id": "BANK / KILBORN PATHWAY- SENTIER", "label": "BANK / KILBORN PATHWAY- SENTIER", "shape": "dot", "size": 10}, {"id": "DATA CENTRE / BILLINGS BRIDGE", "label": "DATA CENTRE / BILLINGS BRIDGE", "shape": "dot", "size": 10}, {"id": "PLEASANT PARK 1A", "label": "PLEASANT PARK 1A", "shape": "dot", "size": 10}, {"id": "HURDMAN D", "label": "HURDMAN D", "shape": "dot", "size": 10}, {"id": "LYC\u00c9E CLAUDEL 1A", "label": "LYC\u00c9E CLAUDEL 1A", "shape": "dot", "size": 10}, {"id": "SMYTH 1A", "label": "SMYTH 1A", "shape": "dot", "size": 10}, {"id": "RIVERSIDE 1A", "label": "RIVERSIDE 1A", "shape": "dot", "size": 10}, {"id": "HERON 3A", "label": "HERON 3A", "shape": "dot", "size": 10}, {"id": "HERON / DATA CENTRE (D)", "label": "HERON / DATA CENTRE (D)", "shape": "dot", "size": 10}, {"id": "1500 BRONSON", "label": "1500 BRONSON", "shape": "dot", "size": 10}, {"id": "BRONSON / HERON (C)", "label": "BRONSON / HERON (C)", "shape": "dot", "size": 10}, {"id": "BRONSON / COLONEL BY", "label": "BRONSON / COLONEL BY", "shape": "dot", "size": 10}, {"id": "BRONSON / HOLMWOOD", "label": "BRONSON / HOLMWOOD", "shape": "dot", "size": 10}, {"id": "BRONSON / UNIVERSITY", "label": "BRONSON / UNIVERSITY", "shape": "dot", "size": 10}, {"id": "BRONSON / FIFTH", "label": "BRONSON / FIFTH", "shape": "dot", "size": 10}, {"id": "BRONSON / THIRD", "label": "BRONSON / THIRD", "shape": "dot", "size": 10}, {"id": "BRONSON / GLEBE", "label": "BRONSON / GLEBE", "shape": "dot", "size": 10}, {"id": "BRONSON / CLEMOW", "label": "BRONSON / CLEMOW", "shape": "dot", "size": 10}, {"id": "BRONSON / CHAMBERLAIN", "label": "BRONSON / CHAMBERLAIN", "shape": "dot", "size": 10}, {"id": "BRONSON / FIRST", "label": "BRONSON / FIRST", "shape": "dot", "size": 10}, {"id": "BRONSON / CATHERINE", "label": "BRONSON / CATHERINE", "shape": "dot", "size": 10}, {"id": "BRONSON / GLADSTONE", "label": "BRONSON / GLADSTONE", "shape": "dot", "size": 10}, {"id": "BRONSON / SOMERSET W", "label": "BRONSON / SOMERSET W", "shape": "dot", "size": 10}, {"id": "BRONSON / RAYMOND", "label": "BRONSON / RAYMOND", "shape": "dot", "size": 10}, {"id": "BRONSON / NEPEAN", "label": "BRONSON / NEPEAN", "shape": "dot", "size": 10}, {"id": "BRONSON / LAURIER W", "label": "BRONSON / LAURIER W", "shape": "dot", "size": 10}, {"id": "SLATER / BAY", "label": "SLATER / BAY", "shape": "dot", "size": 10}, {"id": "BRONSON / PRIMROSE", "label": "BRONSON / PRIMROSE", "shape": "dot", "size": 10}, {"id": "BAY / QUEEN", "label": "BAY / QUEEN", "shape": "dot", "size": 10}, {"id": "LYON B", "label": "LYON B", "shape": "dot", "size": 10}, {"id": "ALBERT / BAY", "label": "ALBERT / BAY", "shape": "dot", "size": 10}, {"id": "BRONSON / PLYMOUTH", "label": "BRONSON / PLYMOUTH", "shape": "dot", "size": 10}, {"id": "BRONSON / KIPPEWA", "label": "BRONSON / KIPPEWA", "shape": "dot", "size": 10}, {"id": "BRONSON / MADAWASKA", "label": "BRONSON / MADAWASKA", "shape": "dot", "size": 10}, {"id": "BRONSON / LAKEVIEW", "label": "BRONSON / LAKEVIEW", "shape": "dot", "size": 10}, {"id": "MCARTHUR / DE L\u0027\u00c9GLISE", "label": "MCARTHUR / DE L\u0027\u00c9GLISE", "shape": "dot", "size": 10}, {"id": "MCARTHUR / BRANT", "label": "MCARTHUR / BRANT", "shape": "dot", "size": 10}, {"id": "MCARTHUR / EASTWOOD", "label": "MCARTHUR / EASTWOOD", "shape": "dot", "size": 10}, {"id": "MCARTHUR / MOORVALE", "label": "MCARTHUR / MOORVALE", "shape": "dot", "size": 10}, {"id": "MCARTHUR / LAFONTAINE", "label": "MCARTHUR / LAFONTAINE", "shape": "dot", "size": 10}, {"id": "MCARTHUR / LACASSE", "label": "MCARTHUR / LACASSE", "shape": "dot", "size": 10}, {"id": "MCARTHUR / IRWIN MILLER", "label": "MCARTHUR / IRWIN MILLER", "shape": "dot", "size": 10}, {"id": "MCARTHUR / OLMSTEAD", "label": "MCARTHUR / OLMSTEAD", "shape": "dot", "size": 10}, {"id": "MCARTHUR / VANIER", "label": "MCARTHUR / VANIER", "shape": "dot", "size": 10}, {"id": "MCARTHUR / ALLEN", "label": "MCARTHUR / ALLEN", "shape": "dot", "size": 10}, {"id": "MCARTHUR / MAYFIELD", "label": "MCARTHUR / MAYFIELD", "shape": "dot", "size": 10}, {"id": "NORTH RIVER / MCARTHUR", "label": "NORTH RIVER / MCARTHUR", "shape": "dot", "size": 10}, {"id": "NORTH RIVER / SELKIRK", "label": "NORTH RIVER / SELKIRK", "shape": "dot", "size": 10}, {"id": "RIDEAU / WURTEMBURG", "label": "RIDEAU / WURTEMBURG", "shape": "dot", "size": 10}, {"id": "NORTH RIVER / MONTR\u00c9AL", "label": "NORTH RIVER / MONTR\u00c9AL", "shape": "dot", "size": 10}, {"id": "ELGIN / NEPEAN", "label": "ELGIN / NEPEAN", "shape": "dot", "size": 10}, {"id": "ELGIN / LISGAR", "label": "ELGIN / LISGAR", "shape": "dot", "size": 10}, {"id": "ELGIN / SOMERSET W", "label": "ELGIN / SOMERSET W", "shape": "dot", "size": 10}, {"id": "ELGIN / LEWIS", "label": "ELGIN / LEWIS", "shape": "dot", "size": 10}, {"id": "ELGIN / GLADSTONE", "label": "ELGIN / GLADSTONE", "shape": "dot", "size": 10}, {"id": "GLADSTONE / O\u0027CONNOR", "label": "GLADSTONE / O\u0027CONNOR", "shape": "dot", "size": 10}, {"id": "GLADSTONE / ELGIN", "label": "GLADSTONE / ELGIN", "shape": "dot", "size": 10}, {"id": "GLADSTONE / BANK", "label": "GLADSTONE / BANK", "shape": "dot", "size": 10}, {"id": "GLADSTONE / KENT", "label": "GLADSTONE / KENT", "shape": "dot", "size": 10}, {"id": "GLADSTONE / LYON", "label": "GLADSTONE / LYON", "shape": "dot", "size": 10}, {"id": "GLADSTONE / BAY", "label": "GLADSTONE / BAY", "shape": "dot", "size": 10}, {"id": "GLADSTONE / PERCY", "label": "GLADSTONE / PERCY", "shape": "dot", "size": 10}, {"id": "GLADSTONE / BRONSON", "label": "GLADSTONE / BRONSON", "shape": "dot", "size": 10}, {"id": "GLADSTONE / ARTHUR", "label": "GLADSTONE / ARTHUR", "shape": "dot", "size": 10}, {"id": "GLADSTONE / BOOTH", "label": "GLADSTONE / BOOTH", "shape": "dot", "size": 10}, {"id": "GLADSTONE / ROCHESTER", "label": "GLADSTONE / ROCHESTER", "shape": "dot", "size": 10}, {"id": "GLADSTONE / BELL", "label": "GLADSTONE / BELL", "shape": "dot", "size": 10}, {"id": "GLADSTONE / PRESTON", "label": "GLADSTONE / PRESTON", "shape": "dot", "size": 10}, {"id": "GLADSTONE / LORETTA", "label": "GLADSTONE / LORETTA", "shape": "dot", "size": 10}, {"id": "GLADSTONE / BAYSWATER", "label": "GLADSTONE / BAYSWATER", "shape": "dot", "size": 10}, {"id": "GLADSTONE / FAIRMONT", "label": "GLADSTONE / FAIRMONT", "shape": "dot", "size": 10}, {"id": "GLADSTONE / ROSEMOUNT", "label": "GLADSTONE / ROSEMOUNT", "shape": "dot", "size": 10}, {"id": "GLADSTONE / PARKDALE", "label": "GLADSTONE / PARKDALE", "shape": "dot", "size": 10}, {"id": "PARKDALE / WELLINGTON", "label": "PARKDALE / WELLINGTON", "shape": "dot", "size": 10}, {"id": "PARKDALE / OXFORD", "label": "PARKDALE / OXFORD", "shape": "dot", "size": 10}, {"id": "SCOTT / PARKDALE", "label": "SCOTT / PARKDALE", "shape": "dot", "size": 10}, {"id": "TUNNEY\u0027S PASTURE E", "label": "TUNNEY\u0027S PASTURE E", "shape": "dot", "size": 10}, {"id": "SCOTT / HOLLAND", "label": "SCOTT / HOLLAND", "shape": "dot", "size": 10}, {"id": "PARKDALE / ARMSTRONG", "label": "PARKDALE / ARMSTRONG", "shape": "dot", "size": 10}, {"id": "PARKDALE / WELLINGON", "label": "PARKDALE / WELLINGON", "shape": "dot", "size": 10}, {"id": "GLADSTONE / SHERBROOKE", "label": "GLADSTONE / SHERBROOKE", "shape": "dot", "size": 10}, {"id": "ELGIN / WAVERLY", "label": "ELGIN / WAVERLY", "shape": "dot", "size": 10}, {"id": "ELGIN / GILMOUR", "label": "ELGIN / GILMOUR", "shape": "dot", "size": 10}, {"id": "ELGIN / COOPER", "label": "ELGIN / COOPER", "shape": "dot", "size": 10}, {"id": "ELGIN / LAURIER W", "label": "ELGIN / LAURIER W", "shape": "dot", "size": 10}, {"id": "NORTH RIVER / AD. 333", "label": "NORTH RIVER / AD. 333", "shape": "dot", "size": 10}, {"id": "MCARTHUR / NORTH RIVER", "label": "MCARTHUR / NORTH RIVER", "shape": "dot", "size": 10}, {"id": "MCARTHUR / MAY", "label": "MCARTHUR / MAY", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"arrows": "to", "color": "red", "from": "BANK / AYLMER", "label": "168.0", "to": "BANK / HOPEWELL", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "LANSDOWNE TD PLACE", "label": "60", "to": "BANK / AYLMER", "weight": 60}, {"arrows": "to", "color": "red", "from": "BANK / HOPEWELL", "label": "168.0", "to": "BANK / GROVE", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / FIFTH", "label": "192.0", "to": "LANSDOWNE TD PLACE", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "BANK / THIRD", "label": "192.0", "to": "BANK / FIFTH", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "BANK / GLADSTONE", "label": "108.0", "to": "BANK / LEWIS", "weight": 108.0}, {"arrows": "to", "color": "red", "from": "BANK / GLADSTONE", "label": "192.0", "to": "BANK / ARLINGTON", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "BANK / LEWIS", "label": "108.0", "to": "BANK / SOMERSET W", "weight": 108.0}, {"arrows": "to", "color": "red", "from": "BANK / ARLINGTON", "label": "192.0", "to": "BANK / CHAMBERLAIN", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "GLADSTONE / METCALFE", "label": "60", "to": "BANK / GLADSTONE", "weight": 60}, {"arrows": "to", "color": "red", "from": "BANK / SOMERSET W", "label": "192.0", "to": "BANK / GILMOUR", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "BANK / GILMOUR", "label": "192.0", "to": "BANK / GLADSTONE", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "QUEEN / METCALFE", "label": "120", "to": "METCALFE / SOMSERSET", "weight": 120}, {"arrows": "to", "color": "red", "from": "METCALFE / SOMSERSET", "label": "60", "to": "GLADSTONE / METCALFE", "weight": 60}, {"arrows": "to", "color": "red", "from": "RIDEAU B", "label": "120", "to": "ELGIN / QUEEN", "weight": 120}, {"arrows": "to", "color": "red", "from": "ELGIN / QUEEN", "label": "30", "to": "QUEEN / METCALFE", "weight": 30}, {"arrows": "to", "color": "red", "from": "BANK / CHAMBERLAIN", "label": "192.0", "to": "BANK / POWELL", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "BANK / POWELL", "label": "192.0", "to": "BANK / GLEBE", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "BANK / GLEBE", "label": "192.0", "to": "BANK / THIRD", "weight": 192.0}, {"arrows": "to", "color": "red", "from": "BANK / HUNT CLUB", "label": "168.0", "to": "HUNT CLUB / BANK", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "HUNT CLUB / BANK", "label": "168.0", "to": "HUNT CLUB / AD. 1189", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / KITCHENER", "label": "168.0", "to": "JOHNSTON / BANK", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "JOHNSTON / BANK", "label": "168.0", "to": "SOUTHGATE / CLEARWATER", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / WALKLEY", "label": "168.0", "to": "BANK / SURREY", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / SURREY", "label": "168.0", "to": "BANK / FOXBAR", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / ERIE", "label": "168.0", "to": "BANK / WALKLEY", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / HERON", "label": "168.0", "to": "BANK / ERIE", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / KARN", "label": "168.0", "to": "BANK / HERON", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BILLINGS BRIDGE / BANK", "label": "120", "to": "BANK / TRANSITWAY", "weight": 120}, {"arrows": "to", "color": "red", "from": "BANK / RIVERSIDE", "label": "168.0", "to": "BILLINGS BRIDGE / BANK", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / TRANSITWAY", "label": "168.0", "to": "BANK / OHIO", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / RIVERDALE", "label": "168.0", "to": "BANK / RIVERSIDE", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / CAMERON", "label": "168.0", "to": "BANK / RIVERDALE", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / GROVE", "label": "168.0", "to": "BANK / CAMERON", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / OHIO", "label": "168.0", "to": "BANK / BELANGER", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / BELANGER", "label": "168.0", "to": "BANK / RANDALL", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / RANDALL", "label": "168.0", "to": "BANK / KARN", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / FOXBAR", "label": "168.0", "to": "BANK / KITCHENER", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "SOUTHGATE / CLEARWATER", "label": "30", "to": "SOUTHGATE / AD.3308", "weight": 30}, {"arrows": "to", "color": "red", "from": "SOUTHGATE / AD.3308", "label": "60", "to": "CAHILL / BANK", "weight": 60}, {"arrows": "to", "color": "red", "from": "CAHILL / BANK", "label": "168.0", "to": "BANK / AD. 2380", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "BANK / AD. 2380", "label": "168.0", "to": "BANK / HUNT CLUB", "weight": 168.0}, {"arrows": "to", "color": "red", "from": "HUNT CLUB / AD. 1189", "label": "30", "to": "1145 HUNT CLUB", "weight": 30}, {"arrows": "to", "color": "red", "from": "1145 HUNT CLUB", "label": "60", "to": "SOUTH KEYS 1B", "weight": 60}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {"edges": {"color": {"inherit": true}, "smooth": false}, "font": {"align": "top"}, "layout": {"randomSeed": 5, "improvedLayout": false, "hierarchical": {"enabled": false}}, "physics": {"minVelocity": 0.75}};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+        network.on("stabilizationProgress", function(params) {
+      		document.getElementById('loadingBar').removeAttribute("style");
+	        var maxWidth = 496;
+	        var minWidth = 20;
+	        var widthFactor = params.iterations/params.total;
+	        var width = Math.max(minWidth,maxWidth * widthFactor);
+
+	        document.getElementById('bar').style.width = width + 'px';
+	        document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+	    });
+	    network.once("stabilizationIterationsDone", function() {
+	        document.getElementById('text').innerHTML = '100%';
+	        document.getElementById('bar').style.width = '496px';
+	        document.getElementById('loadingBar').style.opacity = 0;
+	        // really clean the dom element
+	        setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+	    });
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

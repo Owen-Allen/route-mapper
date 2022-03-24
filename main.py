@@ -123,6 +123,10 @@ def display_bus_route(graph_to_display, bus_to_display, type):
             if bus_to_display.has_edge(node, edge_node):
                 graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight), color="red")
             else:
+                # display edges of network too
+                # graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
+
+                # do not display edges; just display nodes
                 graph_display.add_node(node.name)
                 graph_display.add_node(edge_node.name)
 
