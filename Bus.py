@@ -1,5 +1,5 @@
 class Bus:
-    def __init__(self, name='', capacity=50):
+    def __init__(self, name='', capacity=50, color="blue"):
         self.name = name
         self.path = []
         self.total_travel_time = 0
@@ -12,6 +12,7 @@ class Bus:
         self.total_passengers_picked_up = 0
         self.total_profit_made = 0
         self.average_stop_time = 10
+        self.color = color
 
     def __repr__(self):
         return self.name
