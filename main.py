@@ -123,7 +123,8 @@ def display_bus_route(graph_to_display, bus_to_display, type):
             if bus_to_display.has_edge(node, edge_node):
                 graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight), color="red")
             else:
-                graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
+                graph_display.add_node(node.name)
+                graph_display.add_node(edge_node.name)
 
     network = Network("900px", "1800", notebook=True, directed=True)
     network.set_options(options)
@@ -183,12 +184,12 @@ def get_original_bus_graph_details(graph_original, bus_list, company_prio):
     return _y1_passengers, _y1_profit, _y1_travel_cost
 
 
-def display_company_priority_travel_cost(graph_travel_cost, bus_list):
+def display_company_priority_travel_cost(graph_travel_cost, bus_list, passenger_amount):
     _y2_passengers = []
     _y2_profit = []
     _y2_travel_cost = []
 
-    _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_travel_cost, bus_list, "travel_cost")
+    _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_travel_cost, bus_list, "travel_cost_" + str(passenger_amount))
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -202,7 +203,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
             _bus_modified.modified_path.append(_current_node)
             if _current_node.code == _next_destination.code:
                 _bus_modified.drop_off_passengers_at_node(_current_node)
-                _bus_modified.pickup_passengers_at_node_going_to_farthest_node_in_path(_current_node)
+                _bus_modified.pickup_passengers_at_node(_current_node)
 
             # get the next stop that the bus must go to drop off its passengers
             _next_destination = _bus_modified.find_next_destination(_current_node)
@@ -230,7 +231,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
 
     update_path_costs(graph_travel_cost, bus_list)
 
-    display_busses_route(graph_travel_cost, bus_list, "modified_travel_cost")
+    display_busses_route(graph_travel_cost, bus_list, "modified_travel_cost_" + str(passenger_amount))
 
     for _bus_modified in bus_list:
         _y2_passengers.append(_bus_modified.total_passengers_picked_up)
@@ -251,7 +252,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list):
     return _y1_passengers, _y1_profit, _y1_travel_cost, _y2_passengers, _y2_profit, _y2_travel_cost
 
 
-def display_company_priority_profit(graph_for_profit, bus_list):
+def display_company_priority_profit(graph_for_profit, bus_list, passenger_amount):
     # print("Passenger count: ")
     # for node in graph_travel_cost.nodes:
     #     print(node.name + ': ' + str(node.get_passenger_amount()))
@@ -260,7 +261,7 @@ def display_company_priority_profit(graph_for_profit, bus_list):
     _y2_profit = []
     _y2_travel_cost = []
 
-    _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_for_profit, bus_list, "profit")
+    _y1_passengers, _y1_profit, _y1_travel_cost = get_original_bus_graph_details(graph_for_profit, bus_list, "profit_" + str(passenger_amount))
 
     # modified bus route
     for _bus_modified in bus_list:
@@ -303,7 +304,7 @@ def display_company_priority_profit(graph_for_profit, bus_list):
         _bus_modified.total_travel_time += calculate_cost_of_path(_bus_modified.modified_path)
 
     update_path_costs(graph_for_profit, bus_list)
-    display_busses_route(graph_for_profit, bus_list, "modified_profit")
+    display_busses_route(graph_for_profit, bus_list, "modified_profit_" + str(passenger_amount))
 
     for _bus_modified in bus_list:
         _y2_passengers.append(_bus_modified.total_passengers_picked_up)
@@ -503,7 +504,7 @@ if __name__ == '__main__':
         graph.passengers = passengers
 
         _y1_passengers, _y1_profit, _y1_travel_cost, _y2_passengers, _y2_profit, _y2_travel_cost = display_company_priority_travel_cost(
-            graph, busses)
+            graph, busses, amount)
 
         y_original_travel.append(_y1_travel_cost)
         y_modified_travel.append(_y2_travel_cost)
@@ -522,7 +523,7 @@ if __name__ == '__main__':
 
         y1_passengers_company_profit, y1_profit_company_profit, y1_travel_cost_company_profit, y2_passengers_company_profit, \
         y2_profit_company_profit, y2_travel_cost_company_profit = display_company_priority_profit(
-            graph, busses)
+            graph, busses, amount)
 
         y_original_travel_for_company_profit.append(y1_travel_cost_company_profit)
         y_modified_travel_for_company_profit.append(y2_travel_cost_company_profit)
@@ -542,5 +543,5 @@ if __name__ == '__main__':
 
     update_path_costs(graph, busses)
     display_entire_network(graph)
-    # print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
-    # print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
+    print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
+    print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")

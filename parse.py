@@ -9,7 +9,6 @@ from datetime import datetime
 
 
 ROUTE_NUMBERS = [7, 6, 10, 14]
-BUS_COLORS = ["red", "blue", "purple", "green"]
 
 
 TRIP_IDS = {
@@ -89,7 +88,7 @@ def construct_g_b():
         for trip_id in TRIP_IDS[route]:  # 7 Carleton vs 7 St-Laurent
             trip = df_trips.loc[df_trips['trip_id'] == trip_id].iloc[0]
             index = ROUTE_NUMBERS.index(route)
-            bus = Bus(name = f"{route} {trip['trip_headsign']}", color=BUS_COLORS[index])
+            bus = Bus(name = f"{route} {trip['trip_headsign']}")
 
             print(f"{route} {trip['trip_headsign']}")
 
