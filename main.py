@@ -2,6 +2,8 @@ from random import randrange
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
+import pyvis
+
 from Passenger import Passenger
 from Shortest_path import *
 from parse import *
@@ -104,8 +106,10 @@ def display_entire_network(graph_to_display):
         for edge_node in node.outgoing_edges:
             weight = node.get_weight_to_node(edge_node)
             graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
-
     network = Network("900px", "1800", notebook=True, directed=True)
+    network.set_options(options)
+    print(network.options)
+    # network.show_buttons(filter_=['configure', 'layout', 'interaction', 'physics', 'edges'])
     network.from_nx(graph_display)
     network.show("network.html")
 
@@ -122,6 +126,7 @@ def display_bus_route(graph_to_display, bus_to_display, type):
                 graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
 
     network = Network("900px", "1800", notebook=True, directed=True)
+    network.set_options(options)
     network.from_nx(graph_display)
     network.show(bus_to_display.name + "_" + type + "_network.html")
 
@@ -408,6 +413,30 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
 
 
 if __name__ == '__main__':
+
+    options = """
+       var options = {
+         "edges": {
+           "color": {
+             "inherit": true
+           },
+           "smooth": false
+         },
+         "font": {
+            "align": "top"
+        },
+         "layout": {
+           "randomSeed":5,
+           "improvedLayout": false,
+           "hierarchical": {
+             "enabled": false
+           }
+         },
+         "physics": {
+            "minVelocity": 0.75
+         }
+       }
+       """
     # graph, busses = construct_test_graph()
 
     # currently, issues with double values
@@ -513,5 +542,5 @@ if __name__ == '__main__':
 
     update_path_costs(graph, busses)
     display_entire_network(graph)
-    print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
-    print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
+    # print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
+    # print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
