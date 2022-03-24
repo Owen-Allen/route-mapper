@@ -14,4 +14,5 @@
 - datetime
 - uuid
 - math
+- pyvis
 

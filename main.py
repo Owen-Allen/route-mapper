@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from Passenger import Passenger
 from Shortest_path import *
 from parse import *
+from pyvis.network import Network
 
 
 def calculate_cost_of_path(path):
@@ -94,23 +95,15 @@ def construct_test_graph():
 
 
 def display_network(graph_to_display):
-    plt.figure(num=None, dpi=70)
     graph_display = nx.DiGraph()
-    edges = graph_to_display.get_all_graph_edges_with_weight()
+    for node in graph_to_display.nodes:
+        for edge_node in node.outgoing_edges:
+            weight = node.get_weight_to_node(edge_node)
+            graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
 
-    # add edges to graph
-    graph_display.add_weighted_edges_from(edges)
-
-    # node layout
-    # pos = nx.planar_layout(graph_display)
-    pos = graph_to_display.get_all_node_locations()
-    # pos = nx.get_node_attributes(graph_to_display, 'pos')
-
-    nx.draw(graph_display, pos, with_labels=True, font_weight='bold', node_size=2000)
-    edge_weight = nx.get_edge_attributes(graph_display, 'weight')
-    nx.draw_networkx_edge_labels(graph_display, pos, edge_labels=edge_weight)
-
-    plt.show()
+    network = Network("900px", "1800", notebook=True, directed=True)
+    network.from_nx(graph_display)
+    network.show("network.html")
 
 
 def display_shortest_path_travel_cost_graph(graph_shortest_path, busses_shortest_path):
@@ -495,5 +488,5 @@ if __name__ == '__main__':
 
     update_path_costs(graph, busses)
     display_network(graph)
-    print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
-    print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
+    # print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
+    # print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
