@@ -111,7 +111,7 @@ def display_entire_network(graph_to_display):
     print(network.options)
     # network.show_buttons(filter_=['configure', 'layout', 'interaction', 'physics', 'edges'])
     network.from_nx(graph_display)
-    network.show("network.html")
+    network.show("graphs/network.html")
 
 
 
@@ -133,7 +133,7 @@ def display_bus_route(graph_to_display, bus_to_display, type):
     network = Network("900px", "1800", notebook=True, directed=True)
     network.set_options(options)
     network.from_nx(graph_display)
-    network.show(bus_to_display.name + "_" + type + "_network.html")
+    network.show("graphs/" + bus_to_display.name + "/" + bus_to_display.name + "_" + type + "_network.html")
 
 
 def display_shortest_path_travel_cost_graph(graph_shortest_path, busses_shortest_path):
@@ -547,5 +547,5 @@ if __name__ == '__main__':
 
     update_path_costs(graph, busses)
     display_entire_network(graph)
-    print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
-    print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
+    # print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
+    # print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
