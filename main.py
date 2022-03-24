@@ -547,5 +547,5 @@ if __name__ == '__main__':
 
     update_path_costs(graph, busses)
     display_entire_network(graph)
-    # print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
-    # print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
+    print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
+    print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
