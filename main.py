@@ -265,6 +265,7 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
             # reset the arrays
             y1.clear()
             y2.clear()
+            plt.figure(figsize=(10, 7))
 
             # append values
             for bus_values in original_array_for_line_graph[j]:
@@ -295,7 +296,9 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
 
             plt.legend()
             # plt.grid(True)
-            plt.show()
+            # plt.show()
+            plt.savefig("graphs/line/"+busses[i].name + " for company priority of " + company_priority)
+            plt.close()
 
 
 if __name__ == '__main__':
