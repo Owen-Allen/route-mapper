@@ -39,9 +39,9 @@ def display_entire_network(graph_to_display):
             weight = node.get_weight_to_node(edge_node)
             graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
     network = Network("900px", "1800", notebook=True, directed=True)
+    # print(network.options)
     network.set_options(options)
-    print(network.options)
-    # network.show_buttons(filter_=['configure', 'layout', 'interaction', 'physics', 'edges'])
+    # network.show_buttons(filter_=['layout'])
     network.from_nx(graph_display)
     network.show("graphs/network.html")
 
@@ -52,14 +52,12 @@ def display_bus_route(graph_to_display, bus_to_display, type):
         for edge_node in node.outgoing_edges:
             weight = node.get_weight_to_node(edge_node)
             if bus_to_display.has_edge(node, edge_node):
+                graph_display.add_node(node.name, color="red")
+                graph_display.add_node(edge_node.name, color="red")
                 graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight), color="red")
             else:
-                # display edges of network too
-                # graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
-
-                # do not display edges; just display nodes
-                graph_display.add_node(node.name)
-                graph_display.add_node(edge_node.name)
+                # display edges of network
+                graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
 
     network = Network("900px", "1800", notebook=True, directed=True)
     network.set_options(options)
@@ -306,7 +304,7 @@ if __name__ == '__main__':
        var options = {
          "edges": {
            "color": {
-             "inherit": true
+             "inherit": false
            },
            "smooth": false
          },
