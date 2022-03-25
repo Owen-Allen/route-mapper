@@ -146,7 +146,7 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list, passenger_
         _bus_modified.total_travel_time += calculate_cost_of_path(_bus_modified.modified_path)
 
     display_busses_route(graph_travel_cost, bus_list, "modified_travel_cost_" + str(passenger_amount))
-    update_path_costs(graph_travel_cost, bus_list)
+    # update_path_costs(graph_travel_cost, bus_list)
 
 
 
