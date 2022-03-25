@@ -36,7 +36,7 @@ def display_entire_network(graph_to_display):
     graph_display = nx.DiGraph()
     for node in graph_to_display.nodes:
         for edge_node in node.outgoing_edges:
-            weight = node.get_weight_to_node(edge_node)
+            weight = node.get_weight_to_node_without_driver_increase(edge_node)
             graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
     network = Network("900px", "1800px", notebook=True, directed=True)
     network.set_options(options)
@@ -440,7 +440,7 @@ if __name__ == '__main__':
 
         reset_all_values(graph, busses)
 
-    update_path_costs(graph, busses)
+    # update_path_costs(graph, busses)
     display_entire_network(graph)
     print_line_graphs(original_array_for_company_travel, modified_array_for_company_travel, "Travel Cost")
     print_line_graphs(original_array_for_company_profit, modified_array_for_company_profit, "Profit")
