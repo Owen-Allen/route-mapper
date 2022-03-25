@@ -286,18 +286,22 @@ def print_line_graphs(original_array_for_line_graph, modified_array_for_line_gra
             plt.xlabel("Passenger count")
 
             plt.title(busses[i].name + " for company priority of " + company_priority)
+            looking_at=""
             # giving a y-axis name to my graph
             if j == 0:
                 plt.ylabel("Passengers picked up")
+                looking_at = "Passengers picked up"
             elif j == 1:
                 plt.ylabel("Profit made")
+                looking_at = "Profit made"
             else:
                 plt.ylabel("Travel cost")
+                looking_at = "Travel cost"
 
             plt.legend()
             # plt.grid(True)
             # plt.show()
-            plt.savefig("graphs/line/"+busses[i].name + " for company priority of " + company_priority)
+            plt.savefig("graphs/line/"+busses[i].name + " looking at " + looking_at + " for company priority of " + company_priority)
             plt.close()
 
 
