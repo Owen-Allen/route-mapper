@@ -38,10 +38,10 @@ def display_entire_network(graph_to_display):
         for edge_node in node.outgoing_edges:
             weight = node.get_weight_to_node(edge_node)
             graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
-    network = Network("900px", "1800", notebook=True, directed=True)
+    network = Network("900px", "1800px", notebook=True, directed=True)
     # print(network.options)
     network.set_options(options)
-    # network.show_buttons(filter_=['layout'])
+    # network.show_buttons(filter_=['configure', 'layout', 'interaction', 'physics', 'edges'])
     network.from_nx(graph_display)
     network.show("graphs/network.html")
 
@@ -59,7 +59,7 @@ def display_bus_route(graph_to_display, bus_to_display, type):
                 # display edges of network
                 graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
 
-    network = Network("900px", "1800", notebook=True, directed=True)
+    network = Network("900px", "1800px", notebook=True, directed=True)
     network.set_options(options)
     network.from_nx(graph_display)
     network.show("graphs/" + bus_to_display.name + "/" + bus_to_display.name + "_" + type + "_network.html")
@@ -319,6 +319,11 @@ if __name__ == '__main__':
            }
          },
          "physics": {
+            "barnesHut": {
+              "gravitationalConstant": -3800,
+              "springLength": 130,
+              "springConstant": 0.33
+            },
             "minVelocity": 0.75
          }
        }
