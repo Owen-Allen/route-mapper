@@ -39,7 +39,6 @@ def display_entire_network(graph_to_display):
             weight = node.get_weight_to_node(edge_node)
             graph_display.add_edge(node.name, edge_node.name, weight=weight, label=str(weight))
     network = Network("900px", "1800px", notebook=True, directed=True)
-    # print(network.options)
     network.set_options(options)
     # network.show_buttons(filter_=['configure', 'layout', 'interaction', 'physics', 'edges'])
     network.from_nx(graph_display)
@@ -146,9 +145,10 @@ def display_company_priority_travel_cost(graph_travel_cost, bus_list, passenger_
         _bus_modified.modified_path.append(_final_destination)
         _bus_modified.total_travel_time += calculate_cost_of_path(_bus_modified.modified_path)
 
+    display_busses_route(graph_travel_cost, bus_list, "modified_travel_cost_" + str(passenger_amount))
     update_path_costs(graph_travel_cost, bus_list)
 
-    display_busses_route(graph_travel_cost, bus_list, "modified_travel_cost_" + str(passenger_amount))
+
 
     for _bus_modified in bus_list:
         _y2_passengers.append(_bus_modified.total_passengers_picked_up)
@@ -309,7 +309,9 @@ if __name__ == '__main__':
            "color": {
              "inherit": false
            },
-           "smooth": false
+           "smooth": {
+              "forceDirection": "none"
+           }
          },
          "font": {
             "align": "top"
